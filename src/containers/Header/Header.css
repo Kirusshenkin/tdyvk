@@ -44,6 +44,12 @@
     opacity: 0.7;
 }
 
-.mini-wrap .wrap {
-    /* padding-left: 10px; */
+/* .mini-wrap {
+    max-width: 300px;
+} */
+
+.mini-wrap {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
 }

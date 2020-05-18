@@ -1,0 +1,18 @@
+input {
+    font-size: 16px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    color: #dcddde;
+    height: 40px;
+    padding: 10px;
+}
+
+input:hover {
+    border-color: #040405;
+}
+
+input:focus {
+    border-color: #7289da;
+}

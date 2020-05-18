@@ -1,0 +1,17 @@
+.СharacterCreator {
+    background: #C9806A;
+}
+
+.СharacterCreator main p {
+    color: #000;
+}
+
+.СharacterCreator main {
+    height: 100vh;
+}
+
+.СharacterCreator main .container .first-character {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
