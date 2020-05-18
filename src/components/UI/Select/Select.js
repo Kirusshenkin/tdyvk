@@ -4,7 +4,7 @@ import './Select.css'
 class Select extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value: 'Пол'};
+        this.state = {sex: 'Пол'};
 
 
         this.handleChange = this.handleChange.bind(this);
@@ -13,7 +13,7 @@ class Select extends React.Component {
     }
 
     handleChange(event) {
-        this.setState({value: event.target.value});
+        this.setState({sex: event.target.value});
     }
     // вызываюшая функция при нажатие кнопки 
     // handleSubmit(event) {
@@ -25,7 +25,7 @@ class Select extends React.Component {
             // тут должна быть <form onSubmit={this.habdleSubmit}>
             <div>
                 <h5>Выберите пол</h5>
-                <select value={this.state.value} onChange={this.handleChange}>
+                <select value={this.state.sex} onChange={this.handleChange}>
                     <option value="мужчина">мужчина</option>
                     <option value="женщина">женщина</option>
                 </select>

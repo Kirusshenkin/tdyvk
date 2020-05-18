@@ -1,5 +1,5 @@
 .СharacterCreator {
-    background: #C9806A;
+    background: #7F2D41;
 }
 
 .СharacterCreator main p {
@@ -14,4 +14,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
+}
+
+.СharacterCreator main .container {
+    margin: 0 !important;
 }
