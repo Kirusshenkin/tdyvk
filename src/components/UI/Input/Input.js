@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './Input.css'
+import classes from './Input.css'
 
 function isInvalid({valid, touched, shouldValidate}) {
     return !valid && shouldValidate && touched
@@ -7,25 +7,28 @@ function isInvalid({valid, touched, shouldValidate}) {
 
 const Input = props => {
     const inputType = props.type || 'text'
-    const cls = [styles.Input]
+    const cls = [classes.Input]
+    const htmlFor = `${inputType}-${Math.random()}`
 
     if (isInvalid(props)) {
-        cls.push(styles.invalid)
+        cls.push(classes.invalid)
     }
 
     return (
         <div className={cls.join(' ')}>
-            <input 
+            <label htmlFor={htmlFor}>{props.label}</label>
+            <input
                 type={inputType}
+                id={htmlFor}
                 value={props.value}
                 onChange={props.onChange}
             />
 
-        {
-            isInvalid(props)
-            ? <span>{props.errorMessage || 'Введите значение'}</span>
-            : null
-        }
+    {
+        isInvalid(props)
+        ? <span>{props.errorMessage || 'Введите значение'}</span>
+        : null
+    }
         </div>
     )
 }

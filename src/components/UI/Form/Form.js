@@ -1,13 +1,13 @@
-/* eslint-disable no-undef */
 import React from 'react'
 import './Form.css'
 import Input from '../Input/Input'
 import Select from '../Select/Select'
+import SelectProfession from '../Select/SelectProfession/SelectProfession'
 
 class Form extends React.Component {
     constructor(props) {
         super(props);
-            this.state = {name: ' ', sex: ' '};
+            this.state = {name: ' ', sex: ' ',};
             this.onSubmit = this.onSubmit.bind(this);
     }
 
@@ -18,16 +18,21 @@ class Form extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.onSubmit}>>
-                <div>
-                    <h5>Ник</h5>
-                    <Input name="name" value="text"/>
-                </div>
+            <form onSubmit={this.onSubmit}>
+                <Input 
+                    name="name"
+                    label="Ник"
+                    type="text"
+                />
                 <Select />
-                <div>
-                    <h5>Возраст</h5>
-                    <Input name="age" value="number"/>
-                </div>
+                <Input
+                    name="age" 
+                    type="number" 
+                    label="Возраст"
+                />
+                <SelectProfession 
+                    
+                />
                 <button value="Submit">Отправить</button>
             </form>
         );

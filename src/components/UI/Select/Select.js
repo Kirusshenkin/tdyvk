@@ -6,7 +6,6 @@ class Select extends React.Component {
         super(props);
         this.state = {sex: 'Пол'};
 
-
         this.handleChange = this.handleChange.bind(this);
         // кнопка при нажатие выходит alert, то есть кнопка функции, которая вызывает результат
         // this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,6 +25,7 @@ class Select extends React.Component {
             <div>
                 <h5>Выберите пол</h5>
                 <select value={this.state.sex} onChange={this.handleChange}>
+                    <option value="" hidden>Выбрать</option>
                     <option value="мужчина">мужчина</option>
                     <option value="женщина">женщина</option>
                 </select>
