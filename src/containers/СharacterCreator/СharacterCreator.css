@@ -14,9 +14,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
-}
-
-.СharacterCreator main .container {
-    margin: 0 !important;
+    padding: 10vh 0;
 }

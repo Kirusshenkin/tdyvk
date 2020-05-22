@@ -17,3 +17,7 @@ code {
   width: 1200px;
   margin: 0 auto;
 }
+
+label {
+  margin: 10px 0px;
+}

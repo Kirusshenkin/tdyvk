@@ -150,7 +150,7 @@ const SelectProfession = () => {
           name: 'Персональный ИИ'
       }]
   }];
-  let html = (
+  let prof = (
     <select>
         {Profession.map(function(group, k){
             return (
@@ -163,12 +163,17 @@ const SelectProfession = () => {
         })}
     </select>
     )
-    return html;
+    return prof;
   }
 
 class Profession extends React.Component {
     render() {
-        return <div>{SelectProfession()}</div>
+        return (
+        <div>
+            <label>{this.props.label}</label>
+            {SelectProfession()}
+        </div>
+        )
     }
     
 }

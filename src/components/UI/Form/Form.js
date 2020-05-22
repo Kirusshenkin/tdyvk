@@ -24,14 +24,16 @@ class Form extends React.Component {
                     label="Ник"
                     type="text"
                 />
-                <Select />
+                <Select 
+                    label="Возраст"
+                />
                 <Input
                     name="age" 
                     type="number" 
                     label="Возраст"
                 />
                 <SelectProfession 
-                    
+                    label="Профессии"
                 />
                 <button value="Submit">Отправить</button>
             </form>
