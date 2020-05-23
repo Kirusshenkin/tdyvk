@@ -15,7 +15,7 @@ class СharacterCreator extends Component {
         <main>
           <div className="container">
             <div className="first-character">
-            <Form />
+              <Form />
             </div>
           </div>
         </main>
