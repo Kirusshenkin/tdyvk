@@ -34,6 +34,7 @@ input {
     color: #dcddde;
     height: 40px;
     padding: 10px;
+
 }
 
 input:hover {
@@ -53,6 +54,11 @@ input:focus {
 
 input[type='number'] {
     -moz-appearance:textfield;
+}
+input[type='checkbox'] {
+    height: 10px;
+    border-radius: 0px;
+    background: rgba( 0, 0, 0, 0.1);
 }
 
 input::-webkit-outer-spin-button,

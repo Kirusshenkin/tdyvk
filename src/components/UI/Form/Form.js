@@ -13,10 +13,12 @@ class Form extends React.Component {
         Age: '',
         Professions: '',
         Organizations: '',
+        accept: false,
+        radio: '',
     }
 
     change = (e) => {
-        let {name, value, type, checked} = e.target
+        let { name, value, type, checked } = e.target
 
         if( type === 'checkbox') {
             value = checked
@@ -24,6 +26,7 @@ class Form extends React.Component {
 
         this.setState({ [name]: value })
     }
+
 
     // onSubmit(event) {
     //     const {name} = event.target;
@@ -37,7 +40,12 @@ class Form extends React.Component {
     // переделать input name
 
     render() {
-        const {FirstName, LastName, Gender, Age, Professions, Organizations} = this.state
+        const {FirstName, LastName, Gender, Age, Professions, Organizations, accept} = this.state
+        // const checkboxStyle = {
+        // height: '10px',
+        // borderRadius: '0px',
+        // background: 'rgba( 0, 0, 0, 0.1)',
+        // }
         return (
             <form onSubmit={this.onSubmit}>
                 <div className="name">
@@ -91,6 +99,20 @@ class Form extends React.Component {
                     name="Organizations"
                     onChange={this.change}
                 />
+                {/* сделать да или нет */}
+                {/* <div className="pick">
+                        <input type="radio" name="accept" value="radio" checked={radio === 'accept'} onChange={this.change}/>Согласиться
+                        <input type="radio" name=""/>
+                </div> */}
+                <label>Принятие факта, что Ваш персонаж может погибнуть в первые минуты игры
+                {/* <br/> */}
+                <input 
+                    type="checkbox" 
+                    name="accept" 
+                    checked={accept} 
+                    onChange={this.change}
+                />Да
+                </label>
                 <button value="Submit">Отправить</button>
             </form>
         );
