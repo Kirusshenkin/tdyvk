@@ -4,7 +4,7 @@ import classes from './Input.css'
 function isInvalid({valid, touched, shouldValidate}) {
     return !valid && shouldValidate && touched
 }
-
+// может этот компонент и не нужен вообще
 const Input = props => {
     const inputType = props.type || 'text'
     const cls = [classes.Input]
@@ -20,7 +20,7 @@ const Input = props => {
             <input
                 type={inputType}
                 id={htmlFor}
-                value={props.value}
+                // value={props.value}
                 onChange={props.onChange}
             />
 

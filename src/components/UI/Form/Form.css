@@ -14,3 +14,13 @@ form div {
     flex-direction: column;
     padding-top: 1rem;
 }
+
+form .name {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+form .name div {
+    width: 45%;
+}

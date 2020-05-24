@@ -6,53 +6,83 @@ import SelectProfession from '../Select/SelectProfession/SelectProfession'
 import Organization from '../Radio/Organization/Organization'
 
 class Form extends React.Component {
-    constructor(props) {
-        super(props);
-            this.state = {};
-            // this.onSubmit = this.onSubmit.bind(this);
+    state = {
+        FirstName: '',
+        LastName: '',
+        Gender: '',
+        Age: '',
+        Professions: '',
+        Organizations: '',
     }
 
-    onSubmit(event) {
-        const {name} = event.target;
-        event.preventDefault();
-        // this.setState({
-        //     [name]: value 
-        // })
-        console.log(name);
+    change = (e) => {
+        let {name, value} = e.target
+        this.setState({ [name]: value })
     }
+
+    // onSubmit(event) {
+    //     const {name} = event.target;
+    //     event.preventDefault();
+    //     // this.setState({
+    //     //     [name]: value 
+    //     // })
+    //     console.log(name);
+    // }
+
+    // переделать input name
 
     render() {
+        const {FirstName, LastName, Gender, Age, Professions, Organizations} = this.state
         return (
             <form onSubmit={this.onSubmit}>
-                <Input 
-                    name="name"
-                    label="Ник"
-                    type="text"
-                    onChange={this.onChange}
-                />
+                <div className="name">
+                    <Input 
+                        name="FirstName"
+                        value={FirstName}
+                        label="Имя"
+                        type="text"
+                        onChange={this.change}
+                    />
+                    <Input
+                        name="LastName"
+                        value={LastName}
+                        label="Фамилия"
+                        type="type"
+                        onChange={this.change}
+                    />
+                </div>
                 <Select 
-                    label="Возраст"
-                    onChange={this.onChange}
+                    label="Пол"
+                    value={Gender}
+                    onChange={this.change}
 
                 />
                 <Input
+                    value={Age}
                     name="age" 
                     type="number" 
                     label="Возраст"
-                    onChange={this.onChange}
+                    onChange={this.change}
 
                 />
-                <SelectProfession 
+                <SelectProfession
+                    value={Professions}
+                    name="Professions"
                     label="Профессии"
-                    onChange={this.onChange}
+                    onChange={this.change}
                 />
                 <Organization 
                     label="Организация"
-                    onChange={this.onChange}
+                    value={Organizations}
+                    name="Organizations"
+                    onChange={this.change}
                 />
                 <button value="Submit">Отправить</button>
             </form>
         );
+    }
+    componentDidUpdate() {
+        console.log(this.state);
     }
 }
 
