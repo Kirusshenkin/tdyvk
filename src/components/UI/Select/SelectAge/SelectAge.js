@@ -21,11 +21,21 @@ const gender = [
 ]
 
 class Select extends React.Component {
+
+    state = {
+        gender: ''
+    }
+
+    change = (event) => {
+        const { name, value } = event.target
+        this.setState({ [name]: value })
+    }
+
     render() {
         return (
         <div>
             <label>{this.props.label}</label>
-            <Genders gender={gender}/>
+            <Genders gender={gender} name={gender} value={gender} onChange={this.change}/>
         </div>
         )
     }

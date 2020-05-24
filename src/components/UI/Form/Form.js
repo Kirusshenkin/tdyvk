@@ -1,9 +1,9 @@
 import React from 'react'
-import './Form.css'
-import Input from '../Input/Input'
+// import Input from '../Input/Input'
+import Organization from '../Radio/Organization/Organization'
 import Select from '../Select/SelectAge/SelectAge'
 import SelectProfession from '../Select/SelectProfession/SelectProfession'
-import Organization from '../Radio/Organization/Organization'
+import './Form.css'
 
 class Form extends React.Component {
     state = {
@@ -16,7 +16,12 @@ class Form extends React.Component {
     }
 
     change = (e) => {
-        let {name, value} = e.target
+        let {name, value, type, checked} = e.target
+
+        if( type === 'checkbox') {
+            value = checked
+        }
+
         this.setState({ [name]: value })
     }
 
@@ -36,20 +41,26 @@ class Form extends React.Component {
         return (
             <form onSubmit={this.onSubmit}>
                 <div className="name">
-                    <Input 
-                        name="FirstName"
-                        value={FirstName}
-                        label="Имя"
-                        type="text"
-                        onChange={this.change}
-                    />
-                    <Input
+                    <div>
+                        <label>Имя</label>
+                        <input 
+                            name="FirstName"
+                            value={FirstName}
+                            label="Имя"
+                            type="text"
+                            onChange={this.change}
+                        />
+                    </div>
+                    <div>
+                        <label>Фамилия</label>
+                    <input
                         name="LastName"
                         value={LastName}
                         label="Фамилия"
                         type="type"
                         onChange={this.change}
                     />
+                    </div>
                 </div>
                 <Select 
                     label="Пол"
@@ -57,14 +68,17 @@ class Form extends React.Component {
                     onChange={this.change}
 
                 />
-                <Input
-                    value={Age}
-                    name="age" 
-                    type="number" 
-                    label="Возраст"
-                    onChange={this.change}
+                <div>
+                    <label>Возраст</label>
+                    <input
+                        value={Age}
+                        name="age" 
+                        type="number"
+                        label="Возраст"
+                        onChange={this.change}
 
-                />
+                    />
+                </div>
                 <SelectProfession
                     value={Professions}
                     name="Professions"
