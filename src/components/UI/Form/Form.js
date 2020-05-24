@@ -95,6 +95,7 @@ class Form extends React.Component {
             </form>
         );
     }
+    // временно 
     componentDidUpdate() {
         console.log(this.state);
     }
