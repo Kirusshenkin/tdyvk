@@ -32,7 +32,7 @@ class Organization extends React.Component {
         return (
             <div>
                 <label>{this.props.label}</label>
-                <RadioOrganization listOrganization={listOrganization}/>
+                <RadioOrganization onChange={this.change} listOrganization={listOrganization} />
             </div>
         )
     }

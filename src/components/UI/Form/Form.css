@@ -59,6 +59,7 @@ input[type='checkbox'] {
     height: 10px;
     border-radius: 0px;
     background: rgba( 0, 0, 0, 0.1);
+    margin: 0 0 0 5px;
 }
 
 input::-webkit-outer-spin-button,

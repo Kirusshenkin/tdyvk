@@ -20,7 +20,7 @@ class Form extends React.Component {
     change = (e) => {
         let { name, value, type, checked } = e.target
 
-        if( type === 'checkbox') {
+        if ( type === 'checkbox') {
             value = checked
         }
 
@@ -105,7 +105,6 @@ class Form extends React.Component {
                         <input type="radio" name=""/>
                 </div> */}
                 <label>Принятие факта, что Ваш персонаж может погибнуть в первые минуты игры
-                {/* <br/> */}
                 <input 
                     type="checkbox" 
                     name="accept" 
