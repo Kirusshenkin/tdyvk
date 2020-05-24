@@ -1,20 +1,23 @@
 import React from 'react'
 import './Organization.css'
+import Modal from '../Organization/modal/modal'
 
 // подумаать насчёт btn место radio !!!
 
 const RadioOrganization = (props) => {
-    const listOrganization = props.listOrganization;
-    const listOrganizations = listOrganization.map((name, k) =>
-        <button key={k} label={name.name} value={name.name}>{name.name}</button>
-    );
-    return (
-        <div>
-            {listOrganizations}
-        </div>
+    let organizations = (
+        <select>
+            {listOrganization.map(function(group, k){
+                return (
+                    <option key={k} label={group.name}>
+                        {group.name}
+                    </option>
+                )
+            })}
+        </select>
     )
+    return organizations;
 }
-
 const listOrganization = [
     {value: 'CENTRAL COMMAND' , name: 'Центральное Командование NT (ЦК)'},
     {value: 'Nano Trasen', name: 'Нано Трайзен (NT)'},
@@ -32,7 +35,8 @@ class Organization extends React.Component {
         return (
             <div>
                 <label>{this.props.label}</label>
-                <RadioOrganization onChange={this.change} listOrganization={listOrganization} />
+                {RadioOrganization()}
+                <Modal/>
             </div>
         )
     }
