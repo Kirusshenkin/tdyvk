@@ -14,7 +14,7 @@ class Form extends React.Component {
         Professions: '',
         Organizations: '',
         accept: false,
-        radio: '',
+        antagonist: '',
     }
 
     change = (e) => {
@@ -28,19 +28,19 @@ class Form extends React.Component {
     }
 
 
-    // onSubmit(event) {
-    //     const {name} = event.target;
-    //     event.preventDefault();
-    //     // this.setState({
-    //     //     [name]: value 
-    //     // })
-    //     console.log(name);
-    // }
+    onSubmit(event) {
+        // const {name} = event.target;
+        event.preventDefault();
+        // this.setState({
+        //     [name]: value 
+        // })
+        console.log(this.state);
+    }
 
     // переделать input name
 
     render() {
-        const {FirstName, LastName, Gender, Age, Professions, Organizations, accept} = this.state
+        const {FirstName, LastName, Gender, Age, Professions, Organizations, accept, antagonist} = this.state
         // const checkboxStyle = {
         // height: '10px',
         // borderRadius: '0px',
@@ -104,15 +104,28 @@ class Form extends React.Component {
                         <input type="radio" name="accept" value="radio" checked={radio === 'accept'} onChange={this.change}/>Согласиться
                         <input type="radio" name=""/>
                 </div> */}
-                <label>Принятие факта, что Ваш персонаж может погибнуть в первые минуты игры
+                <label>Принятие факта, что Ваш персонаж может погибнуть в первые минуты игры</label>
                 <input 
                     type="checkbox" 
                     name="accept" 
+                    id="accept"
                     checked={accept} 
                     onChange={this.change}
-                />Да
-                </label>
-                <button value="Submit">Отправить</button>
+                />
+                <label htmlFor="accept" className="Accept">Да</label>
+                <label>Желание быть в данной сессии антагонистом</label>
+                <div className="antagonist">
+                    <label className="container-radio">Да
+                        <input type="radio" name="antagonist" className="agree" value="to-agree" checked={antagonist === 'to-agree'} onChange={this.change}/>
+                        <span className="checkmark"></span>
+                    </label>
+                    <label className="container-radio">Нет
+                        <input type="radio" name="antagonist" className="refuse" value="refuse" checked={antagonist === 'refuse'} onChange={this.change}/>
+                        <span className="checkmark"></span>
+                    </label>
+                </div>
+
+                <button value="Submit">Создать</button>
             </form>
         );
     }

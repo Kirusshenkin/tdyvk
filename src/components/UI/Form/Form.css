@@ -55,11 +55,113 @@ input:focus {
 input[type='number'] {
     -moz-appearance:textfield;
 }
-input[type='checkbox'] {
-    height: 10px;
-    border-radius: 0px;
-    background: rgba( 0, 0, 0, 0.1);
-    margin: 0 0 0 5px;
+input[type='checkbox'] { display: none; }
+
+input[type='checkbox'] + .Accept {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    font: 14px/20px;
+    color: #ddd;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+input[type="checkbox"] + .Accept:before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #6cc0e5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: .6;
+    -webkit-transition: all .12s, border-color .08s;
+    transition: all .12s, border-color .08s;
+}
+
+input[type="checkbox"]:checked + .Accept:before {
+    width: 10px;
+    top: -5px;
+    left: 5px;
+    border-radius: 0;
+    opacity: 1;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+form .antagonist {
+    flex-direction: row;
+}
+
+.container-radio {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.container-radio input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.container-radio .checkmark {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+.container-radio:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.container-radio input:checked ~ .checkmark {
+    background-color: rgb(168, 3, 17);
+}
+
+.container-radio .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container-radio input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.container-radio .checkmark:after {
+   top: 4.5px;
+   left: 4.5px;
+   width: 8px;
+   height: 8px;
+   border-radius: 50%;
+   background: white;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
 }
 
 input::-webkit-outer-spin-button,
