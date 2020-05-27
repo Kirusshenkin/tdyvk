@@ -2,9 +2,7 @@ import React from 'react'
 import './Organization.css'
 import Modal from '../Organization/modal/modal'
 
-// подумаать насчёт btn место radio !!!
-
-const RadioOrganization = (props) => {
+const RadioOrganization = () => {
     let organizations = (
         <select>
             {listOrganization.map(function(group, k){

@@ -74,7 +74,7 @@ input[type="checkbox"] + .Accept:before {
     display: block;
     width: 20px;
     height: 20px;
-    border: 1px solid #6cc0e5;
+    border: 1px solid #f700278c;
     position: absolute;
     left: 0;
     top: 0;
@@ -133,7 +133,7 @@ form .antagonist {
 }
 
 .container-radio input:checked ~ .checkmark {
-    background-color: rgb(168, 3, 17);
+    background-color: rgba(168, 3, 17, 0.07);
 }
 
 .container-radio .checkmark:after {

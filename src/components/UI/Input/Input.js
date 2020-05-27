@@ -1,34 +1,21 @@
-// import React from 'react'
-// // import classes from './Input.css'
+import React from 'react'
+// import classes from './Input.css'
 
-// function isInvalid({valid, touched, shouldValidate}) {
-//     return !valid && shouldValidate && touched
-// }
-// // может этот компонент и не нужен вообще
-// const Input = props => {
-//     const inputType = props.type || 'text' || 'number'
-//     const htmlFor = `${inputType}-${Math.random()}`
+const Input = props => {
+      console.log(props.value);
+    return (
+        <div>
+            <label htmlFor={props.name}>{props.title}</label>
+            <input 
+                id={props.name}
+                name={props.name}
+                type={props.InputType}
+                value={props.value}
+                onChange={props.hadleChange}
+                placeholder={props.placeholder}
+            />
+        </div>
+    )
+}
 
-//     if (isInvalid(props)) {
-//     }
-
-//     return (
-//         <div>
-//             <label htmlFor={htmlFor}>{props.label}</label>
-//             <input
-//                 type={inputType}
-//                 id={htmlFor}
-//                 // value={props.value}
-//                 // onChange={props.onChange}
-//             />
-
-//     {
-//         isInvalid(props)
-//         ? <span>{props.errorMessage || 'Введите значение'}</span>
-//         : null
-//     }
-//         </div>
-//     )
-// }
-
-// export default Input
+export default Input
