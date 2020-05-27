@@ -12,3 +12,7 @@ select {
 select option {
     background-color: rgba(0, 0, 0, 0.541);
 }
+
+option:disabled {
+    color: #b9b9b9;
+} 

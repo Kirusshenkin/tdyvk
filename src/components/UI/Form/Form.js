@@ -1,49 +1,50 @@
-import React from 'react'
+import React, {Component} from 'react'
 import Input from '../Input/Input'
 import Organization from '../Radio/Organization/Organization'
 import Origin from '../Select/SelectOrigin/SelectOrigin'
-import Select from '../Select/SelectAge/SelectAge'
+import Gender from '../Select/Gender/Gender'
 import SelectProfession from '../Select/SelectProfession/SelectProfession'
 import './Form.css'
 
-class Form extends React.Component {
+class Form extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             newUser: {
                 name: '',
-                Gender: '',
                 Age: '',
+                gender: '',
                 Professions: '',
                 Organizations: '',
                 accept: false,
                 antagonist: '',
                 origin: '',
             },
+            genderOptions: ["Male", "Female"]
         }
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleClearSubmit = this.handleClearSubmit.bind(this);
         this.handleFullName = this.handleFullName.bind(this);
         this.handleAge = this.handleAge.bind(this);
+        this.handleInput = this.handleInput.bind(this);
     }
 
+
+
+
     handleFullName(e) {
+        console.log("Done!")
         let value = e.target.value;
-        this.setState(
-          prevState => ({
-            newUser: {
-              ...prevState.newUser,
-              name: value
-            }
-          }),
-          () => console.log(this.state.newUser)
-        );
+        this.setState( prevState => ({ newUser : 
+            {...prevState.newUser, name: value}
+            }), () => console.log(this.state.newUser)
+        )
     }
 
     handleAge(e) {
         let value = e.target.value;
-            this.setState( prevState => ({ newUser :
+        this.setState( prevState => ({ newUser :
             {...prevState.newUser, Age: value}
             }), () => console.log(this.state.newUser) 
         )
@@ -52,14 +53,19 @@ class Form extends React.Component {
     handleInput(e) {
         let value = e.target.value;
         let name = e.target.name;
-        this.setState( prevState => {
-            return {
-                newUser : {
-                    ...prevState.newUser, [name]: value
-                }
+        this.setState(
+          prevState => ({
+            newUser: {
+              ...prevState.newUser,
+              [name]: value
             }
-        }, () => console.log(this.state.newUser)
-        )
+          }),
+          () => console.log(this.state.newUser)
+        );
+      }
+
+    handleGender(e) {
+        // let value =
     }
 
     handleFormSubmit(e) {
@@ -70,25 +76,25 @@ class Form extends React.Component {
 
     }
 
-    change = (e) => {
-        let { name, value, type, checked } = e.target
+    // change = (e) => {
+    //     let { name, value, type, checked } = e.target
 
-        if ( type === 'checkbox') {
-            value = checked
-        }
+    //     if ( type === 'checkbox') {
+    //         value = checked
+    //     }
 
-        this.setState({ [name]: value })
-    }
+    //     this.setState({ [name]: value })
+    // }
 
 
-    onSubmit(event) {
-        // const {name} = event.target;
-        event.preventDefault();
-        // this.setState({
-        //     [name]: value 
-        // })
-        console.log(this.props.state);
-    }
+    // onSubmit(event) {
+    //     // const {name} = event.target;
+    //     event.preventDefault();
+    //     // this.setState({
+    //     //     [name]: value 
+    //     // })
+    //     console.log(this.props.state);
+    // }
 
     // переделать input name
 
@@ -100,33 +106,37 @@ class Form extends React.Component {
                     title = 'First Name'
                     name = 'name'
                     value = {this.state.newUser.name}
-                    handleChange = {this.handleFullName.bind(this)}
-                    placeholder = 'Ведите Ваше имя'
+                    placeholder = {'Ведите Ваше имя'}
+                    handleChange = {this.handleInput}
                 />
                 <Input type={'number'}
                     name={'age'}
+                    title = 'Возраст'
                     value={this.state.newUser.Age}
                     placeholder={'Ваш возраст'}
+                    handleChange = {this.handleAge}
                 />
-                {/* <Select 
-                    label="Пол"
-                    value={Gender}
-                    onChange={this.change}
-
-                /> */}
+                <Gender 
+                    title={'Выберите пол'}
+                    name={'gender'}
+                    options = {this.state.genderOptions} 
+                    value = {this.state.newUser.gender}
+                    placeholder = {'Выберите пол'}
+                    handleChange = {this.handleInput}
+                />
                 {/* <SelectProfession
                     value={Professions}
                     name="Professions"
                     label="Профессии"
                     onChange={this.change}
-                />
-                <Organization 
+                /> */}
+                {/* <Organization 
                     label="Организация"
                     value={Organizations}
                     name="Organizations"
                     onChange={this.change}
-                />
-                <label>Желание быть в данной сессии антагонистом</label>
+                /> */}
+                {/* <label>Желание быть в данной сессии антагонистом</label>
                 <div className="antagonist">
                     <label className="container-radio">Да
                         <input type="radio" name="antagonist" className="agree" value="to-agree" checked={antagonist === 'to-agree'} onChange={this.change}/>
@@ -136,8 +146,8 @@ class Form extends React.Component {
                         <input type="radio" name="antagonist" className="refuse" value="refuse" checked={antagonist === 'refuse'} onChange={this.change}/>
                         <span className="checkmark"></span>
                     </label>
-                </div>
-                <label>Принятие факта, что Ваш персонаж может погибнуть в первые минуты игры</label>
+                </div> */}
+                {/* <label>Принятие факта, что Ваш персонаж может погибнуть в первые минуты игры</label>
                 <input 
                     type="checkbox" 
                     name="accept" 
@@ -145,13 +155,13 @@ class Form extends React.Component {
                     checked={accept} 
                     onChange={this.change}
                 /> */}
-                <label htmlFor="accept" className="Accept">Да</label>
+                {/* <label htmlFor="accept" className="Accept">Да</label> */}
 
-                <Origin
+                {/* <Origin
                     name="origin"
                     value={origin}
                     label="Происхождение"
-                />
+                /> */}
 
                 <button value="Submit">Создать</button>
             </form>
