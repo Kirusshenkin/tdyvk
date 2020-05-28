@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
 import Input from '../Input/Input'
-import Organization from '../Radio/Organization/Organization'
-import Origin from '../Select/SelectOrigin/SelectOrigin'
+import Organization from '../Select/Organization/Organization'
+import Origin from '../Select/Origin/Origin'
 import Gender from '../Select/Gender/Gender'
-import SelectProfession from '../Select/SelectProfession/SelectProfession'
+import Profession from '../Select/Professions/Professions'
+import Antagonist from '../Radio/Antagonist/Antagonist'
+
 import './Form.css'
 
 class Form extends Component {
@@ -14,20 +16,33 @@ class Form extends Component {
             newUser: {
                 name: '',
                 Age: '',
-                gender: '',
+                Gender: '',
                 Professions: '',
                 Organizations: '',
                 accept: false,
-                antagonist: '',
+                Antagonist: '',
                 origin: '',
             },
-            genderOptions: ["Male", "Female"]
+            genderOptions: ["Male", "Female"],
+            listOrganization: [
+                "Центральное Командование NT (ЦК)", 
+                "Нано Трайзен (NT)", 
+                "Правительство Солнечной Системы (SolGov)", 
+                "Zeng-Hu-Pharmaceuticals", 
+                "Второй Красный Квест",
+                "Вей Мед",
+                "BioTech Solutios",
+                "Гибсонский Инженерный союз",
+                "Gilthari Exports"
+            ],
+            quizes: ["Yes", "No"]
         }
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleClearSubmit = this.handleClearSubmit.bind(this);
         this.handleFullName = this.handleFullName.bind(this);
         this.handleAge = this.handleAge.bind(this);
         this.handleInput = this.handleInput.bind(this);
+        this.handleChecked = this.handleChecked.bind(this);
     }
 
 
@@ -53,6 +68,8 @@ class Form extends Component {
     handleInput(e) {
         let value = e.target.value;
         let name = e.target.name;
+
+
         this.setState(
           prevState => ({
             newUser: {
@@ -64,8 +81,16 @@ class Form extends Component {
         );
       }
 
-    handleGender(e) {
-        // let value =
+// есть блядские проблемы
+
+    handleChecked(e) {
+        let value = e.target.value;
+        let type = e.target.type;
+        let checked = e.target.checked
+
+        if ( type === 'checkbox') {
+            value = checked
+        }
     }
 
     handleFormSubmit(e) {
@@ -99,6 +124,7 @@ class Form extends Component {
     // переделать input name
 
     render() {
+        // const {accept} = this.state
         // const {FirstName, LastName, Gender, Age, Professions, Organizations, accept, antagonist, origin} = this.state
         return (
             <form onSubmit={this.handleFormSubmit}>
@@ -117,51 +143,41 @@ class Form extends Component {
                     handleChange = {this.handleAge}
                 />
                 <Gender 
-                    title={'Выберите пол'}
-                    name={'gender'}
+                    title = {'Выберите пол'}
+                    name = {'Gender'}
                     options = {this.state.genderOptions} 
-                    value = {this.state.newUser.gender}
+                    value = {this.state.newUser.Gender}
                     placeholder = {'Выберите пол'}
                     handleChange = {this.handleInput}
                 />
-                {/* <SelectProfession
-                    value={Professions}
-                    name="Professions"
-                    label="Профессии"
-                    onChange={this.change}
-                /> */}
-                {/* <Organization 
-                    label="Организация"
-                    value={Organizations}
-                    name="Organizations"
-                    onChange={this.change}
-                /> */}
-                {/* <label>Желание быть в данной сессии антагонистом</label>
-                <div className="antagonist">
-                    <label className="container-radio">Да
-                        <input type="radio" name="antagonist" className="agree" value="to-agree" checked={antagonist === 'to-agree'} onChange={this.change}/>
-                        <span className="checkmark"></span>
-                    </label>
-                    <label className="container-radio">Нет
-                        <input type="radio" name="antagonist" className="refuse" value="refuse" checked={antagonist === 'refuse'} onChange={this.change}/>
-                        <span className="checkmark"></span>
-                    </label>
-                </div> */}
-                {/* <label>Принятие факта, что Ваш персонаж может погибнуть в первые минуты игры</label>
-                <input 
-                    type="checkbox" 
-                    name="accept" 
-                    id="accept"
-                    checked={accept} 
-                    onChange={this.change}
-                /> */}
-                {/* <label htmlFor="accept" className="Accept">Да</label> */}
+                <Profession
+                    title={"Выберите профессию"}
+                    value={this.state.newUser.Professions}
+                    name={"Professions"}
+                    handleChange={this.handleInput}
 
-                {/* <Origin
+                />
+                <Organization 
+                    title = {"Организация"}
+                    placeholder={"Выберите организацию"}
+                    value={this.state.newUser.Organizations}
+                    options={this.state.listOrganization}
+                    name={"Organizations"}
+                    handleChange={this.handleInput}
+                />
+                <Antagonist
+                    title={"Желание быть в данной сессии антагонистом"}
+                    name={"Antagonist"}
+                    options={this.state.quizes}
+                    selectedOptions={this.state.newUser.Antagonist}
+                    handleChange={this.handleChecked}
+                />
+                
+                <Origin
                     name="origin"
                     value={origin}
                     label="Происхождение"
-                /> */}
+                />
 
                 <button value="Submit">Создать</button>
             </form>

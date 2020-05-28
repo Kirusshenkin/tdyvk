@@ -1,5 +1,5 @@
 import React from 'react'
-import './SelectProfession.css'
+import './Professions.css'
 
 const SelectProfession = () => {
       const Profession = [{
@@ -170,7 +170,7 @@ class Profession extends React.Component {
     render() {
         return (
         <div>
-            <label>{this.props.label}</label>
+            <label>{this.props.title}</label>
             {SelectProfession()}
         </div>
         )
