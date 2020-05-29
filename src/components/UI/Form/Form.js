@@ -1,76 +1,99 @@
 import React from 'react'
-// import Input from '../Input/Input'
-import Organization from '../Radio/Organization/Organization'
+import Input from '../Input/Input'
+import Organization from '../Select/Organization/Organization'
 import Select from '../Select/SelectAge/SelectAge'
 import SelectProfession from '../Select/SelectProfession/SelectProfession'
 import './Form.css'
 
 class Form extends React.Component {
-    state = {
-        FirstName: '',
-        LastName: '',
-        Gender: '',
-        Age: '',
-        Professions: '',
-        Organizations: '',
-        accept: false,
-        antagonist: '',
-    }
+    constructor(props) {
+    super();
+    this.state = {
 
-    change = (e) => {
-        let { name, value, type, checked } = e.target
-
-        if ( type === 'checkbox') {
-            value = checked
+        newUser: {
+            name: '',
+            age: '',
+            Gender: '',
+            Professions: '',
+            Organizations: '',
+            accept: false,
+            antagonist: '',
         }
+    }
+    this.handleAge = this.handleAge.bind(this);
+    this.handleFullName = this.handleFullName.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+}
 
-        this.setState({ [name]: value })
+    handleAge(event) {
+        let value = event.target.value;
+        this.setState(
+            prevState => ({
+                newUser: {
+                    age: value
+                }
+            }),
+            () => console.log(this.state.newUser)
+        )
     }
 
+    handleInput(event) {
+        let value = event.target.value;
+        let name = event.target.value;
+        this.setState(
+            prevState => ({
+                newUser: {
+                    ...prevState.newUser,
+                    [name]: value
+                }
+            }),
+            () => console.log(this.state.newUser)
+        )
+    }
+
+    handleFullName(event) {
+        let value = event.target.value
+        this.setState(
+            prevState => ({
+                newUser: {
+                    ...prevState.newUser,
+                    name: value
+                }
+            }),
+            () => console.log(this.state.newUser)
+        )
+    }
 
     onSubmit(event) {
-        // const {name} = event.target;
         event.preventDefault();
-        // this.setState({
-        //     [name]: value 
-        // })
         console.log(this.state);
     }
 
     // переделать input name
 
     render() {
-        const {FirstName, LastName, Gender, Age, Professions, Organizations, accept, antagonist} = this.state
-        // const checkboxStyle = {
-        // height: '10px',
-        // borderRadius: '0px',
-        // background: 'rgba( 0, 0, 0, 0.1)',
-        // }
+        // const {FirstName, LastName, Gender, Age, Professions, Organizations, accept, antagonist} = this.state
+
         return (
             <form onSubmit={this.onSubmit}>
-                <div className="name">
-                    <div>
-                        <label>Имя</label>
-                        <input 
-                            name="FirstName"
-                            value={FirstName}
-                            label="Имя"
-                            type="text"
-                            onChange={this.change}
-                        />
-                    </div>
-                    <div>
-                        <label>Фамилия</label>
-                    <input
-                        name="LastName"
-                        value={LastName}
-                        label="Фамилия"
-                        type="type"
-                        onChange={this.change}
-                    />
-                    </div>
-                </div>
-                <Select 
+                <Input 
+                    type={"text"}
+                    title={"Ваше Имя"}
+                    name={"name"}
+                    value={this.state.newUser.name}
+                    placeholder={"Ведите Ваше имя"}
+                    handleChange={this.handleFullName.bind(this)}
+                />
+                <Input
+                    type={"number"}
+                    title={"Ваш пол"}
+                    name={"age"}
+                    title={"Ваш возраст"}
+                    value={this.state.newUser.age}
+                    handleChange={this.handleAge.bind(this)}
+                />
+
+                {/* <Select 
                     label="Пол"
                     value={Gender}
                     onChange={this.change}
@@ -98,13 +121,13 @@ class Form extends React.Component {
                     value={Organizations}
                     name="Organizations"
                     onChange={this.change}
-                />
+                /> */}
                 {/* сделать да или нет */}
                 {/* <div className="pick">
                         <input type="radio" name="accept" value="radio" checked={radio === 'accept'} onChange={this.change}/>Согласиться
                         <input type="radio" name=""/>
                 </div> */}
-                <label>Принятие факта, что Ваш персонаж может погибнуть в первые минуты игры</label>
+                {/* <label>Принятие факта, что Ваш персонаж может погибнуть в первые минуты игры</label>
                 <input 
                     type="checkbox" 
                     name="accept" 
@@ -123,7 +146,7 @@ class Form extends React.Component {
                         <input type="radio" name="antagonist" className="refuse" value="refuse" checked={antagonist === 'refuse'} onChange={this.change}/>
                         <span className="checkmark"></span>
                     </label>
-                </div>
+                </div> */}
 
                 <button value="Submit">Создать</button>
             </form>

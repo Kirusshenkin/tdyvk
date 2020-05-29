@@ -1,6 +1,6 @@
 import React from 'react'
 import './Organization.css'
-import Modal from '../Organization/modal/modal'
+import Modal from './modal/modal'
 
 // подумаать насчёт btn место radio !!!
 
@@ -19,15 +19,15 @@ const RadioOrganization = (props) => {
     return organizations;
 }
 const listOrganization = [
-    {value: 'CENTRAL COMMAND' , name: 'Центральное Командование NT (ЦК)'},
-    {value: 'Nano Trasen', name: 'Нано Трайзен (NT)'},
-    {value: 'SolGov', name: 'Правительство Солнечной Системы (SolGov)'},
-    {value: 'Zeng-Hu-Pharmaceuticals', name: 'Zeng-Hu-Pharmaceuticals'},
-    {value: 'Second Red Cross', name: 'Второй Красный Квест'},
-    {value: 'VM', name: 'Вей Мед'},
-    {value: 'BTS', name: 'BioTech Solutios'},
-    {value: 'GIU', name: 'Гибсонский Инженерный союз'},
-    {value: 'GEX', name: 'Gilthari Exports'}
+    {name: 'Центральное Командование NT (ЦК)'},
+    {name: 'Нано Трайзен (NT)'},
+    {name: 'Правительство Солнечной Системы (SolGov)'},
+    {name: 'Zeng-Hu-Pharmaceuticals'},
+    {name: 'Второй Красный Квест'},
+    {name: 'Вей Мед'},
+    {name: 'BioTech Solutios'},
+    {name: 'Гибсонский Инженерный союз'},
+    {name: 'Gilthari Exports'}
 ];
 
 class Organization extends React.Component {
