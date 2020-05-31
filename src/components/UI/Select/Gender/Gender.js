@@ -1,15 +1,12 @@
 import React from 'react'
-import './Organization.css'
-// import Modal from './modal/modal'
+import './Gender.css'
 
-// подумаать насчёт btn место radio !!!
-
-const Organization = (props) => {
+const Gender = (props) => {
     return (
         <div>
             <label htmlFor={props.name}>{props.title}</label>
             <select 
-                name={"organizations"}
+                name={"gender"}
                 value={props.value}
                 onChange={props.handleChange}
             >
@@ -26,4 +23,4 @@ const Organization = (props) => {
     )
 }
 
-export default Organization
+export default Gender

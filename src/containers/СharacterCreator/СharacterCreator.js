@@ -6,9 +6,6 @@ import Form from "../../components/UI/Form/Form"
 
 
 class СharacterCreator extends Component {
-
-
-
   render() {
     return (
       <div className="СharacterCreator">

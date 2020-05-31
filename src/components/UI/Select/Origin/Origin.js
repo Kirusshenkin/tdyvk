@@ -1,23 +1,19 @@
 import React from 'react'
-import './Organization.css'
-// import Modal from './modal/modal'
 
-// подумаать насчёт btn место radio !!!
-
-const Organization = (props) => {
+const Origin = props => {
     return (
         <div>
             <label htmlFor={props.name}>{props.title}</label>
             <select 
-                name={"organizations"}
+                name="origin"
                 value={props.value}
                 onChange={props.handleChange}
             >
                 <option value="" disabled>{props.placeholder}</option>
-                {props.options.map(function(option, k) {
+                {props.options.map(function(item, k) {
                     return (
-                        <option key={k} label={option.name} value={option.name}>
-                            {option.name}
+                        <option key={k} value={item.name} label={item.name}>
+                            {item.name}
                         </option>
                     )
                 })}
@@ -26,4 +22,4 @@ const Organization = (props) => {
     )
 }
 
-export default Organization
+export default Origin

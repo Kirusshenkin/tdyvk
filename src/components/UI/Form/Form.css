@@ -32,8 +32,7 @@ input {
     box-sizing: border-box;
     border: 1px solid rgba(0, 0, 0, 0.3);
     color: #dcddde;
-    height: 40px;
-    padding: 10px;
+    padding: 3px;
 
 }
 
@@ -55,7 +54,7 @@ input:focus {
 input[type='number'] {
     -moz-appearance:textfield;
 }
-input[type='checkbox'] { display: none; }
+/* input[type='checkbox'] { display: none; }
 
 input[type='checkbox'] + .Accept {
     display: block;
@@ -93,11 +92,11 @@ input[type="checkbox"]:checked + .Accept:before {
     border-left-color: transparent;
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
-}
+} */
 
-form .antagonist {
+/* form .antagonist {
     flex-direction: row;
-}
+} */
 
 .container-radio {
     display: block;

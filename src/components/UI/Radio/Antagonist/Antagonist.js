@@ -1,20 +1,28 @@
 import React from 'react'
 
-class Antagonist extends React.Component {
-    render() {
-        return (
-            <div className="">
-                <div>
-                    <label htmlFor=""></label>
-                    <input type="radio" value="true" />
-                </div>
-                <div>
-                    <label htmlFor=""></label>
-                    <input type="radio"/>
-                </div>
+const antagonist = {
+    flexDirection: "row",
+    display: "flex",
+    alignItems: "center",
+    paddingTop: "0px"
+}
+
+const Antagonist = props => {
+    return (
+        <div>
+            <label>{props.title}</label>
+            <div style={antagonist}>
+                <input 
+                type="checkbox" 
+                name={props.name} 
+                id={props.name} 
+                onChange={props.handleChange}
+                style={{marginBottom: '0', marginRight: '10px', cursor: 'pointer'}}
+                />
+                <label htmlFor={props.name} style={{cursor: 'pointer', margin: '0px'}}>Да</label>
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 export default Antagonist
