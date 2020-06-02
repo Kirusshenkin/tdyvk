@@ -6,7 +6,7 @@ const Gender = (props) => {
         <div>
             <label htmlFor={props.name}>{props.title}</label>
             <select 
-                name={"gender"}
+                name={props.name}
                 value={props.value}
                 onChange={props.handleChange}
             >

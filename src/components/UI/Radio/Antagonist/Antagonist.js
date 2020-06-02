@@ -6,6 +6,7 @@ const antagonist = {
     alignItems: "center",
     paddingTop: "0px"
 }
+// let value = (checkboxValue === "on") ? true : true;
 
 const Antagonist = props => {
     return (
@@ -13,11 +14,11 @@ const Antagonist = props => {
             <label>{props.title}</label>
             <div style={antagonist}>
                 <input 
-                type="checkbox" 
-                name={props.name} 
-                id={props.name} 
-                onChange={props.handleChange}
-                style={{marginBottom: '0', marginRight: '10px', cursor: 'pointer'}}
+                    type="checkbox" 
+                    name={props.name}
+                    // checked={this.state.newUser.antagonist}
+                    onChange={props.handleChange}
+                    style={{marginBottom: '0', marginRight: '10px', cursor: 'pointer'}}
                 />
                 <label htmlFor={props.name} style={{cursor: 'pointer', margin: '0px'}}>Да</label>
             </div>

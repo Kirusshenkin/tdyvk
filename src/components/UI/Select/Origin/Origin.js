@@ -5,7 +5,7 @@ const Origin = props => {
         <div>
             <label htmlFor={props.name}>{props.title}</label>
             <select 
-                name="origin"
+                name={props.name}
                 value={props.value}
                 onChange={props.handleChange}
             >

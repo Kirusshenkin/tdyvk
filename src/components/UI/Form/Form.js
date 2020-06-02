@@ -12,13 +12,13 @@ class Form extends React.Component {
     super(props);
     this.state = {
         newUser: {
-            name: '',
+            full_name: '',
+            sex: '',
             age: '',
-            gender: '',
-            professions: '',
-            organizations: '',
-            antagonist: false,
-            origin: ''
+            profession: '',
+            organization: '',
+            be_antagonist: false,
+            origins: ''
         },
 
         OptionGender:[{name: 'Мужчина'}, {name: 'Женщина'}],
@@ -190,6 +190,7 @@ class Form extends React.Component {
         ]
     }
     this.handleAge = this.handleAge.bind(this);
+    this.handleGender = this.handleGender.bind(this);
     this.handleFullName = this.handleFullName.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.handleProfession = this.handleProfession.bind(this);
@@ -199,11 +200,15 @@ class Form extends React.Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
 }
 
-
-
     handleInput(event) {
-        let value = event.target.value;
-        let name = event.target.name;
+        const {name, value, type, checked} = event.target
+        type === "checkbox" ?
+        this.setState ({
+            newUser: {
+                [name]: checked
+            }
+        })
+        :
         this.setState(
             prevState => ({
                 newUser: {
@@ -214,14 +219,32 @@ class Form extends React.Component {
             () => console.log(this.state.newUser)
         )
     }
-
+    
+    handleAntagonist(event) {
+        const {name, value, type, checked} = event.target
+        type === "checkbox" ? 
+            this.setState ({
+                newUser: {
+                    [name]: checked
+                }
+            })
+        :
+        this.setState({
+            newUser: {
+                [name]: value
+            }
+        }) 
+    }
+    // кажется ответ найдет дело в том, что он записывает данные и сбрасыает их обратно после checkbox скорей всего дело в нём
+    // лучше всего использовать одну функцию на всех тогда она будет записывать в один якобы массив, так же у неё есть небольшая проблема
+    // checkbox отдаёт on, а не true или false для этого можно посмотреть код в функции handleAntagonist и предположить как подставить
     handleFullName(event) {
         let value = event.target.value
         this.setState(
             prevState => ({
                 newUser: {
                     ...prevState.newUser,
-                    name: value
+                    full_name: value
                 }
             }),
             () => console.log(this.state.newUser)
@@ -245,7 +268,7 @@ class Form extends React.Component {
         this.setState(
             prevState => ({
                 ...prevState.newUser,
-                gender: value
+                sex: value
             }),
             () => console.log(this.state.newUser)
         )
@@ -256,7 +279,7 @@ class Form extends React.Component {
         this.setState(
             prevState => ({
                 newUser: {
-                    professions: value
+                    profession: value
                 }
             }),
             () => console.log(this.state.newUser)
@@ -268,24 +291,14 @@ class Form extends React.Component {
         this.setState(
             prevState => ({
                 newUser: {
-                    organizations: value
+                    organization: value
                 }
             }),
             () => console.log(this.state.newUser)
         )
     }
 
-    handleAntagonist(event) {
-        let value = event.target.value
-        this.setState(
-            prevState => ({
-                newUser: {
-                    antagonist: value
-                }
-            }),
-            () => console.log(this.state.newUser)
-        )
-    }
+
 
     handleOrigin(event) {
         let value = event.target.value
@@ -299,11 +312,11 @@ class Form extends React.Component {
         )
     }
 
-    handleFormSubmit(e) {
-        e.preventDefault();
+    handleFormSubmit(event) {
+        event.preventDefault();
         let userData = this.state.newUser;
      
-        fetch('https://tduvk.herokuapp.com/api/players/?format=json',{
+        fetch('https://tduvk.herokuapp.com/api/players/',{
             method: "POST",
             body: JSON.stringify(userData),
             headers: {
@@ -324,57 +337,58 @@ class Form extends React.Component {
                 <Input 
                     type={"text"}
                     title={"Ваше Имя"}
-                    name={"name"}
-                    value={this.state.newUser.name}
+                    name={"full_name"}
+                    value={this.state.newUser.full_name}
                     placeholder={"Ведите Ваше имя"}
-                    handleChange={this.handleFullName}
-                />
+                    handleChange={this.handleInput}
+                />  
                 <Input
                     placeholder={"Видите задницу?"}
                     type={"number"}
                     name={"age"}
                     title={"Ваш возраст"}
                     value={this.state.newUser.age}
-                    handleChange={this.handleAge}
+                    handleChange={this.handleInput}
                 />
 
                  <Gender
                     options={this.state.OptionGender} 
                     title={"Ваш пол"}
-                    name={"gender"}
-                    value={this.state.newUser.gender}
+                    name={"sex"}
+                    value={this.state.newUser.sex}
                     handleChange={this.handleInput}
                     placeholder={"Выберите Ваш пол"}
                 />
                 <Professions
                     options={this.state.ListProfession}
-                    value={this.state.newUser.professions}
-                    name={"professions"}
+                    value={this.state.newUser.profession}
+                    name={"profession"}
                     title={"Профессия"}
-                    handleChange={this.handleProfession}
+                    handleChange={this.handleInput}
                     placeholder={"Выберите Профессию"}
                 />
                 <Organization
                     options={this.state.ListOrganization}
-                    value={this.state.newUser.organizations}
+                    value={this.state.newUser.organization}
                     title={"Организации"}
-                    name={"organizations"}
+                    name={"organization"}
                     handleChange={this.handleInput}
                     placeholder={"Выберите организацию"}
                 />
                 <Antagonist
                     title={"Желание быть в данной сессии антагонистом?"}
-                    name={"antagonist"}
+                    checked={this.state.newUser.be_antagonist}
+                    name={"be_antagonist"}
                     value={this.state.newUser.antagonist}
                     handleChange={this.handleInput}
                 />
                 <Origin
                     options={this.state.ListOrigin}
-                    value={this.state.newUser.origin}
+                    value={this.state.newUser.origins}
                     handleChange={this.handleInput}
                     placeholder={"Откуда ты епта?"}
                     title={"Откуда ты там взялся?"}
-                    name={"origin"} 
+                    name={"origins"} 
                 />
                 {/* <label>Принятие факта, что Ваш персонаж может погибнуть в первые минуты игры</label>*/}
 
