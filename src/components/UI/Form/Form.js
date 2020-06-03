@@ -5,6 +5,8 @@ import Gender from '../Select/Gender/Gender'
 import Professions from '../Select/Professions/Professions'
 import Antagonist from '../Radio/Antagonist/Antagonist'
 import Origin from '../Select/Origin/Origin'
+import Advantage from '../Radio/Check/Advantage'
+
 import './Form.css'
 
 class Form extends React.Component {
@@ -18,9 +20,11 @@ class Form extends React.Component {
             profession: '',
             organization: '',
             be_antagonist: false,
-            origins: ''
+            origins: '',
+            skills: [],
+            skills2: [],
         },
-
+        
         OptionGender:[{name: 'Мужчина'}, {name: 'Женщина'}],
         ListOrganization: [
             {name: 'Центральное Командование NT (ЦК)'},
@@ -187,24 +191,16 @@ class Form extends React.Component {
             {name: 'Бимпа'},
             {name: 'Новый Гобсон'},
             {name: 'Рожденный на КС'}
-        ]
+        ],
+        skillOptions: ["rogramming", "Development", "Design", "Testing"]
     }
-    this.handleAge = this.handleAge.bind(this);
-    this.handleGender = this.handleGender.bind(this);
-    this.handleFullName = this.handleFullName.bind(this);
     this.handleInput = this.handleInput.bind(this);
-    this.handleProfession = this.handleProfession.bind(this);
-    this.handleOrganization = this.handleOrganization.bind(this);
-    this.handleAntagonist = this.handleAntagonist.bind(this);
-    this.handleOrigin = this.handleOrigin.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleCheck = this.handleCheck.bind(this);
 }
 
-    handleInput(event) {
-        // const {name, value, type, checked} = event.target
-        let {name, value, type, checked} = event.target
-        // let name = event.target.name
-        // let value = event.target.value
+    handleInput(e) {
+        let {name, value, type, checked} = e.target
         if (type === 'checkbox') {
             value = checked
         }
@@ -215,101 +211,25 @@ class Form extends React.Component {
                     ...prevState.newUser,
                     [name]: value
                 }
-            }),
-            () => console.log(this.state.newUser)
+            })
         )
     }
     
-    handleAntagonist(event) {
-        const {name, value, type, checked} = event.target
-        type === "checkbox" ? 
-            this.setState ({
-                newUser: {
-                    [name]: checked
-                }
-            })
-        :
-        this.setState({
-            newUser: {
-                [name]: value
-            }
-        }) 
-    }
-    // кажется ответ найдет дело в том, что он записывает данные и сбрасыает их обратно после checkbox скорей всего дело в нём
-    // лучше всего использовать одну функцию на всех тогда она будет записывать в один якобы массив, так же у неё есть небольшая проблема
-    // checkbox отдаёт on, а не true или false для этого можно посмотреть код в функции handleAntagonist и предположить как подставить
-    handleFullName(event) {
-        let value = event.target.value
-        this.setState(
-            prevState => ({
-                newUser: {
-                    ...prevState.newUser,
-                    full_name: value
-                }
-            }),
-            () => console.log(this.state.newUser)
-        )
-    }
-
-    handleAge(event) {
-        let value = event.target.value;
-        this.setState(
-            prevState => ({
-                newUser: {
-                    age: value
-                }
-            }),
-            () => console.log(this.state.newUser)
-        )
-    }
-
-    handleGender(event) {
-        let value = event.target.value
-        this.setState(
-            prevState => ({
-                ...prevState.newUser,
-                sex: value
-            }),
-            () => console.log(this.state.newUser)
-        )
-    }
-
-    handleProfession(event) {
-        let value = event.target.value
-        this.setState(
-            prevState => ({
-                newUser: {
-                    profession: value
-                }
-            }),
-            () => console.log(this.state.newUser)
-        )
-    }
-
-    handleOrganization(event) {
-        let value = event.target.value
-        this.setState(
-            prevState => ({
-                newUser: {
-                    organization: value
-                }
-            }),
-            () => console.log(this.state.newUser)
-        )
-    }
-
-
-
-    handleOrigin(event) {
-        let value = event.target.value
-        this.setState(
-            prevState => ({
-                newUser: {
-                    origin: value
-                }
-            }),
-            () => console.log(this.state.newUser)
-        )
+    handleCheck(e) {
+        const newSelection = e.target.value;
+        let newSelectionArray;
+    
+        if (this.state.newUser.skills.indexOf(newSelection) > -1) {
+          newSelectionArray = this.state.newUser.skills.filter(
+            s => s !== newSelection
+          );
+        } else {
+          newSelectionArray = [...this.state.newUser.skills, newSelection];
+        }
+    
+        this.setState(prevState => ({
+          newUser: { ...prevState.newUser, skills: newSelectionArray }
+        }));
     }
 
     handleFormSubmit(event) {
@@ -389,6 +309,13 @@ class Form extends React.Component {
                     placeholder={"Откуда ты епта?"}
                     title={"Откуда ты там взялся?"}
                     name={"origins"} 
+                />
+                <Advantage
+                    title={"Преимущества"}
+                    name={"skills"}
+                    options={this.state.skillOptions}
+                    selectedOptions={this.state.newUser.skills}
+                    handleChange={this.handleCheck}
                 />
                 {/* <label>Принятие факта, что Ваш персонаж может погибнуть в первые минуты игры</label>*/}
 
