@@ -201,14 +201,14 @@ class Form extends React.Component {
 }
 
     handleInput(event) {
-        const {name, value, type, checked} = event.target
-        type === "checkbox" ?
-        this.setState ({
-            newUser: {
-                [name]: checked
-            }
-        })
-        :
+        // const {name, value, type, checked} = event.target
+        let {name, value, type, checked} = event.target
+        // let name = event.target.name
+        // let value = event.target.value
+        if (type === 'checkbox') {
+            value = checked
+        }
+
         this.setState(
             prevState => ({
                 newUser: {
