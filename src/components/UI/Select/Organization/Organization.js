@@ -1,8 +1,4 @@
 import React from 'react'
-import './Organization.css'
-// import Modal from './modal/modal'
-
-// подумаать насчёт btn место radio !!!
 
 const Organization = (props) => {
     return (
@@ -14,7 +10,7 @@ const Organization = (props) => {
                 onChange={props.handleChange}
             >
                 <option value="" disabled>{props.placeholder}</option>
-                {props.options.map(function(option, k) {
+                {ListOrganization.map(function(option, k) {
                     return (
                         <option key={k} label={option.name} value={option.name}>
                             {option.name}
@@ -25,5 +21,17 @@ const Organization = (props) => {
         </div>
     )
 }
+
+const ListOrganization = [
+    {name: 'Центральное Командование NT (ЦК)'},
+    {name: 'Нано Трайзен (NT)'},
+    {name: 'Правительство Солнечной Системы (SolGov)'},
+    {name: 'Zeng-Hu-Pharmaceuticals'},
+    {name: 'Второй Красный Квест'},
+    {name: 'Вей Мед'},
+    {name: 'BioTech Solutios'},
+    {name: 'Гибсонский Инженерный союз'},
+    {name: 'Gilthari Exports'}
+]
 
 export default Organization

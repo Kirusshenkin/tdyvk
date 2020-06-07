@@ -1,5 +1,4 @@
 import React from 'react'
-import './Gender.css'
 
 const Gender = (props) => {
     return (
@@ -11,7 +10,7 @@ const Gender = (props) => {
                 onChange={props.handleChange}
             >
                 <option value="" disabled>{props.placeholder}</option>
-                {props.options.map(function(option, k) {
+                {OptionGender.map(function(option, k) {
                     return (
                         <option key={k} label={option.name} value={option.name}>
                             {option.name}
@@ -22,5 +21,7 @@ const Gender = (props) => {
         </div>
     )
 }
+
+const OptionGender = [{name: 'Мужчина'}, {name: 'Женщина'}]
 
 export default Gender
