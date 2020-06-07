@@ -137,7 +137,7 @@ class Form extends Component {
                 />
                 <Input type={'number'}
                     name={'age'}
-                    title = 'Возраст'
+                    title = '13'
                     value={this.state.newUser.Age}
                     placeholder={'Ваш возраст'}
                     handleChange = {this.handleAge}
