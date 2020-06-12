@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import './СharacterCreator.css'
 
-// import Result from '../../components/Result/Result'
+import Result from '../../components/Result/Result'
 import Form from "../../components/UI/Form/Form"
 
 
@@ -14,7 +14,7 @@ class СharacterCreator extends Component {
           <div className="container">
             <div className="first-character">
               <Form />
-              {/* <Result /> */}
+              <Result />
             </div>
           </div>
         </main>
