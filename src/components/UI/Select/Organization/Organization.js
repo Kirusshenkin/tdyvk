@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Gender = (props) => {
+const Organization = (props) => {
     return (
         <div>
             <label htmlFor={props.name}>{props.title}</label>
@@ -10,7 +10,7 @@ const Gender = (props) => {
                 onChange={props.handleChange}
             >
                 <option value="" disabled>{props.placeholder}</option>
-                {OptionGender.map(function(option, k) {
+                {ListOrganization.map(function(option, k) {
                     return (
                         <option key={k} label={option.name} value={option.name}>
                             {option.name}
@@ -22,6 +22,16 @@ const Gender = (props) => {
     )
 }
 
-const OptionGender = [{name: 'Мужчина'}, {name: 'Женщина'}]
+const ListOrganization = [
+    {name: 'Центральное Командование NT (ЦК)'},
+    {name: 'Нано Трайзен (NT)'},
+    {name: 'Правительство Солнечной Системы (SolGov)'},
+    {name: 'Zeng-Hu-Pharmaceuticals'},
+    {name: 'Второй Красный Квест'},
+    {name: 'Вей Мед'},
+    {name: 'BioTech Solutios'},
+    {name: 'Гибсонский Инженерный союз'},
+    {name: 'Gilthari Exports'}
+]
 
-export default Gender
+export default Organization

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Gender = (props) => {
+const Origin = props => {
     return (
         <div>
             <label htmlFor={props.name}>{props.title}</label>
@@ -10,10 +10,10 @@ const Gender = (props) => {
                 onChange={props.handleChange}
             >
                 <option value="" disabled>{props.placeholder}</option>
-                {OptionGender.map(function(option, k) {
+                {ListOrigin.map(function(item, k) {
                     return (
-                        <option key={k} label={option.name} value={option.name}>
-                            {option.name}
+                        <option key={k} value={item.name} label={item.name}>
+                            {item.name}
                         </option>
                     )
                 })}
@@ -22,6 +22,12 @@ const Gender = (props) => {
     )
 }
 
-const OptionGender = [{name: 'Мужчина'}, {name: 'Женщина'}]
+const ListOrigin = [
+    {name: 'Земля'},
+    {name: 'Венера'},
+    {name: 'Бимпа'},
+    {name: 'Новый Гобсон'},
+    {name: 'Рожденный на КС'}
+]
 
-export default Gender
+export default Origin

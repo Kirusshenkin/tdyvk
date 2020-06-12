@@ -1,38 +1,31 @@
 import React from 'react'
 import './Header.css'
 import { NavLink } from 'react-router-dom'
-// import Button from '../../components/UI/Button/Button'
+
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 const Header = () => {
     return (
         <div className="start">
-            <div className="content">
-                <h1>Lorem</h1>
-                <p>Lorem ipsum dolor sit amet.</p>
-                <section className="mini-wrap">
-                        <div className="btn">
-                            <NavLink
-                                to="/СharacterCreator"
-                                className="btn"
-                            >
-                                <div className="btn-character">
-                                    Start
-                                </div>
-                            </NavLink>
-                        </div>
-                        <div className="btn">
-                            <NavLink
-                                to="/Documentation"
-                                className="btn"
-                            >
-                                <div className="btn-character">
-                                    Documentation
-                                </div>
-                            </NavLink>
-                        </div>
-                </section>
-            </div>
-            .
+            <Container>
+                <Row>
+                    <Col md={4}>
+                        <NavLink to="/" className="header-btn"><img src="logo2.png" style={{width: '50px'}} alt="logo"/></NavLink>
+                    </Col>
+                    <Col md={{ span: 4, offset: 4 }}>
+                        <NavLink
+                            to="/Documentation"
+                            className="header-btn"
+                        >Докуметация</NavLink>
+                        <NavLink
+                            to="/СharacterCreator"
+                            className="header-btn"
+                        >Создать персонажа</NavLink>
+                    </Col>
+                </Row>
+            </Container>
         </div>
     )
 }

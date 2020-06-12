@@ -1,18 +1,19 @@
 import React from 'react'
-// import classes from './Input.css'
+import './Input.css'
 
-const Input = (props) => {
-    //   console.log(props.value);
+const Input = props => {
     return (
         <div>
-            <label htmlFor={props.name}>{props.title}</label>
-            <input 
+            <label htmlFor={props.name}>
+                {props.title}
+            </label>
+            <input type={props.type}
                 id={props.name}
                 name={props.name}
-                type={props.type}
                 value={props.value}
                 onChange={props.handleChange}
                 placeholder={props.placeholder}
+                {...props}
             />
         </div>
     )
