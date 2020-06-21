@@ -13,6 +13,6 @@
 .СharacterCreator main .container .first-character {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    /* align-items: center; */
     padding: 10vh 0;
 }

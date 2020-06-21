@@ -1,14 +1,16 @@
-button {
-    font-size: 16px;
-    background-color: rgba(0, 0, 0, 0.1);
-    border-radius: 3px;
+.Button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     box-sizing: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    color: #dcddde;
-    padding: 10px;
-    cursor: pointer;
-    margin: 5px 0px;
-    text-align: left;
+    border: none;
+    border-radius: 3px;
+    font-size: 14px;
+    line-height: 16px;
+    padding: 2px 16px;
+    user-select: none;
+    font-weight: 500;
+    transition: background-color .17s ease,color .17s ease;
 }
 
 button:hover {

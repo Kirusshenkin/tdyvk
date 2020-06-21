@@ -1,12 +1,21 @@
 import React from 'react'
+import classes from './Button.css'
 
 const Button = (props) => {
-  console.log(props.style);
-  return(
-      <button
-          onClick={props.action}>    
-          {props.title} 
-      </button>)
+    const cls = [
+        classes.Button,
+        classes[props.type]
+    ]
+
+    return(
+        <button
+            className={cls.join(' ')}
+            onClick={props.onClick}
+            disabled={props.disabled}
+        >
+            {props.title}
+        </button>
+    )
 }
 
 export default Button;
