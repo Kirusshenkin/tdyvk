@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/tdyvk.github.io/tdyvk/static/css/main.055cffef.chunk.css",
+    "main.js": "/tdyvk.github.io/tdyvk/static/js/main.b5defba9.chunk.js",
+    "main.js.map": "/tdyvk.github.io/tdyvk/static/js/main.b5defba9.chunk.js.map",
+    "runtime-main.js": "/tdyvk.github.io/tdyvk/static/js/runtime-main.9fed0419.js",
+    "runtime-main.js.map": "/tdyvk.github.io/tdyvk/static/js/runtime-main.9fed0419.js.map",
+    "static/css/2.af3c1da9.chunk.css": "/tdyvk.github.io/tdyvk/static/css/2.af3c1da9.chunk.css",
+    "static/js/2.dff5039a.chunk.js": "/tdyvk.github.io/tdyvk/static/js/2.dff5039a.chunk.js",
+    "static/js/2.dff5039a.chunk.js.map": "/tdyvk.github.io/tdyvk/static/js/2.dff5039a.chunk.js.map",
+    "index.html": "/tdyvk.github.io/tdyvk/index.html",
+    "precache-manifest.62a0edd73db37f852e1978155dcf5cef.js": "/tdyvk.github.io/tdyvk/precache-manifest.62a0edd73db37f852e1978155dcf5cef.js",
+    "service-worker.js": "/tdyvk.github.io/tdyvk/service-worker.js",
+    "static/css/2.af3c1da9.chunk.css.map": "/tdyvk.github.io/tdyvk/static/css/2.af3c1da9.chunk.css.map",
+    "static/css/main.055cffef.chunk.css.map": "/tdyvk.github.io/tdyvk/static/css/main.055cffef.chunk.css.map",
+    "static/js/2.dff5039a.chunk.js.LICENSE.txt": "/tdyvk.github.io/tdyvk/static/js/2.dff5039a.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9fed0419.js",
+    "static/css/2.af3c1da9.chunk.css",
+    "static/js/2.dff5039a.chunk.js",
+    "static/css/main.055cffef.chunk.css",
+    "static/js/main.b5defba9.chunk.js"
+  ]
+}
