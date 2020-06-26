@@ -1,4 +1,5 @@
 import React from "react";
+import '../styleCheckbox.css'
 
 const Advantage = props => {
   return (
@@ -9,7 +10,7 @@ const Advantage = props => {
       <div className="checkbox">
         {props.options.map(option => {
           return (
-            <label key={option} className="checkbox-inline">
+            <label key={option} className="container-checkbox">
               <input
                 id={props.name}
                 name={props.name}
@@ -19,6 +20,7 @@ const Advantage = props => {
                 type="checkbox"
               />
               {option}
+              <span className="checkmark"></span>
             </label>
           );
         })}
