@@ -134,13 +134,17 @@ class Form extends React.Component {
     `;
         // https://webhook.site/b3049de9-6881-432d-9b36-5dfd8e8dea9f
         // http://localhost:3001/mail/
-        fetch('http://localhost:3001/mail/', {
+        fetch('https://tdyvkback.herokuapp.com/mail/', {
             method: "POST",
             body: JSON.stringify(userData),
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
+        }).then(response => {
+            response.json().then(data => {
+                alert("Персонаж создан!")
+            })
         })
         // .then(response => {
         
