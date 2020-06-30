@@ -1,7 +1,7 @@
 import React from "react";
 import '../styleCheckbox.css'
 
-const Advantage = props => {
+const Disadvantages = props => {
   return (
     <div className="form-group">
       <label htmlFor={props.name} className="form-label">
@@ -29,4 +29,4 @@ const Advantage = props => {
   );
 };
 
-export default Advantage;
+export default Disadvantages;

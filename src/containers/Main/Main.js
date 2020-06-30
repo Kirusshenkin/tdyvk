@@ -1,18 +1,19 @@
-/* eslint-disable jsx-a11y/iframe-has-title */
 import React from 'react'
+import Alert from 'react-bootstrap/Alert'
 
 const Main = () => {
     return (
-        <div style={{paddingTop:'60%',position:'relative'}}>
-            <iframe 
-                src={'https://gifer.com/embed/WTw'}
-                width={'100%'}
-                height={'100%'}
-                style={{position:'absolute',top:'0',left:'0'}}
-                frameBorder="0" 
-                allowFullScreen>
-            </iframe>
-        </div> 
+        [
+        'warning'
+        ].map((variant, idx) => (
+            <div style={{background:'#23272A', height:'100vh'}}>
+                <Alert key={idx} variant={variant} style={{textAlign:"center"}}>
+                    Это Альфа версия 1.0.0
+                    <p>На этом сайте можно создать Вашего персонажа для игры ТДУВК</p>
+                    <p>Если Вам пока что не понятно, как надо создавать, то есть в разделе описание</p>
+                </Alert>
+            </div>
+        ))
     )
 }
 

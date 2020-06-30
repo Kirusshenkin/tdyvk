@@ -15,14 +15,19 @@ const Header = () => {
                         <NavLink to="/" className="header-btn"><img src="logo2.png" style={{width: '50px'}} alt="logo"/></NavLink>
                     </Col>
                     <Col md={{ span: 4, offset: 4 }}>
-                        <NavLink
+                        {/* <NavLink
                             to="/Documentation"
                             className="header-btn"
-                        >Докуметация</NavLink>
+                        >Докуметация</NavLink> */}
+                        <NavLink
+                            to="/Description"
+                            className="header-btn"
+                        >Описание</NavLink>
                         <NavLink
                             to="/СharacterCreator"
                             className="header-btn"
                         >Создать персонажа</NavLink>
+
                     </Col>
                 </Row>
             </Container>

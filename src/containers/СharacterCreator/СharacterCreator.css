@@ -1,5 +1,5 @@
 .СharacterCreator {
-    background: #7F2D41;
+    background: #c3e3f8;
 }
 
 .СharacterCreator main p {
@@ -13,6 +13,13 @@
 .СharacterCreator main .container .first-character {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    /* align-items: center; */
     padding: 10vh 0;
+}
+@media only screen and (max-width: 425px) {
+    .СharacterCreator main .container .first-character {
+        display: flex;
+        justify-content: center;
+        padding: 10vh 0;
+    }
 }
