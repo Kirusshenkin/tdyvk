@@ -3,9 +3,7 @@ import Alert from 'react-bootstrap/Alert'
 
 const Main = () => {
     return (
-        [
-        'warning'
-        ].map((variant, idx) => (
+        ['warning'].map((variant, idx) => (
             <div style={{background:'#23272A', height:'100vh'}}>
                 <Alert key={idx} variant={variant} style={{textAlign:"center"}}>
                     Это Альфа версия 1.0.0

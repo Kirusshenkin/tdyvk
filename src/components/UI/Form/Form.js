@@ -27,16 +27,18 @@ class Form extends React.Component {
             advantages: [],
             disadvantages: [],
         },
-        
-        advantages: ["Огнестрельная подготовка", "Курсы рукопашного боя", "Боевые рефлексы", "Выброс адреналина", "Крепкий", "Сильный", "Компетентный", "Эрудированный", "Высокий болевой порог", "Здоровый", "Ловкий", "Психопат", "Работник месяца", "Важность", "Исчерпывающий опыт", "Высокая квалификация", "Подготовленный", "Глубинное понимание", "Вторая специальность", "Третий глаз", "Лицензия"],
-        disadvantages: ["Адвентизм", "Пацифизм", "Заторможенность", "Апатичность", "Хрупкий", "Слабый", "Некомпетентный", "Глупый", "Низкий болевой порог", "Хилый", "Неуклюжий", "Альтруист", "Предвзятость", "Расходник", "Недостаток опыта", "Низкая квалификация", "Неготовый", "Глубинное непонимание", "Срочный перевод", "Бегство", "Ментальное оглушение", "Специальное постановление"],
+        organizations:[],
+        professions: [],
+        advantages: [],
+        disadvantages: [],
+        homeland:[]
     }
     this.handleInput = this.handleInput.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
     this.handledisCheck = this.handledisCheck.bind(this);
 }
-
+    // это redux
     handleInput(e) {
         let {name, value, type, checked} = e.target
         if (type === 'checkbox') {
@@ -52,7 +54,7 @@ class Form extends React.Component {
             })
         )
     }
-    
+    // это redux
     handleCheck(e) {
         const newSelection = e.target.value;
         let newSelectionArray;
@@ -69,7 +71,7 @@ class Form extends React.Component {
           newUser: { ...prevState.newUser, advantages: newSelectionArray }
         }));
     }
-
+    // это redux
     handledisCheck(e) {
         const lastSelection = e.target.value;
         let lastSelectionArray;
@@ -86,7 +88,67 @@ class Form extends React.Component {
             newUser: { ...prevState.newUser, disadvantages: lastSelectionArray }
         }))
     }
-
+    componentWillMount () {
+        fetch('https://tdyvkback.herokuapp.com/api/organization', {
+            method: "GET",
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+        }).then((response) => { 
+            response.json().then(data => {
+                this.setState({ organizations: data.data })
+            })
+        })
+        fetch('https://tdyvkback.herokuapp.com/api/profession', {
+            method: "GET",
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+        }).then((response) => { 
+            response.json().then(data => {
+                this.setState({ professions: data.data })
+            })
+        })
+        fetch('https://tdyvkback.herokuapp.com/api/homeland', {
+            method: "GET",
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+        }).then((response) => { 
+            response.json().then(data => { 
+                this.setState({ homeland: data.data })
+            })
+        })
+        fetch('https://tdyvkback.herokuapp.com/api/advantages', {
+            method: "GET",
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+        }).then((response) => { 
+            response.json().then(data => {
+                this.setState({ advantages: data.data })
+            })
+        })
+        fetch('https://tdyvkback.herokuapp.com/api/disadvantages', {
+            method: "GET",
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+        }).then((response) => { 
+            response.json().then(data => { 
+                this.setState({ disadvantages: data.data })
+            })
+        })
+    }
+    // componentDidMount () {
+    //     setTimeout(() => this.setState({loading: false}), 2000);
+    // }
+    // это redux
     handleFormSubmit(event) {
         event.preventDefault();
         let userData = this.state.newUser;
@@ -146,22 +208,6 @@ class Form extends React.Component {
                 alert("Персонаж создан!")
             })
         })
-        // .then(response => {
-        
-        // })
-
-        // fetch('https://tduvk.herokuapp.com/api/players/',{
-        //     method: "POST",
-        //     body: JSON.stringify(userData),
-        //     headers: {
-        //       'Accept': 'application/json',
-        //       'Content-Type': 'application/json'
-        //     },
-        //   }).then(response => {
-        //     response.json().then(data => {
-        //       console.log("Successful" + data);
-        //     })
-        // })
     }
 
     render() {
@@ -199,6 +245,7 @@ class Form extends React.Component {
                         value={profession}
                         name={"profession"}
                         title={"Профессия"}
+                        professions={this.state.professions}
                         handleChange={this.handleInput}
                         placeholder={"Выберите Профессию"}
                     />
@@ -207,6 +254,7 @@ class Form extends React.Component {
                         value={organization}
                         title={"Организации"}
                         name={"organization"}
+                        organizations={this.state.organizations}
                         handleChange={this.handleInput}
                         placeholder={"Выберите организацию"}
                     />
@@ -225,6 +273,7 @@ class Form extends React.Component {
                         handleChange={this.handleInput}
                         placeholder={"Откуда ты епта?"}
                         title={"Откуда ты там взялся?"}
+                        homeland={this.state.homeland}
                         name={"origins"} 
                     />
                     <span className="vision">{origins}</span>
