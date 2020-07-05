@@ -1,5 +1,6 @@
 import React from "react";
 import '../styleCheckbox.css'
+import ReactTooltip from "react-tooltip";
 
 const Advantage = props => {
   return (
@@ -10,16 +11,17 @@ const Advantage = props => {
       <div className="checkbox">
         {props.options.map(option => {
           return (
-            <label key={option} className="container-checkbox">
+            <label key={option.id} data-tip={option.content} className="container-checkbox">
               <input
                 id={props.name}
                 name={props.name}
                 onChange={props.handleChange}
-                value={option}
-                checked={props.selectedOptions.indexOf(option) > -1}
+                value={option.name}
+                checked={props.selectedOptions.indexOf(option.name) > -1}
                 type="checkbox"
               />
-              {option}
+              {option.name}
+              <ReactTooltip place="top" type="dark" effect="solid"/>
               <span className="checkmark"></span>
             </label>
           );

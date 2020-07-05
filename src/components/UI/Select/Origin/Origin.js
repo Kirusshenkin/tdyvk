@@ -10,10 +10,10 @@ const Origin = props => {
                 onChange={props.handleChange}
             >
                 <option value="" disabled>{props.placeholder}</option>
-                {ListOrigin.map(function(item, k) {
+                {props.homeland.map(function(location, k) {
                     return (
-                        <option key={k} value={item.name} label={item.name}>
-                            {item.name}
+                        <option key={k} value={location.location} label={location.location}>
+                            {location.location}
                         </option>
                     )
                 })}
@@ -21,13 +21,5 @@ const Origin = props => {
         </div>
     )
 }
-
-const ListOrigin = [
-    {name: 'Земля'},
-    {name: 'Венера'},
-    {name: 'Бимпа'},
-    {name: 'Новый Гобсон'},
-    {name: 'Рожденный на КС'}
-]
 
 export default Origin
