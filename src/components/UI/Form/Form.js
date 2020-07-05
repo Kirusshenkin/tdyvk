@@ -6,6 +6,8 @@ import Professions from '../Select/Professions/Professions'
 import Antagonist from '../Radio/Antagonist/Antagonist'
 import Origin from '../Select/Origin/Origin'
 import Button from '../Button/Button'
+import Loader from '../Loader/Loader'
+import axios from 'axios'
 
 import Disadvantages from '../Radio/Check/Disadvantages'
 import Advantage from '../Radio/Check/Advantage'
@@ -16,6 +18,7 @@ class Form extends React.Component {
     constructor(props) {
     super(props);
     this.state = {
+        loading: true,
         newUser: {
             full_name: '',
             sex: '',
@@ -89,17 +92,28 @@ class Form extends React.Component {
         }))
     }
     componentWillMount () {
-        fetch('https://tdyvkback.herokuapp.com/api/organization', {
-            method: "GET",
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-            },
-        }).then((response) => { 
-            response.json().then(data => {
-                this.setState({ organizations: data.data })
-            })
-        })
+
+    }
+    async componentDidMount () {
+        try {
+            const response = await axios.get('https://tdyvkback.herokuapp.com/api/organization')
+            
+            console.log(response.data)
+
+        } catch (e) {
+            console.log(e)
+        }
+        // fetch('https://tdyvkback.herokuapp.com/api/organization', {
+        //     method: "GET",
+        //     headers: {
+        //     'Accept': 'application/json',
+        //     'Content-Type': 'application/json'
+        //     },
+        // }).then((response) => { 
+        //     response.json().then(data => {
+        //         this.setState({ organizations: data.data })
+        //     })
+        // })
         fetch('https://tdyvkback.herokuapp.com/api/profession', {
             method: "GET",
             headers: {
@@ -144,10 +158,8 @@ class Form extends React.Component {
                 this.setState({ disadvantages: data.data })
             })
         })
+        this.setState({loading: false})
     }
-    // componentDidMount () {
-    //     setTimeout(() => this.setState({loading: false}), 2000);
-    // }
     // это redux
     handleFormSubmit(event) {
         event.preventDefault();
@@ -211,10 +223,15 @@ class Form extends React.Component {
     }
 
     render() {
+
         const { full_name, age, sex, profession, organization, be_antagonist, origins, advantages, disadvantages } = this.state.newUser;
+
         return (
             <div className="main-characer">
-                <form onSubmit={this.handleFormSubmit}>
+            {
+                this.state.loading
+                ? <Loader/>
+                :<form onSubmit={this.handleFormSubmit}>
                     <Input
                         value={full_name}
                         type={"text"}
@@ -298,6 +315,7 @@ class Form extends React.Component {
 
                     <Button value="Submit" onClick={this.handleFormSubmit} title={"Создать"}>Создать</Button>
                 </form>
+            }
             </div>
         );
     }
