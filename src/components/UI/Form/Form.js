@@ -7,7 +7,6 @@ import Antagonist from '../Radio/Antagonist/Antagonist'
 import Origin from '../Select/Origin/Origin'
 import Button from '../Button/Button'
 import Loader from '../Loader/Loader'
-import axios from 'axios'
 
 import Disadvantages from '../Radio/Check/Disadvantages'
 import Advantage from '../Radio/Check/Advantage'
@@ -91,30 +90,34 @@ class Form extends React.Component {
             newUser: { ...prevState.newUser, disadvantages: lastSelectionArray }
         }))
     }
-    componentWillMount () {
-
-    }
     async componentDidMount () {
-        try {
-            const response = await axios.get('https://tdyvkback.herokuapp.com/api/organization')
-            
-            console.log(response.data)
-
-        } catch (e) {
-            console.log(e)
-        }
-        // fetch('https://tdyvkback.herokuapp.com/api/organization', {
-        //     method: "GET",
-        //     headers: {
-        //     'Accept': 'application/json',
-        //     'Content-Type': 'application/json'
-        //     },
-        // }).then((response) => { 
-        //     response.json().then(data => {
+        // try {
+        //     const response = await axios.get('https://tdyvkback.herokuapp.com/api/organization')
+        //     response,json().then(data => {
         //         this.setState({ organizations: data.data })
         //     })
-        // })
-        fetch('https://tdyvkback.herokuapp.com/api/profession', {
+        //     console.log(response.data)
+
+        // } catch (e) {
+        //     console.log(e)
+        // }
+        await fetch('https://tdyvkback.herokuapp.com/api/organization', {
+            method: "GET",
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+        }).then((response) => { 
+            response.json().then(data => {
+                this.setState({
+                    isLoaded: true,
+                    organizations: data.data 
+                })
+            }, (error) => {
+                
+            })
+        })
+        await fetch('https://tdyvkback.herokuapp.com/api/profession', {
             method: "GET",
             headers: {
             'Accept': 'application/json',
@@ -125,7 +128,7 @@ class Form extends React.Component {
                 this.setState({ professions: data.data })
             })
         })
-        fetch('https://tdyvkback.herokuapp.com/api/homeland', {
+        await fetch('https://tdyvkback.herokuapp.com/api/homeland', {
             method: "GET",
             headers: {
             'Accept': 'application/json',
@@ -136,7 +139,7 @@ class Form extends React.Component {
                 this.setState({ homeland: data.data })
             })
         })
-        fetch('https://tdyvkback.herokuapp.com/api/advantages', {
+        await fetch('https://tdyvkback.herokuapp.com/api/advantages', {
             method: "GET",
             headers: {
             'Accept': 'application/json',
@@ -147,7 +150,7 @@ class Form extends React.Component {
                 this.setState({ advantages: data.data })
             })
         })
-        fetch('https://tdyvkback.herokuapp.com/api/disadvantages', {
+        await fetch('https://tdyvkback.herokuapp.com/api/disadvantages', {
             method: "GET",
             headers: {
             'Accept': 'application/json',
@@ -223,15 +226,12 @@ class Form extends React.Component {
     }
 
     render() {
-
+        if (this.state.loading) return <Loader/>;
         const { full_name, age, sex, profession, organization, be_antagonist, origins, advantages, disadvantages } = this.state.newUser;
 
         return (
             <div className="main-characer">
-            {
-                this.state.loading
-                ? <Loader/>
-                :<form onSubmit={this.handleFormSubmit}>
+                <form onSubmit={this.handleFormSubmit}>
                     <Input
                         value={full_name}
                         type={"text"}
@@ -315,7 +315,6 @@ class Form extends React.Component {
 
                     <Button value="Submit" onClick={this.handleFormSubmit} title={"Создать"}>Создать</Button>
                 </form>
-            }
             </div>
         );
     }
