@@ -91,16 +91,6 @@ class Form extends React.Component {
         }))
     }
     async componentDidMount () {
-        // try {
-        //     const response = await axios.get('https://tdyvkback.herokuapp.com/api/organization')
-        //     response,json().then(data => {
-        //         this.setState({ organizations: data.data })
-        //     })
-        //     console.log(response.data)
-
-        // } catch (e) {
-        //     console.log(e)
-        // }
         await fetch('https://tdyvkback.herokuapp.com/api/organization', {
             method: "GET",
             headers: {
@@ -113,8 +103,6 @@ class Form extends React.Component {
                     isLoaded: true,
                     organizations: data.data 
                 })
-            }, (error) => {
-                
             })
         })
         await fetch('https://tdyvkback.herokuapp.com/api/profession', {
@@ -226,7 +214,8 @@ class Form extends React.Component {
     }
 
     render() {
-        if (this.state.loading) return <Loader/>;
+        if (this.state.loading) 
+        return <Loader/> 
         const { full_name, age, sex, profession, organization, be_antagonist, origins, advantages, disadvantages } = this.state.newUser;
 
         return (

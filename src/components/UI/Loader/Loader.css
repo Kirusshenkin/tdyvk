@@ -1,14 +1,18 @@
 .center {
-    text-align: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    /* position: relative;
+    left: 50%; */
 }
 
-.lds-ellipsis {
-    display: inline-block;
+.Loader {
+    display: inline-flex;
     position: relative;
     width: 80px;
     height: 80px;
-  }
-  .lds-ellipsis div {
+}
+.Loader div {
     position: absolute;
     top: 33px;
     width: 13px;
@@ -16,23 +20,23 @@
     border-radius: 50%;
     background: #fff;
     animation-timing-function: cubic-bezier(0, 1, 1, 0);
-  }
-  .lds-ellipsis div:nth-child(1) {
+}
+.Loader div:nth-child(1) {
     left: 8px;
     animation: lds-ellipsis1 0.6s infinite;
-  }
-  .lds-ellipsis div:nth-child(2) {
+}
+.Loader div:nth-child(2) {
     left: 8px;
     animation: lds-ellipsis2 0.6s infinite;
-  }
-  .lds-ellipsis div:nth-child(3) {
+}
+.Loader div:nth-child(3) {
     left: 32px;
     animation: lds-ellipsis2 0.6s infinite;
-  }
-  .lds-ellipsis div:nth-child(4) {
+}
+.Loader div:nth-child(4) {
     left: 56px;
     animation: lds-ellipsis3 0.6s infinite;
-  }
+}
   @keyframes lds-ellipsis1 {
     0% {
       transform: scale(0);
