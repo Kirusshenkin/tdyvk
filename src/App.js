@@ -3,22 +3,23 @@ import Header from './containers/Header/Header'
 import Footer from './containers/Footer/Footer'
 import Main from './containers/Main/Main'
 // import NotFound from './containers/NotFound/NotFound'
-// import Documentation from './containers/Documentation/Documentation'
 import СharacterCreator from './containers/СharacterCreator/СharacterCreator'
+// import Сharacter from './containers/С  haracter/Сharacter'
 import Description from './containers/Description/Description'
-import { Route, BrowserRouter } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 
 const App = () => {
     return (
-      <BrowserRouter>
+      <Router>
           <Header />
-          <Route path="/" exact component={Main}/>
-          <Route path="/СharacterCreator" component={СharacterCreator}/>
-          {/* <Route path="/Documentation" component={Documentation}/> */}
-          <Route path="/Description" component={Description}/>
-          {/* <Route path="*" component={NotFound}/> */}
+          <Switch>
+            <Route path="/" exact component={Main}/>
+            {/* <Route path="/Сharacter" component={Сharacter}/> */}
+            <Route path="/СharacterCreator" component={СharacterCreator}/>
+            <Route path="/Description" component={Description}/>
+          </Switch>
           <Footer />
-      </BrowserRouter>
+      </Router>
     )
 }
 

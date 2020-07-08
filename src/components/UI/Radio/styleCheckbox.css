@@ -11,6 +11,10 @@
     user-select: none;
 }
 
+.__react_component_tooltip.show {
+    width: 300px;
+}
+
 .container-checkbox input {
     position: absolute;
     opacity: 0;

@@ -1,0 +1,31 @@
+select {
+    color: #f6f6f7;
+    font-size: 16px;
+    background-color: #303339;
+    border-color: rgba(0,0,0,.3);
+    border-radius: 3px;
+    box-sizing: border-box;
+    padding: 5px;
+    line-height: 1.3;
+    transition: border .15s ease;
+
+
+}
+
+select:focus {
+    border-color: #7289da;
+}
+
+select optgroup option {
+    border-color: #202225;
+    background: #303237;
+}
+
+select optgroup option:disabled {
+    background: #303237;
+    color: #f6f6f7;
+}
+
+optgroup {
+    background: rgba(42, 35, 35, 0.5);
+}

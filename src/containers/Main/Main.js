@@ -1,5 +1,6 @@
 import React from 'react'
 import Alert from 'react-bootstrap/Alert'
+// import Auth from '../Auth/Auth'
 
 const Main = () => {
     return (
@@ -14,6 +15,7 @@ const Main = () => {
                         <li style={{listStyleType: 'none'}}>И так же сделали Вам подсказки о примуств и недостатков(просто наведите курсором мыши на него)</li>
                     </ul>
                 </Alert>
+                {/* <Auth/> */}
             </div>
         ))
     )

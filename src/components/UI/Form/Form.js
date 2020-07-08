@@ -12,6 +12,7 @@ import Disadvantages from '../Radio/Check/Disadvantages'
 import Advantage from '../Radio/Check/Advantage'
 
 import './Form.css'
+import '../Select/Select.css'
 
 class Form extends React.Component {
     constructor(props) {

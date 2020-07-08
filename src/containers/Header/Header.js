@@ -27,7 +27,11 @@ const Header = () => {
                             to="/СharacterCreator"
                             className="header-btn"
                         >Создать персонажа</NavLink>
-
+                        {/* <NavLink
+                            to="/Сharacter"
+                            className="header-btn"
+                        >Персонаж
+                        </NavLink> */}
                     </Col>
                 </Row>
             </Container>
