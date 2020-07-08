@@ -4,7 +4,7 @@ import Footer from './containers/Footer/Footer'
 import Main from './containers/Main/Main'
 // import NotFound from './containers/NotFound/NotFound'
 import СharacterCreator from './containers/СharacterCreator/СharacterCreator'
-// import Сharacter from './containers/С  haracter/Сharacter'
+// import Сharacter from './containers/Сharacter/Сharacter'
 import Description from './containers/Description/Description'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 
