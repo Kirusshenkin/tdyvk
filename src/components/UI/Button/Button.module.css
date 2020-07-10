@@ -2,8 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #7289da;
-    color: #ffffff;
+
 
     box-sizing: border-box;
     border: none;
@@ -21,15 +20,30 @@
     transition: background-color .17s ease,color .17s ease;
 }
 
+.Button:focus {
+    outline: none;
+}
+
 .Button:active {
     background-color: #5b6eae;
 }
 
 .Button:disabled {
-    background: #ccc;
-    color: #000;
+    background: rgba(138, 138, 138, 0.529);
+    color: rgba(16, 15, 15, 0.729);
     cursor: not-allowed;
 }
+
+.success {
+    background: #7289da;
+    color: #ffffff;
+}
+
+.error {
+    background: rgba(240, 87, 108, 1);
+}
+
+
 /* button:hover {
     background-color: #ffffff;
     box-shadow: 0px 18px 26.68px 2.32px rgba(58, 58, 58, 0.1);

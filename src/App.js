@@ -5,6 +5,7 @@ import Main from './containers/Main/Main'
 // import NotFound from './containers/NotFound/NotFound'
 import СharacterCreator from './containers/СharacterCreator/СharacterCreator'
 // import Сharacter from './containers/Сharacter/Сharacter'
+import Сharacter from './containers/Сharacter/Сharacter'
 import Description from './containers/Description/Description'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 
@@ -14,7 +15,7 @@ const App = () => {
           <Header />
           <Switch>
             <Route path="/" exact component={Main}/>
-            {/* <Route path="/Сharacter" component={Сharacter}/> */}
+            <Route path="/Сharacter" component={Сharacter}/>
             <Route path="/СharacterCreator" component={СharacterCreator}/>
             <Route path="/Description" component={Description}/>
           </Switch>

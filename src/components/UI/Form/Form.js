@@ -1,4 +1,7 @@
 import React from 'react'
+
+import { Link } from 'react-router-dom'
+
 import Input from '../Input/Input'
 import Organization from '../Select/Organization/Organization'
 import Gender from '../Select/Gender/Gender'
@@ -225,7 +228,7 @@ class Form extends React.Component {
                     <Input
                         value={full_name}
                         type={"text"}
-                        title={"Ваше Имя"}
+                        label={"Ваше Имя"}
                         name={"full_name"}
                         placeholder={"Ведите Ваше имя"}
                         handleChange={this.handleInput}
@@ -236,7 +239,7 @@ class Form extends React.Component {
                         placeholder={"Ваш возраст?"}
                         type={"number"}
                         name={"age"}
-                        title={"Ваш возраст"}
+                        label={"Ваш возраст"}
                         handleChange={this.handleInput}
                     />
                     <span className="vision">{age}</span>
@@ -303,7 +306,11 @@ class Form extends React.Component {
                     <hr/>
                     <label>Принятие факта, что Ваш персонаж может погибнуть в первые минуты игры</label>
 
-                    <Button value="Submit" onClick={this.handleFormSubmit} title={"Создать"}>Создать</Button>
+                    <Button value="Submit" onClick={this.handleFormSubmit} label={"Создать"} type="success">Создать</Button>
+                    <Link to={"/Сharacter"}>
+                        <a>Посмотреть</a>
+                    </Link>
+                    
                 </form>
             </div>
         );

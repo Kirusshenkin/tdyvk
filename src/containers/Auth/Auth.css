@@ -13,14 +13,14 @@
     color: #ffffff;
 }
 
-.authBox__Authtitle {
+.authBox__Auth-title {
     font-weight: 600;
     font-size: 24px;
     line-height: 30px;
 }
 
-.authBox__Authwelcome {
+.authBox__Auth-welcome {
     font-size: 16px;
     line-height: 20px;
-    color: #b9bbbe;
+    color: #99AAB5;
 }
