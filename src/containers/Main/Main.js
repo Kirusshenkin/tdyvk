@@ -1,7 +1,7 @@
 import React from 'react'
 import Alert from 'react-bootstrap/Alert'
-// import Animation from '../../components/Animation/Animation'
-import Auth from '../Auth/Auth'
+import Animation from '../../components/Animation/Animation'
+// import Auth from '../Auth/Auth'
 
 
 const Main = () => {
@@ -13,11 +13,11 @@ const Main = () => {
                     <ul>
                         <li style={{listStyleType: 'none'}}>Сделали обновление!</li>
                         <li style={{listStyleType: 'none'}}>Где мы добавили загрузку страницы более лучше</li>
-                        <li style={{listStyleType: 'none'}}>И так же сделали Вам подсказки о примуств и недостатков(просто наведите курсором мыши на него)</li>
+                        <li style={{listStyleType: 'none'}}>И так же сделали Вам подсказки о преимуществах и недостатков(просто наведите курсором мыши на него)</li>
                     </ul>
                 </Alert>
-                    {/* <Animation/> */}
-                <Auth/>
+                    <Animation/>
+                {/* <Auth/> */}
             </div>
     )
 }

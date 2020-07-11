@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 import Input from '../Input/Input'
 import Organization from '../Select/Organization/Organization'
@@ -22,7 +22,9 @@ class Form extends React.Component {
     super(props);
     this.state = {
         loading: true,
+        isButtonDisabled: false,
         newUser: {
+            name_profile: '',
             full_name: '',
             sex: '',
             age: '',
@@ -164,6 +166,10 @@ class Form extends React.Component {
         userData.body = `
         <table cellpadding="8px">
             <tr>
+                <th align="left">Имя пользовотеля:</th>
+                <td align="left">${userData.name_profile}</td>
+            </tr>
+            <tr>
                 <th align="left">Имя:</th>
                 <td align="left">${userData.full_name}</td>
             </tr>
@@ -212,7 +218,10 @@ class Form extends React.Component {
             },
         }).then(response => {
             response.json().then(data => {
-                alert("Персонаж создан!")
+                this.setState({
+                    isButtonDisabled: true
+                })
+                alert('Поздравляю Вы создали персонажа!')
             })
         })
     }
@@ -220,18 +229,27 @@ class Form extends React.Component {
     render() {
         if (this.state.loading) 
         return <Loader/> 
-        const { full_name, age, sex, profession, organization, be_antagonist, origins, advantages, disadvantages } = this.state.newUser;
+        const { name_profile, full_name, age, sex, profession, organization, be_antagonist, origins, advantages, disadvantages } = this.state.newUser;
 
         return (
             <div className="main-characer">
                 <form onSubmit={this.handleFormSubmit}>
+                    <Input
+                        value={name_profile}
+                        type={"text"}
+                        label={"Ваш Никнейм"}
+                        name={"name_profile"}
+                        placeholder={"Ведите Ваш никнейм"}
+                        onChange={this.handleInput}
+                    />
+                    <span className="vision">{name_profile}</span>
                     <Input
                         value={full_name}
                         type={"text"}
                         label={"Ваше Имя"}
                         name={"full_name"}
                         placeholder={"Ведите Ваше имя"}
-                        handleChange={this.handleInput}
+                        onChange={this.handleInput}
                     />
                     <span className="vision">{full_name}</span>
                     <Input
@@ -240,7 +258,7 @@ class Form extends React.Component {
                         type={"number"}
                         name={"age"}
                         label={"Ваш возраст"}
-                        handleChange={this.handleInput}
+                        onChange={this.handleInput}
                     />
                     <span className="vision">{age}</span>
                     <Gender
@@ -306,10 +324,10 @@ class Form extends React.Component {
                     <hr/>
                     <label>Принятие факта, что Ваш персонаж может погибнуть в первые минуты игры</label>
 
-                    <Button value="Submit" onClick={this.handleFormSubmit} label={"Создать"} type="success">Создать</Button>
-                    <Link to={"/Сharacter"}>
+                    <Button value="Submit" onClick={() => this.handleFormSubmit} label={"Создать"} disabled={this.state.isButtonDisabled} type="success">Создать</Button>
+                    {/* <Link to={"/Сharacter"}>
                         <a>Посмотреть</a>
-                    </Link>
+                    </Link> */}
                     
                 </form>
             </div>
