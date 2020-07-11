@@ -246,7 +246,7 @@ class Form extends React.Component {
                     <Input
                         value={full_name}
                         type={"text"}
-                        label={"Ваше Имя"}
+                        label={"Имя персонажа"}
                         name={"full_name"}
                         placeholder={"Ведите Ваше имя"}
                         onChange={this.handleInput}
@@ -257,13 +257,13 @@ class Form extends React.Component {
                         placeholder={"Ваш возраст?"}
                         type={"number"}
                         name={"age"}
-                        label={"Ваш возраст"}
+                        label={"Возраст персонажа"}
                         onChange={this.handleInput}
                     />
                     <span className="vision">{age}</span>
                     <Gender
                         value={sex}
-                        title={"Ваш пол"}
+                        title={"Пол персонажа"}
                         name={"sex"}
                         handleChange={this.handleInput}
                         placeholder={"Выберите Ваш пол"}
