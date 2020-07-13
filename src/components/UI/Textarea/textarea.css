@@ -1,0 +1,22 @@
+div textarea {
+    resize: none;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #dcddde;
+    border-radius: 3px;
+}
+
+div textarea {
+    border-color: #040405;
+}
+
+div textarea:hover {
+    border-color: #040405;
+}
+
+div textarea:focus {
+    outline: none !important;
+    border:1px solid #7289da;
+    border-radius: 3px;
+}

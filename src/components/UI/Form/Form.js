@@ -11,6 +11,9 @@ import Origin from '../Select/Origin/Origin'
 import Button from '../Button/Button'
 import Loader from '../Loader/Loader'
 
+import Textarea from '../Textarea/textarea'
+import Textareakbm from '../Textarea/KBM/KBM'
+
 import Disadvantages from '../Radio/Check/Disadvantages'
 import Advantage from '../Radio/Check/Advantage'
 
@@ -34,6 +37,8 @@ class Form extends React.Component {
             origins: '',
             advantages: [],
             disadvantages: [],
+            appearance:'',
+            kbm: '',
         },
         organizations:[],
         professions: [],
@@ -205,6 +210,14 @@ class Form extends React.Component {
                 <th align="left">Недостатки:</th>
                 <td align="left">${userData.disadvantages}</td>
             </tr>
+            <tr>
+                <th align="left">Параметры внешности:</th>
+                <td align="left">${userData.appearance}</td>
+            </tr>
+            <tr>
+                <th align="left">КБМ:</th>
+                <td align="left">${userData.kbm}</td>
+            </tr>
         </table>
     `;
         // https://webhook.site/b3049de9-6881-432d-9b36-5dfd8e8dea9f
@@ -229,7 +242,7 @@ class Form extends React.Component {
     render() {
         if (this.state.loading) 
         return <Loader/> 
-        const { name_profile, full_name, age, sex, profession, organization, be_antagonist, origins, advantages, disadvantages } = this.state.newUser;
+        const { name_profile, full_name, age, sex, profession, organization, be_antagonist, origins, advantages, disadvantages, appearance, kbm } = this.state.newUser;
 
         return (
             <div className="main-characer">
@@ -321,6 +334,18 @@ class Form extends React.Component {
                             handleChange={this.handledisCheck}
                         />
                     </div>
+                    <Textarea
+                        label="Параметры внешности"
+                        onChange={this.handleInput}
+                        name={"appearance"}
+                        value={appearance}
+                    />
+                    <Textareakbm
+                        label="КБМ"
+                        onChange={this.handleInput}
+                        name={"kbm"}
+                        value={kbm}
+                    />
                     <hr/>
                     <label>Принятие факта, что Ваш персонаж может погибнуть в первые минуты игры</label>
 
@@ -334,9 +359,9 @@ class Form extends React.Component {
         );
     }
     // временно 
-    // componentDidUpdate() {
-    //     console.log(this.state);
-    // }
+    componentDidUpdate() {
+        console.log(this.state);
+    }
 }
 
 export default Form
