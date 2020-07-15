@@ -165,6 +165,9 @@ class Form extends React.Component {
     // это redux
     handleFormSubmit(event) {
         event.preventDefault();
+        this.setState({
+            isButtonDisabled: true
+        })
         let userData = this.state.newUser;
         // в to создаем почту и отправляем по ей
         userData.to = 'i_daktes_i@mail.ru'
@@ -231,9 +234,6 @@ class Form extends React.Component {
             },
         }).then(response => {
             response.json().then(data => {
-                this.setState({
-                    isButtonDisabled: true
-                })
                 alert('Поздравляю Вы создали персонажа!')
             })
         })
