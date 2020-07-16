@@ -3,18 +3,18 @@
     /* height: 100vh; */
 }
 
-.СharacterCreator main p {
+.СharacterCreator p {
     color: #000;
 }
 
-.СharacterCreator main .container .first-character {
+.СharacterCreator .container .first-character {
     display: flex;
     justify-content: center;
     /* align-items: center; */
     padding: 10vh 0;
 }
 @media only screen and (max-width: 425px) {
-    .СharacterCreator main .container .first-character {
+    .СharacterCreator .container .first-character {
         display: flex;
         justify-content: center;
         padding: 10vh 0;

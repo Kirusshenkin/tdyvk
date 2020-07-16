@@ -1,19 +1,19 @@
- .start {
+/* div {
     background: #092437;
-}
+} */
 
-.start .row{
+/* div .row{
     padding: 15px 0px;
-}
+} */
 
-.start .row .col-md-4 a {
+div .row .col-md-4 a {
     color: #ffffff;
 }
-.start .row .col-md-4 a {
+div .row .col-md-4 a {
     text-decoration: none;
 }
 
-.start .row .offset-md-4 {
+div .row .offset-md-4 {
     display: flex;
     justify-content: space-around;
     align-items: center;

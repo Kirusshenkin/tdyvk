@@ -1,0 +1,9 @@
+.Сharacter {
+    background: url(../../image/space.png);
+    flex: 1;
+    color: #ffffff;
+}
+
+.Сharacter .container .title-h3{
+    font-size: 100px;
+}

@@ -3,8 +3,8 @@ import Input from '../../components/UI/Input/Input'
 import Button from '../../components/UI/Button/Button'
 import './Auth.css'
 import is from 'is_js'
-// import {auth} from '../../store/actions/auth'
-// import { connect } from 'react-redux'
+import {auth} from '../../store/actions/auth'
+import { connect } from 'react-redux'
 
 class Auth extends Component {
 
@@ -146,10 +146,10 @@ class Auth extends Component {
     }
 }
 
-// function mapDispatchToProps(dispatch) {
-//     return {
-//         auth: (email, password, isLogin) => dispatch(auth(email, password, isLogin))
-//     }
-// }
-export default Auth
-// export default connect(null, mapDispatchToProps)(Auth)
+function mapDispatchToProps(dispatch) {
+    return {
+        auth: (email, password, isLogin) => dispatch(auth(email, password, isLogin))
+    }
+}
+// export default Auth
+export default connect(null, mapDispatchToProps)(Auth)

@@ -1,69 +1,69 @@
-// import {AUTH_SUCCESS, AUTH_LOGOUT} from './actionTypes'
+import {AUTH_SUCCESS, AUTH_LOGOUT} from './actionTypes'
 
-// export function auth(email, password, isLogin) {
-//     return async dispatch => {
-//         const authData ={
-//             email, password,
-//             returnSecureToken: true
-//         }
+export function auth(email, password, isLogin) {
+    return async dispatch => {
+        const authData ={
+            email, password,
+            returnSecureToken: true
+        }
 
-//         let url ='' // Регистрация
+        let url ='https://tdyvkback.herokuapp.com/users/register' // Регистрация
 
-//         if (isLogin) {
-//             url = '' //логин и пароль
-//         }
+        if (isLogin) {
+            url = 'https://tdyvkback.herokuapp.com/users/auth' //логин и пароль
+        }
 
-//         const res = await fetch(url, authData)
-//         const data = res.data
+        const res = await fetch(url, authData)
+        const data = res.data
 
-//         const expirationDate = new Date(new Date().getTime() + data.expiresIn * 1000)
+        const expirationDate = new Date(new Date().getTime() + data.expiresIn * 1000)
 
-//         localStorage.setItem('token', data.idToken)
-//         localStorage.setItem('userId', data.localId)
-//         localStorage.setItem('expirationDate', expirationDate)
+        localStorage.setItem('token', data.idToken)
+        localStorage.setItem('userId', data.localId)
+        localStorage.setItem('expirationDate', expirationDate)
 
-//         dispatch(authSuccess(data.idToken))
-//         dispatch(autoLogout(data.expiresIn))
-//     }
-// }
+        dispatch(authSuccess(data.idToken))
+        dispatch(autoLogout(data.expiresIn))
+    }
+}
 
-// export function autoLogout(time) {
-//     return dispatch => {
-//         setTimeout(() => {
-//             dispatch(logout())
-//         }, time * 1000)
-//     }
-// }
+export function autoLogout(time) {
+    return dispatch => {
+        setTimeout(() => {
+            dispatch(logout())
+        }, time * 1000)
+    }
+}
 
-// export function logout() {
-//     localStorage.removeItem('token')
-//     localStorage.removeItem('userId')
-//     localStorage.removeItem('expirationDate')
-//     return {
-//         type: AUTH_LOGOUT
-//     }
-// }
+export function logout() {
+    localStorage.removeItem('token')
+    localStorage.removeItem('userId')
+    localStorage.removeItem('expirationDate')
+    return {
+        type: AUTH_LOGOUT
+    }
+}
 
-// export  function autoLogin() {
-//     return dispatch => {
-//         const token = localStorage.getItem('token')
-//         if (!token) {
-//             dispatch(logout())
-//         } else {
-//             const expirationDate = new Date(localStorage.getItem('expirationDate'))
-//             if (expirationDate <= new Date()) {
-//                 dispatch(logout())
-//             } else {
-//                 dispatch(authSuccess(token))
-//                 dispatch(autoLogout((expirationDate.getTime() - new Date().getTime())))
-//             }
-//         }
-//     }
-// }
+export  function autoLogin() {
+    return dispatch => {
+        const token = localStorage.getItem('token')
+        if (!token) {
+            dispatch(logout())
+        } else {
+            const expirationDate = new Date(localStorage.getItem('expirationDate'))
+            if (expirationDate <= new Date()) {
+                dispatch(logout())
+            } else {
+                dispatch(authSuccess(token))
+                dispatch(autoLogout((expirationDate.getTime() - new Date().getTime())))
+            }
+        }
+    }
+}
 
-// export function authSuccess(token) {
-//     return {
-//         type: AUTH_SUCCESS,
-//         token
-//     }
-// }
+export function authSuccess(token) {
+    return {
+        type: AUTH_SUCCESS,
+        token
+    }
+}

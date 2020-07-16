@@ -6,9 +6,14 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
+const HeadStyle = {
+    background: '#092437',
+    padding: '15px 0px',
+}
+
 const Header = () => {
     return (
-        <div className="start">
+        <div style={HeadStyle}>
             <Container>
                 <Row>
                     <Col md={4}>
@@ -27,11 +32,11 @@ const Header = () => {
                             to="/СharacterCreator"
                             className="header-btn"
                         >Создать персонажа</NavLink>
-                        {/* <NavLink
+                        <NavLink
                             to="/Сharacter"
                             className="header-btn"
                         >Персонаж
-                        </NavLink> */}
+                        </NavLink>
                     </Col>
                 </Row>
             </Container>

@@ -10,7 +10,6 @@ class СharacterCreator extends Component {
   render() {
     return (
       <div className="СharacterCreator">
-        <main>
           <Container>
             <Row>
               <Col>
@@ -20,7 +19,6 @@ class СharacterCreator extends Component {
               </Col>
             </Row>
           </Container>
-        </main>
       </div>
     )
   }

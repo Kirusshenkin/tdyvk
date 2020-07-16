@@ -1,12 +1,12 @@
 import React from 'react'
 import Alert from 'react-bootstrap/Alert'
-import Animation from '../../components/Animation/Animation'
-// import Auth from '../Auth/Auth'
+// import Animation from '../../components/Animation/Animation'
+import Auth from '../Auth/Auth'
 
 
 const Main = () => {
     return (
-            <div style={{background:'#23272A', height:'100vh'}}>
+            <div style={{background:'#23272A', flex: 1}}>
                 <Alert variant='warning' style={{textAlign:"center"}}>
                 <h1>это сайт ТДУВК v1.0.1a</h1>
                     <ul>
@@ -15,8 +15,8 @@ const Main = () => {
                         <li style={{listStyleType: 'none'}}>Так же были исправлены незначительные недочёты</li>
                     </ul>
                 </Alert>
-                    <Animation/>
-                {/* <Auth/> */}
+                    {/* <Animation/> */}
+                <Auth/>
             </div>
     )
 }
