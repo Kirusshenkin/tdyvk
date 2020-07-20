@@ -1,9 +1,31 @@
 .Сharacter {
     background: url(../../image/space.png);
+    /* background-color: #c3e3f8; */
+    padding: 50px 0px;
     flex: 1;
-    color: #ffffff;
+    color: rgb(255, 255, 255);
 }
 
-.Сharacter .container .title-h3{
-    font-size: 100px;
+.Сharacter .container h3{
+    font-size: 32px;
+    font-weight: bold;
+    padding: 25px 0px;
+}
+
+.Сharacter .container .list-created-characters a {
+    background-color: rgb(54, 57, 63);
+    color: rgb(142, 146, 151);
+}
+
+.Сharacter .container .list-created-characters .list-group-item.active {
+    color: rgb(255, 255, 255);
+    background-color: rgb(9, 36, 55);
+}
+
+.Сharacter .container .tab-pane ul li {
+    list-style-type: none;
+}
+
+.Сharacter .container .tab-pane ul li span {
+    font-weight: bold;
 }

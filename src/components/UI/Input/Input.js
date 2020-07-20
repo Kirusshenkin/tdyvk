@@ -15,7 +15,7 @@ const Input = props => {
     }
     return (
         <div className={style.join(' ')}>
-            <label htmlFor={htmlFor} style={{color:'#8e9297'}}>
+            <label htmlFor={htmlFor} >
                 {props.label}
             </label>
             <input 

@@ -25,10 +25,6 @@ const Header = () => {
                             className="header-btn"
                         >Докуметация</NavLink> */}
                         <NavLink
-                            to="/Description"
-                            className="header-btn"
-                        >Описание</NavLink>
-                        <NavLink
                             to="/СharacterCreator"
                             className="header-btn"
                         >Создать персонажа</NavLink>
@@ -37,6 +33,10 @@ const Header = () => {
                             className="header-btn"
                         >Персонаж
                         </NavLink>
+                        <NavLink
+                            to="/Description"
+                            className="header-btn"
+                        >Описание</NavLink>
                     </Col>
                 </Row>
             </Container>
