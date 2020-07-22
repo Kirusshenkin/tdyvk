@@ -1,3 +1,7 @@
+.Auth {
+    background: url(../../image/space.png);
+}
+
 .authBox {
     width: 480px;
     padding: 32px;
@@ -7,6 +11,7 @@
     border-radius: 5px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    background-color: #36393f;
 }
 
 .authBox__title {

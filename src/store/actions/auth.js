@@ -3,31 +3,38 @@ import {AUTH_SUCCESS, AUTH_LOGOUT} from './actionTypes'
 export function auth(email, password, isLogin) {
     return async dispatch => {
         const authData ={
-            email, password,
-            returnSecureToken: true
+            method: "POST",
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({email: email, password: password})
         }
 
         let url ='https://tdyvkback.herokuapp.com/users/register' // Регистрация
 
         if (isLogin) {
-            url = 'https://tdyvkback.herokuapp.com/users/auth' //логин и пароль
+            // url = 'https://tdyvkback.herokuapp.com/users/auth' //логин и пароль
+            url = 'http://localhost:3001/users/auth' //логин и пароль
         }
 
         const res = await fetch(url, authData)
-        const data = res.data
+        const data = await res.json()
+        console.log(data)
 
-        const expirationDate = new Date(new Date().getTime() + data.expiresIn * 1000)
+        const expirationDate = new Date(new Date().getTime() + 60 * 60 * 24 * 7 * 1000)
 
-        localStorage.setItem('token', data.idToken)
-        localStorage.setItem('userId', data.localId)
+        localStorage.setItem('token', data.token)
+        localStorage.setItem('userId', data.user_id)
         localStorage.setItem('expirationDate', expirationDate)
 
-        dispatch(authSuccess(data.idToken))
-        dispatch(autoLogout(data.expiresIn))
+        dispatch(authSuccess(data.token))
+        dispatch(autoLogout(60 * 60 * 24 * 7))
     }
 }
 
 export function autoLogout(time) {
+    console.log('Logout', time)
     return dispatch => {
         setTimeout(() => {
             dispatch(logout())
@@ -55,7 +62,7 @@ export  function autoLogin() {
                 dispatch(logout())
             } else {
                 dispatch(authSuccess(token))
-                dispatch(autoLogout((expirationDate.getTime() - new Date().getTime())))
+                // dispatch(autoLogout((expirationDate.getTime() - new Date().getTime())))
             }
         }
     }

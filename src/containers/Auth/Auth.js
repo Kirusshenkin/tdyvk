@@ -121,26 +121,28 @@ class Auth extends Component {
     }
     render() {
         return (
-            <div className="wrapper">
-                <form className="authBox" onSubmit={this.submitHandler}>
-                    <div className="authBox__title">
-                        <div className="authBox__Auth-title">Sign up</div>
-                        <div className="authBox__Auth-welcome">Welcome in anus</div>
-                    </div>
-                    <div className="auth">
-                        { this.renderInputs() }
-                    </div>
-                    <div style={{display:'flex-inline', justifyContent: 'spaceBetween'}}>
-                    <Button
-                        type="success"
-                        onClick={this.loginHandler}
-                        disabled={!this.state.isFormValid}
-                    >
-                    Войти
-                    </Button>
-                    <div style={{color: '#7289da'}}>Хотите зарегистрироваться?</div>
-                    </div>
-                </form>
+          <div className="Auth">
+              <div className="wrapper">
+                  <form className="authBox" onSubmit={this.submitHandler}>
+                      <div className="authBox__title">
+                          <div className="authBox__Auth-title">Sign up</div>
+                          <div className="authBox__Auth-welcome">Welcome in anus</div>
+                      </div>
+                      <div className="auth">
+                          { this.renderInputs() }
+                      </div>
+                      <div style={{display:'flex-inline', justifyContent: 'spaceBetween'}}>
+                      <Button
+                          type="success"
+                          onClick={this.loginHandler}
+                          disabled={!this.state.isFormValid}
+                      >
+                      Войти
+                      </Button>
+                      <div style={{color: '#7289da'}}>Хотите зарегистрироваться?</div>
+                      </div>
+                  </form>
+              </div>
             </div>
         )
     }

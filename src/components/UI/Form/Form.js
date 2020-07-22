@@ -170,7 +170,7 @@ class Form extends React.Component {
         })
         let userData = this.state.newUser;
         // в to создаем почту и отправляем по ей
-        userData.to = 'i_daktes_i@mail.ru'
+
         userData.body = `
         <table cellpadding="8px">
             <tr>
@@ -225,18 +225,21 @@ class Form extends React.Component {
     `;
         // https://webhook.site/b3049de9-6881-432d-9b36-5dfd8e8dea9f
         // http://localhost:3001/mail/
-        fetch('https://tdyvkback.herokuapp.com/mail/', {
-            method: "POST",
-            body: JSON.stringify(userData),
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-        }).then(response => {
-            response.json().then(data => {
-                alert('Поздравляю Вы создали персонажа!')
+
+        setTimeout(() => {
+            fetch('https://tdyvkback.herokuapp.com/mail/', {
+                method: "POST",
+                body: JSON.stringify(userData),
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+            }).then(response => {
+                response.json().then(data => {
+                    alert('Поздравляю Вы создали персонажа!')
+                })
             })
-        })
+        }, 2000)
     }
 
     render() {
