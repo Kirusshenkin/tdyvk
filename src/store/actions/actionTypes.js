@@ -1,3 +1,5 @@
+
+export const DELETE_CHARACTER = 'DELETE_CHARACTER'
 export const CREATE_CHARACTER_CREATOR = 'CREATE_CHARACTER_CREATOR'
 
 // auth login and register

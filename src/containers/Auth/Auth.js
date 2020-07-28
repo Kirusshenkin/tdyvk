@@ -5,6 +5,8 @@ import './Auth.css'
 import is from 'is_js'
 import {auth} from '../../store/actions/auth'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+
 
 class Auth extends Component {
 
@@ -43,14 +45,6 @@ class Auth extends Component {
           this.state.formControls.email.value,
           this.state.formControls.password.value,
           true
-        )
-      }
-    
-      registerHandler = () => {
-        this.props.auth(
-          this.state.formControls.email.value,
-          this.state.formControls.password.value,
-          false
         )
       }
     
@@ -125,8 +119,8 @@ class Auth extends Component {
               <div className="wrapper">
                   <form className="authBox" onSubmit={this.submitHandler}>
                       <div className="authBox__title">
-                          <div className="authBox__Auth-title">Sign up</div>
-                          <div className="authBox__Auth-welcome">Welcome in anus</div>
+                          <div className="authBox__Auth-title">Авторизация</div>
+                          <div className="authBox__Auth-welcome">Добро пожаловать</div>
                       </div>
                       <div className="auth">
                           { this.renderInputs() }
@@ -139,7 +133,7 @@ class Auth extends Component {
                       >
                       Войти
                       </Button>
-                      <div style={{color: '#7289da'}}>Хотите зарегистрироваться?</div>
+                        <Link to="/Register">Хотите зарегистрироваться?</Link>
                       </div>
                   </form>
               </div>
@@ -150,7 +144,7 @@ class Auth extends Component {
 
 function mapDispatchToProps(dispatch) {
     return {
-        auth: (email, password, isLogin) => dispatch(auth(email, password, isLogin))
+        auth: (email, password) => dispatch(auth(email, password))
     }
 }
 // export default Auth

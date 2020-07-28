@@ -1,8 +1,8 @@
 import {AUTH_SUCCESS, AUTH_LOGOUT} from './actionTypes'
 
-export function auth(email, password, isLogin) {
+export function auth(email, password) {
     return async dispatch => {
-        const authData ={
+        const authData = {
             method: "POST",
             headers: {
             'Accept': 'application/json',
@@ -11,12 +11,10 @@ export function auth(email, password, isLogin) {
             body: JSON.stringify({email: email, password: password})
         }
 
-        let url ='https://tdyvkback.herokuapp.com/users/register' // Регистрация
 
-        if (isLogin) {
+
             // url = 'https://tdyvkback.herokuapp.com/users/auth' //логин и пароль
-            url = 'http://localhost:3001/users/auth' //логин и пароль
-        }
+        let url = 'https://tdyvkback.herokuapp.com/users/auth' //логин и пароль
 
         const res = await fetch(url, authData)
         const data = await res.json()

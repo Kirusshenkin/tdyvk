@@ -13,6 +13,7 @@ import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
 import {autoLogin} from './store/actions/auth';
 import Layout from './hoc/Layout/Layout'
 import Auth from './containers/Auth/Auth'
+import Register from './containers/Register/Register'
 import Logout from './components/Logout/Logout'
 
 class App extends React.Component {
@@ -25,6 +26,7 @@ class App extends React.Component {
       let routes = (
           <Switch>
             <Route path="/Login" exact component={Auth}/>
+            <Route path="/Register" component={Register}/>
             <Route path="/"  component={Main}/>
             {/* <Route path="/Сharacter" component={Сharacter}/> */}
             {/* <Route path="/СharacterCreator" component={СharacterCreator}/> */}
@@ -37,7 +39,10 @@ class App extends React.Component {
         routes = (
           <Switch>
             <Route path="/" exact component={Main}/>
+            {/* time login and register next wrapp let routes */}
             <Route path="/Login" component={Auth}/>
+            <Route path="/Register" component={Register}/>
+
             <Route path="/Сharacter" component={Сharacter}/>
             <Route path="/СharacterCreator" component={СharacterCreator}/>
             <Route path="/Description" component={Description}/>

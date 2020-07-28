@@ -48,9 +48,8 @@ class Footer extends Component {
                         <Col md={4}>
                             <NavLink to="/" className="footer-btn"><img src="logo2.png" style={{width: '50px'}} alt="logo"/></NavLink>
                         </Col>
+                        {this.renderLinks(links)}
                     </Row>
-
-                    {this.renderLinks(links)}
                 </Container>
             </div>
         )
