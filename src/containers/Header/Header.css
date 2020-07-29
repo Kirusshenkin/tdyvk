@@ -2,14 +2,15 @@
     background: #092437;
 } */
 
-/* div .row{
-    padding: 15px 0px;
-} */
+.row{
+    display: flex;
+    justify-content: space-between;
+}
 
 div .row .col-md-1 a {
     color: #ffffff;
     text-decoration: none;
-
+    white-space: nowrap;
 }
 /* div .row .col-md-4 a {
 } */

@@ -1,6 +1,7 @@
 .Register {
     background: url(../../image/space.png);
     height: 100vh;
+    padding: 50px;
 }
 
 .regBox {

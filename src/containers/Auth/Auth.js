@@ -114,7 +114,8 @@ class Auth extends Component {
         })
     }
     render() {
-        return (
+      return (
+        <div className="blockAuth">
           <div className="Auth">
               <div className="wrapper">
                   <form className="authBox" onSubmit={this.submitHandler}>
@@ -137,8 +138,9 @@ class Auth extends Component {
                       </div>
                   </form>
               </div>
-            </div>
-        )
+          </div>
+        </div>
+      )
     }
 }
 

@@ -44,8 +44,8 @@ class Footer extends Component {
         return (
             <div style={FooterStyle}>
                 <Container>
-                    <Row>
-                        <Col md={4}>
+                    <Row style={{justifyContent: 'space-between'}}>
+                        <Col md={4} >
                             <NavLink to="/" className="footer-btn"><img src="logo2.png" style={{width: '50px'}} alt="logo"/></NavLink>
                         </Col>
                         {this.renderLinks(links)}

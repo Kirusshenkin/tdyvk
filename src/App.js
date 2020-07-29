@@ -3,9 +3,8 @@ import React from 'react'
 // import Footer from './containers/Footer/Footer'
 import Main from './containers/Main/Main'
 // import NotFound from './containers/NotFound/NotFound'
-import СharacterCreator from './containers/СharacterCreator/СharacterCreator'
-// import Сharacter from './containers/Сharacter/Сharacter'
-import Сharacter from './containers/Сharacter/Сharacter'
+import СharacterCreator from './components/ActiveCharacter/СharacterCreator/СharacterCreator'
+import Сharacter from './components/FinishedCharacter/Сharacter/Сharacter'
 import Description from './containers/Description/Description'
 import {connect} from 'react-redux'
 
@@ -28,18 +27,14 @@ class App extends React.Component {
             <Route path="/Login" exact component={Auth}/>
             <Route path="/Register" component={Register}/>
             <Route path="/"  component={Main}/>
-            {/* <Route path="/Сharacter" component={Сharacter}/> */}
-            {/* <Route path="/СharacterCreator" component={СharacterCreator}/> */}
-            {/* <Route path="/Description" component={Description}/> */}
             <Redirect to="/" />
           </Switch>
       )
-        console.log(this.props)
+        // console.log(this.props)
       if (this.props.isAuthenticated) {
         routes = (
           <Switch>
             <Route path="/" exact component={Main}/>
-            {/* time login and register next wrapp let routes */}
             <Route path="/Login" component={Auth}/>
             <Route path="/Register" component={Register}/>
 
@@ -60,7 +55,6 @@ class App extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
   return {
     isAuthenticated: !!state.auth.token
   }

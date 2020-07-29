@@ -8,7 +8,7 @@ export function NewCreateCharacter(item) {
 }
 
 export function CreateCharacter() {
-    return async (getState) => {
+    return async (dispatch, getState) => {
         await fetch 
     }
 }

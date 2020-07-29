@@ -16,7 +16,5 @@ export function register(email, username, password) {
         if (data.response) {
             alert('Успех!')
         }
-        console.log(res)
-
     }
 }

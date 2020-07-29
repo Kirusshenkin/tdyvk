@@ -3,7 +3,8 @@ import './Register.css'
 import is from 'is_js'
 import Input from '../../components/UI/Input/Input'
 import Button from '../../components/UI/Button/Button'
-import {register} from '../../store/actions/register'
+import { register } from '../../store/actions/register'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 
@@ -129,25 +130,28 @@ class Register extends Component {
     }
     render() {
         return (
-            <div className="Register">
-                <div className="wrapper">
-                    <form className="regBox" onSubmit={this.submitHandler}>
-                        <div className="regBox_title">
-                            <div className="regBox__Reg-title">Создать учётную запись</div>
-                            <div className="reg">
-                                { this.renderInputs() }
+            <div className="blockReg">
+                <div className="Register">
+                    <div className="wrapper">
+                        <form className="regBox" onSubmit={this.submitHandler}>
+                            <div className="regBox_title">
+                                <div className="regBox__Reg-title">Создать учётную запись</div>
+                                <div className="reg">
+                                    { this.renderInputs() }
+                                </div>
+                                <div style={{display:'flex-inline', justifyContent: 'spaceBetween'}}>
+                                    <Button
+                                        type="success"
+                                        onClick={this.registerHandler}
+                                        disabled={!this.state.isFormValid}
+                                    >
+                                        Зарегистрироваться
+                                    </Button>
+                                    <Link to="/Login">Уже зарегистрированы?</Link>
+                                </div>
                             </div>
-                            <div style={{display:'flex-inline', justifyContent: 'spaceBetween'}}>
-                                <Button
-                                    type="success"
-                                    onClick={this.registerHandler}
-                                    disabled={!this.state.isFormValid}
-                                >
-                                    Зарегистрироваться
-                                </Button>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         )

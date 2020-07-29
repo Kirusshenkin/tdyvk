@@ -1,27 +1,29 @@
-import React from 'react'
+import React, {Component} from "react";
+import Http from '../../../hoc/Http/Http'
 
-// import { Link } from 'react-router-dom'
+import './СharacterCreator.css'
+import Input from '../../UI/Input/Input'
+import Organization from '../../UI/Select/Organization/Organization'
+import Gender from '../../UI/Select/Gender/Gender'
+import Professions from '../../UI/Select/Professions/Professions'
+import Antagonist from '../../UI/Radio/Antagonist/Antagonist'
+import Origin from '../../UI/Select/Origin/Origin'
+import Button from '../../UI/Button/Button'
+import Loader from '../../UI/Loader/Loader'
 
-import Input from '../Input/Input'
-import Organization from '../Select/Organization/Organization'
-import Gender from '../Select/Gender/Gender'
-import Professions from '../Select/Professions/Professions'
-import Antagonist from '../Radio/Antagonist/Antagonist'
-import Origin from '../Select/Origin/Origin'
-import Button from '../Button/Button'
-import Loader from '../Loader/Loader'
+import Textarea from '../../UI/Textarea/textarea'
+import Textareakbm from '../../UI/Textarea/KBM/KBM'
 
-import Textarea from '../Textarea/textarea'
-import Textareakbm from '../Textarea/KBM/KBM'
+import Disadvantages from '../../UI/Radio/Check/Disadvantages'
+import Advantage from '../../UI/Radio/Check/Advantage'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
 
-import Disadvantages from '../Radio/Check/Disadvantages'
-import Advantage from '../Radio/Check/Advantage'
+import '../../UI/Select/Select.css'
 
-import './Form.css'
-import '../Select/Select.css'
-
-class Form extends React.Component {
-    constructor(props) {
+class СharacterCreator extends Component {
+  constructor(props) {
     super(props);
     this.state = {
         loading: true,
@@ -102,13 +104,7 @@ class Form extends React.Component {
         }))
     }
     async componentDidMount () {
-        await fetch('https://tdyvkback.herokuapp.com/api/organization', {
-            method: "GET",
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-            },
-        }).then((response) => { 
+        await Http.get('api/organization').then((response) => { 
             response.json().then(data => {
                 this.setState({
                     isLoaded: true,
@@ -116,46 +112,23 @@ class Form extends React.Component {
                 })
             })
         })
-        await fetch('https://tdyvkback.herokuapp.com/api/profession', {
-            method: "GET",
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-            },
-        }).then((response) => { 
+        await Http.get('api/profession').then((response) => { 
             response.json().then(data => {
                 this.setState({ professions: data.data })
             })
         })
-        await fetch('https://tdyvkback.herokuapp.com/api/homeland', {
-            method: "GET",
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-            },
-        }).then((response) => { 
+        // console.log('Http', Http)
+        await Http.get('api/homeland').then((response) => { 
             response.json().then(data => { 
                 this.setState({ homeland: data.data })
             })
         })
-        await fetch('https://tdyvkback.herokuapp.com/api/advantages', {
-            method: "GET",
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-            },
-        }).then((response) => { 
+        await Http.get('api/advantages').then((response) => { 
             response.json().then(data => {
                 this.setState({ advantages: data.data })
             })
         })
-        await fetch('https://tdyvkback.herokuapp.com/api/disadvantages', {
-            method: "GET",
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-            },
-        }).then((response) => { 
+        await Http.get('api/disadvantages').then((response) => { 
             response.json().then(data => { 
                 this.setState({ disadvantages: data.data })
             })
@@ -165,90 +138,102 @@ class Form extends React.Component {
     // это redux
     handleFormSubmit(event) {
         event.preventDefault();
-        this.setState({
-            isButtonDisabled: true
+
+        // let userData = this.state.newUser;
+        Http.post('api/characters').then((response) => {
+            response.json().then(data => {
+                this.setState({
+                    isButtonDisabled: true,
+                    userData: data.data
+                })
+            })
         })
-        let userData = this.state.newUser;
         // в to создаем почту и отправляем по ей
 
-        userData.body = `
-        <table cellpadding="8px">
-            <tr>
-                <th align="left">Имя пользовотеля:</th>
-                <td align="left">${userData.name_profile}</td>
-            </tr>
-            <tr>
-                <th align="left">Имя:</th>
-                <td align="left">${userData.full_name}</td>
-            </tr>
-            <tr>
-                <th align="left">Возраст:</th>
-                <td align="left">${userData.age}</td>
-            </tr>
-            <tr>
-                <th align="left">Пол:</th>
-                <td align="left">${userData.sex}</td>
-            </tr>
-            <tr>
-                <th align="left">Профессия:</th>
-                <td align="left">${userData.profession}</td>
-            </tr>
-            <tr>
-                <th align="left">Организация:</th>
-                <td align="left">${userData.organization}</td>
-            </tr>
-            <tr>
-                <th align="left">Антогонист:</th>
-                <td align="left">${userData.be_antagonist ? 'Да' : 'Нет'}</td>
-            </tr>
-            <tr>
-                <th align="left">Откуда:</th>
-                <td align="left">${userData.origins}</td>
-            </tr>
-            <tr>
-                <th align="left">Преимущества:</th>
-                <td align="left">${userData.advantages}</td>
-            </tr>
-            <tr>
-                <th align="left">Недостатки:</th>
-                <td align="left">${userData.disadvantages}</td>
-            </tr>
-            <tr>
-                <th align="left">Параметры внешности:</th>
-                <td align="left">${userData.appearance}</td>
-            </tr>
-            <tr>
-                <th align="left">КБМ:</th>
-                <td align="left">${userData.kbm}</td>
-            </tr>
-        </table>
-    `;
+    //     userData.body = `
+    //     <table cellpadding="8px">
+    //         <tr>
+    //             <th align="left">Имя пользовотеля:</th>
+    //             <td align="left">${userData.name_profile}</td>
+    //         </tr>
+    //         <tr>
+    //             <th align="left">Имя:</th>
+    //             <td align="left">${userData.full_name}</td>
+    //         </tr>
+    //         <tr>
+    //             <th align="left">Возраст:</th>
+    //             <td align="left">${userData.age}</td>
+    //         </tr>
+    //         <tr>
+    //             <th align="left">Пол:</th>
+    //             <td align="left">${userData.sex}</td>
+    //         </tr>
+    //         <tr>
+    //             <th align="left">Профессия:</th>
+    //             <td align="left">${userData.profession}</td>
+    //         </tr>
+    //         <tr>
+    //             <th align="left">Организация:</th>
+    //             <td align="left">${userData.organization}</td>
+    //         </tr>
+    //         <tr>
+    //             <th align="left">Антогонист:</th>
+    //             <td align="left">${userData.be_antagonist ? 'Да' : 'Нет'}</td>
+    //         </tr>
+    //         <tr>
+    //             <th align="left">Откуда:</th>
+    //             <td align="left">${userData.origins}</td>
+    //         </tr>
+    //         <tr>
+    //             <th align="left">Преимущества:</th>
+    //             <td align="left">${userData.advantages}</td>
+    //         </tr>
+    //         <tr>
+    //             <th align="left">Недостатки:</th>
+    //             <td align="left">${userData.disadvantages}</td>
+    //         </tr>
+    //         <tr>
+    //             <th align="left">Параметры внешности:</th>
+    //             <td align="left">${userData.appearance}</td>
+    //         </tr>
+    //         <tr>
+    //             <th align="left">КБМ:</th>
+    //             <td align="left">${userData.kbm}</td>
+    //         </tr>
+    //     </table>
+    // `;
         // https://webhook.site/b3049de9-6881-432d-9b36-5dfd8e8dea9f
         // http://localhost:3001/mail/
 
-        setTimeout(() => {
-            fetch('https://tdyvkback.herokuapp.com/mail/', {
-                method: "POST",
-                body: JSON.stringify(userData),
-                headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json'
-                },
-            }).then(response => {
-                response.json().then(data => {
-                    alert('Поздравляю Вы создали персонажа!')
-                })
-            })
-        }, 2000)
+        // setTimeout(() => {
+        //     fetch('https://tdyvkback.herokuapp.com/mail/', {
+        //         method: "POST",
+        //         body: JSON.stringify(userData),
+        //         headers: {
+        //           'Accept': 'application/json',
+        //           'Content-Type': 'application/json'
+        //         },
+        //     }).then(response => {
+        //         response.json().then(data => {
+        //             alert('Поздравляю Вы создали персонажа!')
+        //         })
+        //     })
+        // }, 2000)
     }
 
-    render() {
-        if (this.state.loading) 
-        return <Loader/> 
-        const { name_profile, full_name, age, sex, profession, organization, be_antagonist, origins, advantages, disadvantages, appearance, kbm } = this.state.newUser;
 
-        return (
-            <div className="main-characer">
+  render() {
+    if (this.state.loading) 
+    return <Loader/> 
+    const { name_profile, full_name, age, sex, profession, organization, be_antagonist, origins, advantages, disadvantages, appearance, kbm } = this.state.newUser;
+
+    return (
+      <div className="СharacterCreator">
+          <Container>
+            <Row>
+              <Col>
+                <div className="first-character">
+                <div className="main-characer">
                 <form onSubmit={this.handleFormSubmit}>
                     <Input
                         value={name_profile}
@@ -358,13 +343,18 @@ class Form extends React.Component {
                     </Link> */}
                     
                 </form>
-            </div>
-        );
-    }
-    // временно 
-    componentDidUpdate() {
-        console.log(this.state);
-    }
+                </div>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+      </div>
+    )
+  }
+  // временно 
+  componentDidUpdate() {
+    console.log(this.state);
+  }
 }
 
-export default Form
+export default СharacterCreator;

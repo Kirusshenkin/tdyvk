@@ -32,7 +32,7 @@ class Header extends Component {
 
     render() {
     const links = [
-        {to: '/Login', label: 'Авторизация', exact: true}
+        // {to: '/Login', label: 'Авторизация', exact: true}
       ]
   
     if (this.props.isAuthenticated) {
@@ -43,7 +43,7 @@ class Header extends Component {
         links.push({to: '/logout', label: 'Выйти', exact: false})
 
     } else {
-        // links.push({to: '/Login', label: 'Авторизация', exact: false})
+        links.push({to: '/Login', label: 'Авторизация', exact: false})
     }
         return (
             <div style={HeadStyle}>
