@@ -5,7 +5,7 @@ import './Auth.css'
 import is from 'is_js'
 import {auth} from '../../store/actions/auth'
 import { connect } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 class Auth extends Component {
