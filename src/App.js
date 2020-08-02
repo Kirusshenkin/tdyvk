@@ -37,7 +37,7 @@ class App extends React.Component {
             <Route path="/Login" component={Auth}/>
             <Route path="/Register" component={Register}/>
 
-            <Route path="/Сharacter" component={Сharacter}/>
+            <Route path="/Сharacter"  component={Сharacter}/>
             <Route path="/СharacterCreator" component={СharacterCreator}/>
             <Route path="/Description" component={Description}/>
             <Route path="/logout" component={Logout}/>
