@@ -23,7 +23,6 @@ class Сharacter extends Component {
     async componentDidMount() {
         await Http.get('api/characters').then((response) => { 
             response.json().then(data => {
-                console.log('data', data.data)
                 this.setState({
                     loading: false,
                     characters: data.data 

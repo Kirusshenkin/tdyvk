@@ -114,7 +114,6 @@ class СharacterCreator extends Component {
                 this.setState({ professions: data.data })
             })
         })
-        // console.log('Http', Http)
         await Http.get('api/homeland').then((response) => { 
             response.json().then(data => { 
                 this.setState({ homeland: data.data })
@@ -275,9 +274,9 @@ class СharacterCreator extends Component {
     )
   }
   // временно 
-  componentDidUpdate() {
-    console.log(this.state);
-  }
+//   componentDidUpdate() {
+//     console.log(this.state);
+//   }
 }
 
 export default СharacterCreator;
