@@ -156,8 +156,9 @@ class СharacterCreator extends Component {
             <Row>
               <Col>
                 <div className="first-character">
-                    
                     <div className="main-characer">
+                    <strong style={{color:'#d63434'}}>Прошу проверять все поля ввода *Если хоть одно поля будет не введино, то ваш персонаж не будет создан*</strong>
+
                         <form onSubmit={this.handleFormSubmit}>
                         <Link to={"/Description"} className="descriptionlnk">Справочник*</Link>
                             <Input
