@@ -9,7 +9,7 @@ class Lagout extends Component {
     }
 
     render() {
-        return <Redirect to={'/'}/>
+        return <Redirect to={'/Login'}/>
     }
 }
 

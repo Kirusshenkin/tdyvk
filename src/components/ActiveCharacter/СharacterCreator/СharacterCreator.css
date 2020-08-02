@@ -44,6 +44,32 @@ input.invalid label {
     color: #f01f30;
 }
 
+.descriptionlnk {
+    color:#ccc;
+}
+.descriptionlnk:hover {
+    text-decoration: none;
+    color:#ccc;
+}
+
+.btns {
+    display: flex;
+    flex-direction: row;
+}
+
+.btns button:first-child {
+    margin-right: 15px;
+}
+
+.btn-link__character {
+    color: #fff;
+}
+
+.btn-link__character:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
 @media only screen and (max-width: 425px) {
     .СharacterCreator .container .first-character {
         display: flex;

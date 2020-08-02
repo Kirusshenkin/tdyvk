@@ -12,7 +12,7 @@ const Organization = (props) => {
                 <option value="" disabled>{props.placeholder}</option>
                 {props.organizations.map(function(name, k) {
                     return (
-                        <option key={k} label={name.name} value={name.name}>
+                        <option key={k} label={name.name} value={name.id}>
                             {name.name}
                         </option>
                     )

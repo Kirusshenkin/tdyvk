@@ -19,7 +19,11 @@ class Description extends Component {
                             <tbody>
                                 <tr>
                                     <td>Нано Трайзен (NT)</td>
-                                    <td>+1 к СПД Правительство Солнечной Системы (SolGov): +1 к СПД и КЗ Преимущество «Важность»</td>
+                                    <td>+1 к СПД Правительство Солнечной Системы</td>
+                                </tr>
+                                <tr>
+                                    <td>(SolGov)</td>
+                                    <td>+1 к СПД и КЗ Преимущество «Важность»</td>
                                 </tr>
                                 <tr>
                                     <td>Zeng-Hu Pharmaceuticals (ZHP)</td>

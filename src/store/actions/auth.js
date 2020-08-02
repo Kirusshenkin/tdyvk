@@ -5,7 +5,6 @@ export function auth(email, password) {
         
         const res = await Http.post('users/auth', {email: email, password: password})
         const data = await res.json()
-        // console.log(data)
 
         const expirationDate = new Date(new Date().getTime() + 60 * 60 * 24 * 7 * 1000)
 
@@ -19,7 +18,6 @@ export function auth(email, password) {
 }
 
 export function autoLogout(time) {
-    // console.log('Logout', time)
     return dispatch => {
         setTimeout(() => {
             dispatch(logout())

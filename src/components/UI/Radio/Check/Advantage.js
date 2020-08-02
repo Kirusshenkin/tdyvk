@@ -16,8 +16,8 @@ const Advantage = props => {
                 id={props.name}
                 name={props.name}
                 onChange={props.handleChange}
-                value={option.name}
-                checked={props.selectedOptions.indexOf(option.name) > -1}
+                value={option.id}
+                checked={props.selectedOptions.indexOf(option.id) > -1}
                 type="checkbox"
               />
               {option.name}

@@ -12,7 +12,7 @@ const Origin = props => {
                 <option value="" disabled>{props.placeholder}</option>
                 {props.homeland.map(function(location, k) {
                     return (
-                        <option key={k} value={location.location} label={location.location}>
+                        <option key={k} value={location.id} label={location.location}>
                             {location.location}
                         </option>
                     )

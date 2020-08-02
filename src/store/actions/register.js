@@ -14,7 +14,7 @@ export function register(email, username, password) {
         const data = await res.json()
 
         if (data.response) {
-            alert('Успех!')
+            alert('Вы успешно зарегистрировались проверьте свою почту!')
         }
     }
 }

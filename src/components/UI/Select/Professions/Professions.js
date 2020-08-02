@@ -15,7 +15,7 @@ const Profession = (props) => {
                         <optgroup key={k} label={name.name}>
                             {name.professions.map(function(name, i) {
                                 return (
-                                    <option key={i} value={name.name} label={name.name}>
+                                    <option key={i} value={name.id} label={name.name}>
                                         {name.name}
                                     </option>
                                 )

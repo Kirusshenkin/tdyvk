@@ -26,11 +26,10 @@ class App extends React.Component {
           <Switch>
             <Route path="/Login" exact component={Auth}/>
             <Route path="/Register" component={Register}/>
-            <Route path="/"  component={Main}/>
-            <Redirect to="/" />
+            <Route path="/" component={Main}/>
+            <Redirect to="/Login" />
           </Switch>
       )
-        // console.log(this.props)
       if (this.props.isAuthenticated) {
         routes = (
           <Switch>
@@ -42,7 +41,7 @@ class App extends React.Component {
             <Route path="/СharacterCreator" component={СharacterCreator}/>
             <Route path="/Description" component={Description}/>
             <Route path="/logout" component={Logout}/>
-            <Redirect to="/" />
+            <Redirect to="/Login" />
           </Switch>
         )
       }

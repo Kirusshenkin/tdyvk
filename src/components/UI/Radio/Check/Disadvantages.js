@@ -11,13 +11,13 @@ const Disadvantages = props => {
       <div className="checkbox">
         {props.options.map(option => {
           return (
-            <label key={option.id} data-tip={option.content} className="container-checkbox">
+            <label key={option.id}  data-tip={option.content} className="container-checkbox">
               <input
                 id={props.name}
                 name={props.name}
                 onChange={props.handleChange}
-                value={option.name}
-                checked={props.selectedOptions.indexOf(option.name) > -1}
+                value={option.id}
+                checked={props.selectedOptions.indexOf(option.id) > -1}
                 type="checkbox"
               />
               {option.name}
