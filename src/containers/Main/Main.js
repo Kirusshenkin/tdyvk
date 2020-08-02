@@ -1,23 +1,19 @@
 import React from 'react'
 import Alert from 'react-bootstrap/Alert'
-// import Animation from '../../components/Animation/Animation'
-// import Auth from '../Auth/Auth'
 
 
 const Main = () => {
     return (
-            <div style={{background:'#23272A'}}>
-                <Alert variant='warning' style={{textAlign:"center"}}>
-                <h1>это сайт ТДУВК v1.0.1a</h1>
-                    <ul>
-                        <li style={{listStyleType: 'none'}}>Мы сделали обновление!</li>
-                        <li style={{listStyleType: 'none'}}>Добавлены пункты Внешности и КБМ!</li>
-                        <li style={{listStyleType: 'none'}}>Так же были исправлены незначительные недочёты</li>
-                    </ul>
-                </Alert>
-                    {/* <Animation/> */}
-                {/* <Auth/> */}
-            </div>
+        <div style={{background:'#23272A'}}>
+            <Alert variant='warning' style={{textAlign:"center"}}>
+            <h1>это сайт ТДУВК</h1>
+                <ul>
+                    <li style={{listStyleType: 'none'}}>Мы сделали обновление!</li>
+                    <li style={{listStyleType: 'none'}}>Мы добавили авторизацию и регистрацию, теперь Вы можете создавать несколько персонажей и всех Вы будете видеть</li>
+                    <li style={{listStyleType: 'none'}}>А так же скидывать всё <strong>ГЭМу</strong></li>
+                </ul>
+            </Alert>
+        </div>
     )
 }
 

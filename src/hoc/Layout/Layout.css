@@ -3,5 +3,6 @@
     display: flex;
     flex-direction: column;
     flex: 1;
+    background: url(../../image/space.png);
 }
 
