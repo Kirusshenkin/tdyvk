@@ -169,7 +169,6 @@ class СharacterCreator extends Component {
                                 placeholder={"Ведите Ваше имя"}
                                 onChange={this.handleInput}
                             />
-                            <span className="vision">{name}</span>
                             <Input
                                 value={age}
                                 placeholder={"Ваш возраст?"}
@@ -178,7 +177,6 @@ class СharacterCreator extends Component {
                                 label={"Возраст персонажа"}
                                 onChange={this.handleInput}
                             />
-                            <span className="vision">{age}</span>
                             <Gender
                                 value={sex}
                                 title={"Пол персонажа"}
@@ -186,7 +184,6 @@ class СharacterCreator extends Component {
                                 handleChange={this.handleInput}
                                 placeholder={"Выберите Ваш пол"}
                             />
-                            <span className="vision">{sex}</span>
                             <Professions
                                 value={profession}
                                 name={"profession"}
@@ -195,7 +192,6 @@ class СharacterCreator extends Component {
                                 handleChange={this.handleInput}
                                 placeholder={"Выберите Профессию"}
                             />
-                            <span className="vision">{profession}</span>
                             <Organization
                                 value={organization}
                                 title={"Организации"}
@@ -204,7 +200,6 @@ class СharacterCreator extends Component {
                                 handleChange={this.handleInput}
                                 placeholder={"Выберите организацию"}
                             />
-                            <span className="vision">{organization}</span>
                             <Antagonist
                                 type="checkbox"
                                 value={be_antagonist}
@@ -213,7 +208,6 @@ class СharacterCreator extends Component {
                                 name={"be_antagonist"}
                                 handleChange={this.handleInput}
                             />
-                            <span className="vision">{be_antagonist ? 'Да' : 'Нет'}</span>
                             <Origin
                                 value={origins}
                                 handleChange={this.handleInput}
@@ -222,7 +216,6 @@ class СharacterCreator extends Component {
                                 homeland={this.state.homeland}
                                 name={"origins"}
                             />
-                            <span className="vision">{origins}</span>
                             <div className="adv" style={{display:'flex', flexDirection:'row',justifyContent: 'space-between'}}>
                                 <Advantage
                                     selectedOptions={advantages}
