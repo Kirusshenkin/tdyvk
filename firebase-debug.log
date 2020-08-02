@@ -1,0 +1,13 @@
+[debug] [2020-08-02T22:51:04.511Z] ----------------------------------------------------------------------
+[debug] [2020-08-02T22:51:04.514Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\kiril\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2020-08-02T22:51:04.514Z] CLI Version:   8.5.0
+[debug] [2020-08-02T22:51:04.514Z] Platform:      win32
+[debug] [2020-08-02T22:51:04.515Z] Node Version:  v12.14.0
+[debug] [2020-08-02T22:51:04.516Z] Time:          Mon Aug 03 2020 01:51:04 GMT+0300 (GMT+03:00)
+[debug] [2020-08-02T22:51:04.516Z] ----------------------------------------------------------------------
+[debug] [2020-08-02T22:51:04.516Z] 
+[debug] [2020-08-02T22:51:04.524Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-08-02T22:51:04.524Z] > authorizing via signed-in user
+[debug] [2020-08-02T22:51:04.526Z] [iam] checking project tdyvk-e74cf for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-08-02T22:51:04.530Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/tdyvk-e74cf:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}

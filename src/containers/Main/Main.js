@@ -10,7 +10,7 @@ const Main = () => {
                 <ul>
                     <li style={{listStyleType: 'none'}}>Мы сделали обновление!</li>
                     <li style={{listStyleType: 'none'}}>Мы добавили авторизацию и регистрацию, теперь Вы можете создавать несколько персонажей и всех Вы будете видеть</li>
-                    <li style={{listStyleType: 'none'}}>А так же скидывать всё <strong>ГЭМу</strong></li>
+                    <li style={{listStyleType: 'none'}}>А так же скидывать всё <strong>ГМу</strong></li>
                 </ul>
             </Alert>
         </div>

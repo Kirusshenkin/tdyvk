@@ -58,6 +58,7 @@ class Register extends Component {
             this.state.formControls.password.value,
             false
         )
+        this.props.history.push('/Login')
     }
     submitHandler = event => {
         event.preventDefault()
@@ -148,8 +149,6 @@ class Register extends Component {
                                         Зарегистрироваться
                                     </Button>
                                     <Link to="/Login">Уже зарегистрированы?</Link>
-                                    <p><small>После того как, Вы вели свои данные и нажали "Зарегистрироваться"</small></p>
-                                    <small>Перейдите по ссылке "Уже зарегистрированы?" и ведите свою почту и пароль</small>
                                 </div>
                             </div>
                         </form>
