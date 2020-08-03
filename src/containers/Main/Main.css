@@ -1,0 +1,10 @@
+.stages {
+    display: flex;
+    justify-content: space-between;
+}
+
+.stages .step{
+    display: block;
+    padding: 32px;
+    background: #fff;
+}

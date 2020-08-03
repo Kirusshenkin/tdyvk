@@ -46,15 +46,11 @@ class Auth extends Component {
           this.state.formControls.password.value,
           true
         ).then((resp) => {
-          console.log('resp is', resp)
           this.props.history.push('/')
-
         })
-        // BrowserRouter.push("/Main")
       }
     
       submitHandler = event => {
-        // this.props.history.push('/Main')
         event.preventDefault()
       }
     

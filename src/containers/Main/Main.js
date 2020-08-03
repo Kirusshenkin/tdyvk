@@ -1,6 +1,6 @@
 import React from 'react'
 import Alert from 'react-bootstrap/Alert'
-
+import './Main.css'
 
 const Main = () => {
     return (
@@ -15,9 +15,13 @@ const Main = () => {
                 </ul>
             </Alert>
         </div>
-        <div className="stages">
-            <div className="first-step">
-                <span></span>
+        <div className="container">
+            <div className="stages">
+                <div className="step first-step">
+                    <span>
+                        Ты авторизовался?
+                    </span>
+                </div>
             </div>
         </div>
         </>
