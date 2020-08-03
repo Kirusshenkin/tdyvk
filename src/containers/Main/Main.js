@@ -15,15 +15,6 @@ const Main = () => {
                 </ul>
             </Alert>
         </div>
-        <div className="container">
-            <div className="stages">
-                <div className="step first-step">
-                    <span>
-                        Ты авторизовался?
-                    </span>
-                </div>
-            </div>
-        </div>
         </>
     )
 }
