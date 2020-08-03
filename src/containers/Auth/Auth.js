@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom'
 
 class Auth extends Component {
     state = {
+        redirectToReferrer: false,
         isFormValid: false,
         formControls: {
           email: {
@@ -44,11 +45,16 @@ class Auth extends Component {
           this.state.formControls.email.value,
           this.state.formControls.password.value,
           true
-        )
-        this.props.history.push('/Сharacter')
+        ).then((resp) => {
+          console.log('resp is', resp)
+          this.props.history.push('/')
+
+        })
+        // BrowserRouter.push("/Main")
       }
     
       submitHandler = event => {
+        // this.props.history.push('/Main')
         event.preventDefault()
       }
     

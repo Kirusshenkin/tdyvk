@@ -4,6 +4,7 @@ import Alert from 'react-bootstrap/Alert'
 
 const Main = () => {
     return (
+        <>
         <div style={{background:'#23272A'}}>
             <Alert variant='warning' style={{textAlign:"center"}}>
             <h1>это сайт ТДУВК</h1>
@@ -14,6 +15,12 @@ const Main = () => {
                 </ul>
             </Alert>
         </div>
+        <div className="stages">
+            <div className="first-step">
+                <span></span>
+            </div>
+        </div>
+        </>
     )
 }
 

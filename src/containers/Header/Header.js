@@ -37,8 +37,6 @@ class Header extends Component {
     if (this.props.isAuthenticated) {
         links.push({to: '/СharacterCreator', label: 'Создать персонажа', exact: false})
         links.push({to: '/Сharacter', label: 'Персонаж', exact: false})
-        // links.push({to: '/Description', label: 'Описание', exact: false})
-        // links.push({to: '/Login', label: 'Авторизация', exact: false})
         links.push({to: '/logout', label: 'Выйти', exact: false})
 
     } else {

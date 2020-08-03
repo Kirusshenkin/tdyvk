@@ -1,10 +1,15 @@
 import {AUTH_SUCCESS, AUTH_LOGOUT} from './actionTypes'
 import Http from '../../hoc/Http/Http'
+
 export function auth(email, password) {
     return async dispatch => {
         
         const res = await Http.post('users/auth', {email: email, password: password})
         const data = await res.json()
+
+        // if (data.response) {
+        //     '/Main'
+        // }
 
         const expirationDate = new Date(new Date().getTime() + 60 * 60 * 24 * 7 * 1000)
 
