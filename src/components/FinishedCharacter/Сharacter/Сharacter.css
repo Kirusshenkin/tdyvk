@@ -1,9 +1,6 @@
 .Сharacter {
-    background: url(../../../image/space.png);
-    /* background-color: #c3e3f8; */
     padding: 50px 0px;
-    /* flex: 1; */
-    height: 100vh;
+    height: 100%;
     color: rgb(255, 255, 255);
 }
 

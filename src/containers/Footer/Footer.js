@@ -16,16 +16,15 @@ class Footer extends Component {
     renderLinks(links) {
         return links.map((link, index) => {
             return (
-                <Col key={index} md={{ span: 1, offset: 1 }}>
-                    <NavLink
-                        to={link.to}
-                        exact={link.exact}
-                        onClick={this.clickHandler}
-                        className="header-btn"
-                    >
-                        {link.label}
-                    </NavLink>
-                </Col>
+                <NavLink
+                    key={index}
+                    to={link.to}
+                    exact={link.exact}
+                    onClick={this.clickHandler}
+                    className="header-btn"
+                >
+                    {link.label}
+                </NavLink>
             )
         })
     }
@@ -44,11 +43,13 @@ class Footer extends Component {
         return (
             <div style={FooterStyle}>
                 <Container>
-                    <Row style={{justifyContent: 'space-between'}}>
+                    <Row>
                         <Col md={4} >
                             <NavLink to="/" className="footer-btn"><img src="logo2.png" style={{width: '50px'}} alt="logo"/></NavLink>
                         </Col>
+                        <Col md={8}>
                         {this.renderLinks(links)}
+                        </Col>
                     </Row>
                 </Container>
             </div>
