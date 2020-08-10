@@ -24,6 +24,17 @@ function Http() {
             body: JSON.stringify(params)
         })
     }
+    this.del = function(url, params) {
+        return fetch(this.BaseUrl + url, {
+            method: "DELETE",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': this.token
+            },
+            body: JSON.stringify(params)
+        }) 
+    }
 }
 
 export default new Http()

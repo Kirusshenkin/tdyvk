@@ -1,4 +1,5 @@
 import {CREATE_CHARACTER_CREATOR} from './actionTypes'
+import Http from '../../hoc/Http/Http'
 
 export function NewCreateCharacter(item) {
     return {
@@ -8,7 +9,7 @@ export function NewCreateCharacter(item) {
 }
 
 export function CreateCharacter() {
-    return async (dispatch, getState) => {
-        await fetch 
+    return async (getState) => {
+        await Http.post('api/characters', getState())
     }
 }

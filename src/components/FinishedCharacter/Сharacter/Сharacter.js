@@ -25,7 +25,7 @@ class Сharacter extends Component {
             response.json().then(data => {
                 this.setState({
                     loading: false,
-                    characters: data.data 
+                    characters: data.data
                 })
             })
         })
@@ -38,6 +38,24 @@ class Сharacter extends Component {
             Http.post('api/character/mail', {characterId: characterId}).then((response) => {
                 response.json().then(data => {
                     alert('Ваша анкета была отправлена!')
+                })
+            })
+        }, 2000)
+    }
+    
+    DeleteCharacter(characterId,event) {
+        event.preventDefault();
+        this.setState({isButtonDisabled: true})
+        setTimeout(() => {
+            Http.del('api/character/'+characterId, {characterId: characterId}).then((response) => {
+                response.json().then(data => {
+                    let characters = this.state.characters
+                    characters.forEach((item, key) => {
+                        if(item.id === characterId) delete characters[key]
+                    })
+                    this.setState((state, props) => ({
+                        characters: characters
+                    }))
                 })
             })
         }, 2000)
@@ -79,6 +97,7 @@ class Сharacter extends Component {
                                             <li><span>Параметры внешности: </span>{item.view_description}</li>  
                                             <li><span>КБМ: </span>{item.kbm}</li>
                                         </ul>
+                                        <div className="btns">
                                             <Button 
                                                 value={item.id} 
                                                 type="success" 
@@ -88,6 +107,16 @@ class Сharacter extends Component {
                                             >
                                                 Отправить
                                             </Button>
+                                            <Button
+                                                value={item.id} 
+                                                type="error"
+                                                label={"Удалить"}
+                                                disabled={this.state.isButtonDisabled} 
+                                                onClick={(e) => this.DeleteCharacter(item.id,e)}
+                                            >
+                                                Удалить
+                                            </Button>
+                                        </div>
                                     </Tab.Pane>
                                 )): null}
                                 </Tab.Content>

@@ -13,6 +13,7 @@ export function register(email, username, password) {
         const res = await fetch(url, regData)
         const data = await res.json()
 
+        
         if (data.response) {
             alert('Вы успешно зарегистрировались проверьте свою почту!')
         }

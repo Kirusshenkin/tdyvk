@@ -280,4 +280,16 @@ class СharacterCreator extends Component {
 //   }
 }
 
+// function mapStateToProps(state) {
+//     return {
+//         newUser: state.create.newUser
+//     }
+// }
+
+// function mapDispatchToProps(dispatch) {
+//     return {
+//         createNewUser: () => dispatch(mapStateToProps)
+//     }
+// }
+
 export default СharacterCreator;
