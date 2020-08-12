@@ -10,25 +10,21 @@ import Button from '../../UI/Button/Button'
 import Http from '../../../hoc/Http/Http'
 
 import './Сharacter.css'
+import { connect } from 'react-redux'
+import {fetchCharacters} from '../../../store/actions/character'
 
 class Сharacter extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            isButtonDisabled: false,
-            characters: [],
-            loading: true,
-        }
-    }
-    async componentDidMount() {
-        await Http.get('api/characters').then((response) => { 
-            response.json().then(data => {
-                this.setState({
-                    loading: false,
-                    characters: data.data
-                })
-            })
-        })
+
+    // constructor(props) {
+    //     super(props)
+    //     this.state = {
+    //         isButtonDisabled: false,
+    //         characters: [],
+    //         loading: true
+    //     }
+    // }
+    componentDidMount() {
+        this.props.fetchCharacters()
     }
 
     handleMailCharacter(characterId,event) {
@@ -62,7 +58,7 @@ class Сharacter extends Component {
     }
 
     render() {
-        if(this.state.loading)
+        if(this.props.loading)
         return <div className="Character"><Loader/></div>
         return (
             <div className="Сharacter">
@@ -72,7 +68,7 @@ class Сharacter extends Component {
                         <Row>
                             <Col sm={4}>
                                 <ListGroup className="list-created-characters">
-                                    {this.state.characters ? this.state.characters.map((item, key) => (
+                                    {this.props.characters ? this.props.characters.map((item, key) => (
                                         <ListGroup.Item action href={'#link' + key} key={key}>
                                           {item.name}
                                         </ListGroup.Item>
@@ -82,7 +78,7 @@ class Сharacter extends Component {
                             </Col>
                             <Col sm={8}>
                                 <Tab.Content>
-                                {this.state.characters ? this.state.characters.map((item, key) => (
+                                {this.props.characters ? this.props.characters.map((item, key) => (
                                     <Tab.Pane eventKey={'#link' + key} key={key}>
                                         <ul>
                                             <li><span>Имя: </span>{item.name}</li>    
@@ -102,16 +98,16 @@ class Сharacter extends Component {
                                                 value={item.id} 
                                                 type="success" 
                                                 label={"Отправить"} 
-                                                disabled={this.state.isButtonDisabled} 
+                                                disabled={this.props.isButtonDisabled} 
                                                 onClick={(e) => this.handleMailCharacter(item.id,e)}
                                             >
                                                 Отправить
                                             </Button>
                                             <Button
-                                                value={item.id} 
+                                                value={item.id}
                                                 type="error"
                                                 label={"Удалить"}
-                                                disabled={this.state.isButtonDisabled} 
+                                                disabled={this.props.isButtonDisabled} 
                                                 onClick={(e) => this.DeleteCharacter(item.id,e)}
                                             >
                                                 Удалить
@@ -129,4 +125,19 @@ class Сharacter extends Component {
     }
 }
 
-export default Сharacter
+function mapStateToProps(state) {
+    console.log(state)
+    return {
+        characters: state.characters.characters,
+        loading: state.characters.loading,
+        isButtonDisabled: state.characters.isButtonDisabled
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        fetchCharacters: () => dispatch(fetchCharacters())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Сharacter)
