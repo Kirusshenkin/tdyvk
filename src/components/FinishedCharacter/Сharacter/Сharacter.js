@@ -15,14 +15,6 @@ import {fetchCharacters} from '../../../store/actions/character'
 
 class Сharacter extends Component {
 
-    // constructor(props) {
-    //     super(props)
-    //     this.state = {
-    //         isButtonDisabled: false,
-    //         characters: [],
-    //         loading: true
-    //     }
-    // }
     componentDidMount() {
         this.props.fetchCharacters()
     }
@@ -126,7 +118,6 @@ class Сharacter extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state)
     return {
         characters: state.characters.characters,
         loading: state.characters.loading,

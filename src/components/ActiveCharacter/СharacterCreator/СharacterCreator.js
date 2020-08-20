@@ -4,30 +4,33 @@ import { Link } from 'react-router-dom'
 
 import './СharacterCreator.css'
 import Input from '../../UI/Input/Input'
-import Organization from '../../UI/Select/Organization/Organization'
+// import Organization from '../../UI/Select/Organization/Organization'
 import Gender from '../../UI/Select/Gender/Gender'
-import Professions from '../../UI/Select/Professions/Professions'
+// import Professions from '../../UI/Select/Professions/Professions'
 import Antagonist from '../../UI/Radio/Antagonist/Antagonist'
-import Origin from '../../UI/Select/Origin/Origin'
+// import Origin from '../../UI/Select/Origin/Origin'
 import Button from '../../UI/Button/Button'
 import Loader from '../../UI/Loader/Loader'
 
 import Textarea from '../../UI/Textarea/textarea'
 import Textareakbm from '../../UI/Textarea/KBM/KBM'
 
-import Disadvantages from '../../UI/Radio/Check/Disadvantages'
-import Advantage from '../../UI/Radio/Check/Advantage'
+// import Disadvantages from '../../UI/Radio/Check/Disadvantages'
+// import Advantage from '../../UI/Radio/Check/Advantage'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
+import ReactTooltip from "react-tooltip";
 
 import '../../UI/Select/Select.css'
+import { connect } from "react-redux";
+import {fetchOgranizations, fetchProfessions, fetchHomeland, fetchAdvantages, fetchDisadvantages} from '../../../store/actions/dispatch'
 
 class СharacterCreator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        loading: true,
+        // loading: true,
         isButtonDisabled: false,
         newUser: {
             name: '',
@@ -42,11 +45,11 @@ class СharacterCreator extends Component {
             appearance:'',
             kbm: '',
         },
-        organizations:[],
-        professions: [],
-        advantages: [],
-        disadvantages: [],
-        homeland:[]
+        // organizations:[],
+        // professions: [],
+        // advantages: [],
+        // disadvantages: [],
+        // homeland:[]
     }
     this.handleInput = this.handleInput.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -103,33 +106,12 @@ class СharacterCreator extends Component {
             newUser: { ...prevState.newUser, disadvantages: lastSelectionArray }
         }))
     }
-    async componentDidMount () {
-        await Http.get('api/organization').then((response) => { 
-            response.json().then(data => {
-                this.setState({ organizations: data.data })
-            })
-        })
-        await Http.get('api/profession').then((response) => { 
-            response.json().then(data => {
-                this.setState({ professions: data.data })
-            })
-        })
-        await Http.get('api/homeland').then((response) => { 
-            response.json().then(data => { 
-                this.setState({ homeland: data.data })
-            })
-        })
-        await Http.get('api/advantages').then((response) => { 
-            response.json().then(data => {
-                this.setState({ advantages: data.data })
-            })
-        })
-        await Http.get('api/disadvantages').then((response) => { 
-            response.json().then(data => { 
-                this.setState({ disadvantages: data.data })
-            })
-        })
-        this.setState({loading: false})
+    componentDidMount () {
+        this.props.fetchOgranizations()
+        this.props.fetchProfessions()
+        this.props.fetchHomeland()
+        this.props.fetchAdvantages()
+        this.props.fetchDisadvantages()
     }
     // это redux
     handleFormSubmit(event) {
@@ -184,22 +166,46 @@ class СharacterCreator extends Component {
                                 handleChange={this.handleInput}
                                 placeholder={"Выберите Ваш пол"}
                             />
-                            <Professions
-                                value={profession}
-                                name={"profession"}
-                                title={"Профессия"}
-                                professions={this.state.professions}
-                                handleChange={this.handleInput}
-                                placeholder={"Выберите Профессию"}
-                            />
-                            <Organization
-                                value={organization}
-                                title={"Организации"}
-                                name={"organization"}
-                                organizations={this.state.organizations}
-                                handleChange={this.handleInput}
-                                placeholder={"Выберите организацию"}
-                            />
+                            <div>
+                                <label htmlFor={name}>Профессия</label>
+                                <select 
+                                    name={"profession"}
+                                    value={profession}
+                                    onChange={this.handleInput}
+                                >
+                                    <option disabled>Выберите Профессию</option>
+                                    {this.props.professions.map(function(name, k) {
+                                        return (
+                                            <optgroup key={k} label={name.name}>
+                                                {name.professions.map(function(name, i) {
+                                                    return (
+                                                        <option key={i} value={name.id} label={name.name}>
+                                                            {name.name}
+                                                        </option>
+                                                    )
+                                                })}
+                                            </optgroup>
+                                        )
+                                    })}
+                                </select>
+                            </div>
+                            <div>
+                                <label htmlFor={name}>Организация</label>
+                                <select 
+                                    name={"organization"}
+                                    value={organization}
+                                    onChange={this.handleInput}
+                                >
+                                <option disabled>{"Выберите организацию"}</option>
+                                {this.props.organizations.map(function(name, k) {
+                                    return (
+                                        <option key={k} label={name.name} value={name.id}>
+                                            {name.name}
+                                        </option>
+                                    )
+                                })}
+                                </select>
+                            </div>
                             <Antagonist
                                 type="checkbox"
                                 value={be_antagonist}
@@ -208,29 +214,74 @@ class СharacterCreator extends Component {
                                 name={"be_antagonist"}
                                 handleChange={this.handleInput}
                             />
-                            <Origin
-                                value={origins}
-                                handleChange={this.handleInput}
-                                placeholder={"Откуда ты епта?"}
-                                title={"Откуда ты там взялся?"}
-                                homeland={this.state.homeland}
-                                name={"origins"}
-                            />
-                            <div className="adv" style={{display:'flex', flexDirection:'row',justifyContent: 'space-between'}}>
-                                <Advantage
-                                    selectedOptions={advantages}
-                                    title={"Преимущества"}
-                                    name={"advantages"}
-                                    options={this.state.advantages}
-                                    handleChange={this.handleCheck}
-                                />
-                                <Disadvantages
-                                    selectedOptions={disadvantages}
-                                    title={"Недостатки"}
-                                    name={"disadvantages"}
-                                    options={this.state.disadvantages}
-                                    handleChange={this.handledisCheck}
-                                />
+                            <div>
+                                <label htmlFor={name}>Откуда ты там взялся?</label>
+                                <select 
+                                    name={"origins"}
+                                    value={origins}
+                                    onChange={this.handleInput}
+                                >
+                                    <option disabled>Откуда ты епта?</option>
+                                    {this.props.homeland.map(function(location, k) {
+                                        return (
+                                            <option key={k} value={location.id} label={location.location}>
+                                                {location.location}
+                                            </option>
+                                        )
+                                    })}
+                                </select>
+                            </div>
+                            <div className="adv">
+                                <div className="form-group">
+                                <label htmlFor={name} className="form-label">
+                                    Преимущества
+                                </label>
+                                    <div className="checkbox">
+                                        {this.props.advantages.map(option => {
+                                        return (
+                                            <label key={option.id} data-tip={option.content} className="container-checkbox">
+                                            <input
+                                                id={name}
+                                                name={advantages}
+                                                onChange={this.handleCheck}
+                                                value={option.id}
+                                                options={this.state.advantages}
+                                                checked={advantages.indexOf(option.id) > -1}
+                                                type="checkbox"
+                                            />
+                                            {option.name}
+                                            <ReactTooltip place="top" type="dark" effect="solid"/>
+                                            <span className="checkmark"/>
+                                            </label>
+                                        );
+                                        })}
+                                    </div>
+                                </div>
+                                <div className="form-group">
+                                <label htmlFor={name} className="form-label">
+                                    Недостатки
+                                </label>
+                                    <div className="checkbox">
+                                        {this.props.disadvantages.map(option => {
+                                        return (
+                                            <label key={option.id}  data-tip={option.content} className="container-checkbox">
+                                            <input
+                                                id={name}
+                                                name={name}
+                                                onChange={this.handledisCheck}
+                                                value={option.id}
+                                                options={this.state.disadvantages}
+                                                checked={disadvantages.indexOf(option.id) > -1}
+                                                type="checkbox"
+                                            />
+                                            {option.name}
+                                            <ReactTooltip place="top" type="dark" effect="solid"/>
+                                            <span className="checkmark"></span>
+                                            </label>
+                                        );
+                                        })}
+                                    </div>
+                                </div>
                             </div>
                             <Textarea
                                 label="Параметры внешности"
@@ -280,16 +331,28 @@ class СharacterCreator extends Component {
 //   }
 }
 
-// function mapStateToProps(state) {
-//     return {
-//         newUser: state.create.newUser
-//     }
-// }
+function mapStateToProps(state) {
+    // console.log(state)
+    return {
+        organizations: state.organizations.organizations,
+        loading: state.organizations.loading,
+        professions: state.professions.professions,
+        homeland: state.homeland.homeland,
+        advantages: state.advantages.advantages,
+        disadvantages: state.disadvantages.disadvantages
+        // loading: state.professions.loading
+    }
+}
 
-// function mapDispatchToProps(dispatch) {
-//     return {
-//         createNewUser: () => dispatch(mapStateToProps)
-//     }
-// }
+function mapDispatchToProps(dispatch) {
+    return {
+        fetchOgranizations: () => dispatch(fetchOgranizations()),
+        fetchProfessions: () => dispatch(fetchProfessions()),
+        fetchHomeland: () => dispatch(fetchHomeland()),
+        fetchAdvantages: () => dispatch(fetchAdvantages()),
+        fetchDisadvantages: () => dispatch(fetchDisadvantages())
+    }
+}
 
-export default СharacterCreator;
+
+export default connect(mapStateToProps, mapDispatchToProps)(СharacterCreator);

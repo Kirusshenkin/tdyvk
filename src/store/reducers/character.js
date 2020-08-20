@@ -1,4 +1,4 @@
-import { FETCH_CHARACTER_START, FETCH_CHARACTER_SUCCESS, FETCH_CHARACTER_ERROR } from "../actions/actionTypes"
+import { FETCH_CHARACTER_REQUEST, FETCH_CHARACTER_SUCCESS, FETCH_CHARACTER_ERROR } from "../actions/actionTypes"
 
 const initialState = {
     isButtonDisabled: false,
@@ -9,7 +9,7 @@ const initialState = {
 
 export default function charactersReducer (state = initialState, action) {
     switch (action.type) {
-        case FETCH_CHARACTER_START:
+        case FETCH_CHARACTER_REQUEST:
             return {
                 ...state, loading: true
             }

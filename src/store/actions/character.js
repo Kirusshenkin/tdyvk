@@ -1,5 +1,5 @@
 import Http from '../../hoc/Http/Http'
-import { FETCH_CHARACTER_START, FETCH_CHARACTER_SUCCESS, FETCH_CHARACTER_ERROR } from './actionTypes'
+import { FETCH_CHARACTER_REQUEST, FETCH_CHARACTER_SUCCESS, FETCH_CHARACTER_ERROR } from './actionTypes'
 
 export function fetchCharacters() {
     return async dispatch => {
@@ -18,7 +18,7 @@ export function fetchCharacters() {
 
 export function fetchCharactersStart() {
     return {
-        type: FETCH_CHARACTER_START
+        type: FETCH_CHARACTER_REQUEST
     }
 }
 
