@@ -32,7 +32,7 @@ class Header extends Component {
     render() {
     const links = [
         // {to: '/Login', label: 'Авторизация', exact: true}
-      ]
+    ]
   
     if (this.props.isAuthenticated) {
         links.push({to: '/СharacterCreator', label: 'Создать персонажа', exact: false})

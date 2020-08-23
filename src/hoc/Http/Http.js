@@ -9,7 +9,7 @@ function Http() {
             headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': this.token
+            'Authorization': localStorage.getItem('token')
             },
         })
     }
@@ -19,7 +19,7 @@ function Http() {
             headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': this.token
+            'Authorization': localStorage.getItem('token')
             },
             body: JSON.stringify(params)
         })
@@ -30,7 +30,7 @@ function Http() {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': this.token
+                'Authorization': localStorage.getItem('token')
             },
             body: JSON.stringify(params)
         }) 

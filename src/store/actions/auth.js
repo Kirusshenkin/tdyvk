@@ -1,20 +1,32 @@
-import {AUTH_SUCCESS, AUTH_LOGOUT} from './actionTypes'
+import {AUTH_SUCCESS, AUTH_LOGOUT, AUTH_ERROR} from './actionTypes'
 import Http from '../../hoc/Http/Http'
 
 export function auth(email, password) {
     return async dispatch => {
-        
-        const res = await Http.post('users/auth', {email: email, password: password})
-        const data = await res.json()
+        return new  Promise(async(resolve, reject) => {
+            const res = await Http.post('users/auth', {email: email, password: password})
+            const data = await res.json()
+            if(data.response) { 
+                const expirationDate = new Date(new Date().getTime() + 60 * 60 * 24 * 7 * 1000)
+                localStorage.setItem('token', data.token)
+                localStorage.setItem('userId', data.user_id)
+                localStorage.setItem('expirationDate', expirationDate)
 
-        const expirationDate = new Date(new Date().getTime() + 60 * 60 * 24 * 7 * 1000)
+                dispatch(authSuccess(data.token))
+                dispatch(autoLogout(60 * 60 * 24 * 7))
+                resolve()
+            } else {
+                dispatch(authError('не правильный логин или пароль'))
+                reject("Неверный логин или пароль")
+            }
+        })
+    }
+}
 
-        localStorage.setItem('token', data.token)
-        localStorage.setItem('userId', data.user_id)
-        localStorage.setItem('expirationDate', expirationDate)
-
-        dispatch(authSuccess(data.token))
-        dispatch(autoLogout(60 * 60 * 24 * 7))
+export function authError(error) {
+    return {
+        type: AUTH_ERROR,
+        error: error
     }
 }
 

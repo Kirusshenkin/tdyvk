@@ -30,6 +30,10 @@
     color: #99AAB5;
 }
 
+.Messange-error {
+    color: rgb(255 1 1);
+}
+
 @media only screen and (max-width: 425px) {
     .authBox {
         width: auto;

@@ -26,7 +26,6 @@ class App extends React.Component {
             <Route path="/Login" exact component={Auth}/>
             <Route path="/Register" component={Register}/>
             <Route path="/" component={Main}/>
-            <Redirect to="/Login" />
           </Switch>
       )
       if (this.props.isAuthenticated) {

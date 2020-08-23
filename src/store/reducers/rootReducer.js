@@ -9,7 +9,6 @@ import {
     homelandReducer, 
     organizationsReducer
 } from './get'
-// import {} from './organizations'
 
 export default combineReducers({
     auth: authReducer,

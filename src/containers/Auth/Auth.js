@@ -5,7 +5,7 @@ import './Auth.css'
 import is from 'is_js'
 import {auth} from '../../store/actions/auth'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 
 class Auth extends Component {
@@ -46,7 +46,7 @@ class Auth extends Component {
           this.state.formControls.password.value,
           true
         ).then((resp) => {
-          this.props.history.push('/')
+          this.props.history.push('/Сharacter')
         })
       }
     
@@ -116,6 +116,9 @@ class Auth extends Component {
         })
     }
     render() {
+      if(this.props.token) {
+        return <Redirect to="/Сharacter"/>
+      }
       return (
         <div className="blockAuth">
           <div className="Auth">
@@ -124,6 +127,7 @@ class Auth extends Component {
                       <div className="authBox__title">
                           <div className="authBox__Auth-title">Авторизация</div>
                           <div className="authBox__Auth-welcome">Добро пожаловать</div>
+                          {this.props.error ? <span className="Messange-error">{this.props.error}</span> : <span></span>}
                       </div>
                       <div className="auth">
                           { this.renderInputs() }
@@ -146,10 +150,17 @@ class Auth extends Component {
     }
 }
 
+function mapStateToProps(state) {
+  return {
+      error: state.auth.error,
+      auth: state.auth.token
+  }
+}
+
 function mapDispatchToProps(dispatch) {
     return {
         auth: (email, password) => dispatch(auth(email, password))
     }
 }
 // export default Auth
-export default connect(null, mapDispatchToProps)(Auth)
+export default connect(mapStateToProps, mapDispatchToProps)(Auth)

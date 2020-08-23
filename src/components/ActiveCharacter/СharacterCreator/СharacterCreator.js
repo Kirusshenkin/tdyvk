@@ -1,22 +1,14 @@
 import React, {Component} from "react";
 import Http from '../../../hoc/Http/Http'
 import { Link } from 'react-router-dom'
-
 import './СharacterCreator.css'
 import Input from '../../UI/Input/Input'
-// import Organization from '../../UI/Select/Organization/Organization'
 import Gender from '../../UI/Select/Gender/Gender'
-// import Professions from '../../UI/Select/Professions/Professions'
 import Antagonist from '../../UI/Radio/Antagonist/Antagonist'
-// import Origin from '../../UI/Select/Origin/Origin'
 import Button from '../../UI/Button/Button'
 import Loader from '../../UI/Loader/Loader'
-
 import Textarea from '../../UI/Textarea/textarea'
 import Textareakbm from '../../UI/Textarea/KBM/KBM'
-
-// import Disadvantages from '../../UI/Radio/Check/Disadvantages'
-// import Advantage from '../../UI/Radio/Check/Advantage'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
@@ -30,7 +22,6 @@ class СharacterCreator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        // loading: true,
         isButtonDisabled: false,
         newUser: {
             name: '',
@@ -45,11 +36,6 @@ class СharacterCreator extends Component {
             appearance:'',
             kbm: '',
         },
-        // organizations:[],
-        // professions: [],
-        // advantages: [],
-        // disadvantages: [],
-        // homeland:[]
     }
     this.handleInput = this.handleInput.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);

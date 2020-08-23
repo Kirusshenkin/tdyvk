@@ -36,6 +36,7 @@ export const CREATE_CHARACTER_CREATOR = 'CREATE_CHARACTER_CREATOR'
 // auth login
 export const AUTH_LOGOUT = 'AUTH_LOGOUT'
 export const AUTH_SUCCESS = 'AUTH_SUCCESS'
+export const AUTH_ERROR = 'AUTH_ERROR'
 
 // register
 export const REG_SUCCESS = 'REG_SUCCESS'
