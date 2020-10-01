@@ -156,10 +156,10 @@ class СharacterCreator extends Component {
                                 <label htmlFor={name}>Профессия</label>
                                 <select 
                                     name={"profession"}
-                                    value={profession}
+                                    // value={profession}
                                     onChange={this.handleInput}
                                 >
-                                    <option disabled>Выберите Профессию</option>
+                                    <option selected disabled>Выберите Профессию</option>
                                     {this.props.professions.map(function(name, k) {
                                         return (
                                             <optgroup key={k} label={name.name}>
@@ -179,10 +179,10 @@ class СharacterCreator extends Component {
                                 <label htmlFor={name}>Организация</label>
                                 <select 
                                     name={"organization"}
-                                    value={organization}
+                                    // value={organization}
                                     onChange={this.handleInput}
                                 >
-                                <option disabled>{"Выберите организацию"}</option>
+                                <option selected disabled>{"Выберите организацию"}</option>
                                 {this.props.organizations.map(function(name, k) {
                                     return (
                                         <option key={k} label={name.name} value={name.id}>
@@ -204,13 +204,13 @@ class СharacterCreator extends Component {
                                 <label htmlFor={name}>Откуда ты там взялся?</label>
                                 <select 
                                     name={"origins"}
-                                    value={origins}
+                                    // value={origins}
                                     onChange={this.handleInput}
                                 >
-                                    <option disabled>Откуда ты епта?</option>
+                                    <option selected disabled>Откуда ты епта?</option>
                                     {this.props.homeland.map(function(location, k) {
                                         return (
-                                            <option key={k} value={location.id} label={location.location}>
+                                            <option key={k} value={location.id}>
                                                 {location.location}
                                             </option>
                                         )
@@ -318,7 +318,6 @@ class СharacterCreator extends Component {
 }
 
 function mapStateToProps(state) {
-    // console.log(state)
     return {
         organizations: state.organizations.organizations,
         loading: state.organizations.loading,
@@ -326,7 +325,6 @@ function mapStateToProps(state) {
         homeland: state.homeland.homeland,
         advantages: state.advantages.advantages,
         disadvantages: state.disadvantages.disadvantages
-        // loading: state.professions.loading
     }
 }
 

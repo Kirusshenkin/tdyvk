@@ -1,8 +1,5 @@
 import React from 'react'
-// import Header from './containers/Header/Header'
-// import Footer from './containers/Footer/Footer'
 import Main from './containers/Main/Main'
-// import NotFound from './containers/NotFound/NotFound'
 import СharacterCreator from './components/ActiveCharacter/СharacterCreator/СharacterCreator'
 import Сharacter from './components/FinishedCharacter/Сharacter/Сharacter'
 import Description from './containers/Description/Description'
