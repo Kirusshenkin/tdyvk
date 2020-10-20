@@ -15,6 +15,12 @@ import {fetchCharacters} from '../../../store/actions/character'
 
 class Сharacter extends Component {
 
+    constructor(props) {
+        super(props)
+        this.handleMailCharacter = this.handleMailCharacter.bind(this);
+        this.DeleteCharacter = this.DeleteCharacter.bind(this);
+    }
+
     componentDidMount() {
         this.props.fetchCharacters()
     }
@@ -34,19 +40,14 @@ class Сharacter extends Component {
     DeleteCharacter(characterId,event) {
         event.preventDefault();
         this.setState({isButtonDisabled: true})
-        setTimeout(() => {
-            Http.del('api/character/'+characterId, {characterId: characterId}).then((response) => {
-                response.json().then(data => {
-                    let characters = this.state.characters
-                    characters.forEach((item, key) => {
-                        if(item.id === characterId) delete characters[key]
-                    })
-                    this.setState((state, props) => ({
-                        characters: characters
-                    }))
+        Http.del('api/character/'+characterId, {characterId: characterId}).then((response) => {
+            response.json().then(data => {
+                this.props.characters.filter((item, key) => {
+                    return (item.id !== characterId)
                 })
+                this.props.fetchCharacters()
             })
-        }, 2000)
+        })
     }
 
     render() {

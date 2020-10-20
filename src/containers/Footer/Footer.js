@@ -37,7 +37,7 @@ class Footer extends Component {
     if (this.props.isAuthenticated) {
         links.push({to: '/Description', label: 'Описание', exact: false})
     } else {
-        links.push({to: '/Description', label: 'Описание', exact: false})
+        links.push({to: '/Description', label: 'Описание', exact: true})
     }
 
         return (
