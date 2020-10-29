@@ -1,0 +1,41 @@
+.myModal {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 15%;
+    opacity: 0;
+    transition: all .2s ease;
+}
+
+.myModal.show {
+    opacity: 1;
+}
+
+.myBody {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: #36393f;
+    border-radius: 4px;
+}
+
+.myBody p {
+    margin: 0;
+}
+
+.myModal-content {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.myModal-content svg {
+    width: 15px !important;
+    margin-right: 10px;
+    height: auto;
+}
+
+.myModal-content svg path:first-child {
+    fill: #36F05F;
+}

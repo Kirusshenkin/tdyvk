@@ -2,6 +2,7 @@ function Http() {
 
     this.token = localStorage.getItem('token')
     this.BaseUrl = 'https://tdyvkback.herokuapp.com/'
+    // this.BaseUrl = 'http://localhost:3001/'
 
     this.get = function(url, params) {
         return fetch(this.BaseUrl + url, {

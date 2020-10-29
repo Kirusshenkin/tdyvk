@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from '../../UI/Button/Button'
 import Http from '../../../hoc/Http/Http'
+import Modal from '../../UI/Modal/Modal'
 
 import './Сharacter.css'
 import { connect } from 'react-redux'
@@ -16,7 +17,10 @@ import {fetchCharacters} from '../../../store/actions/character'
 class Сharacter extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
+        this.state = {
+            askModal: false,
+        };
         this.handleMailCharacter = this.handleMailCharacter.bind(this);
         this.DeleteCharacter = this.DeleteCharacter.bind(this);
     }
@@ -25,18 +29,21 @@ class Сharacter extends Component {
         this.props.fetchCharacters()
     }
 
-    handleMailCharacter(characterId,event) {
-        event.preventDefault();
-        this.setState({isButtonDisabled: true})
+    AskModal() {
+        this.setState({askModal: true})
         setTimeout(() => {
-            Http.post('api/character/mail', {characterId: characterId}).then((response) => {
-                response.json().then(data => {
-                    alert('Ваша анкета была отправлена!')
-                })
-            })
+            this.setState({askModal: false})
         }, 2000)
     }
-    
+
+    handleMailCharacter(characterId,event) {
+        event.preventDefault();
+        this.AskModal();
+        Http.post('api/character/mail', {characterId: characterId}).then((response) => {
+            response.json().then(data => {})
+        })
+    }
+
     DeleteCharacter(characterId,event) {
         event.preventDefault();
         this.setState({isButtonDisabled: true})
@@ -51,9 +58,11 @@ class Сharacter extends Component {
     }
 
     render() {
+        let {askModal} = this.state;
         if(this.props.loading)
         return <div className="Character"><Loader/></div>
         return (
+            <>
             <div className="Сharacter">
                 <Container>
                     <h3>Ваши персонажи</h3>
@@ -75,7 +84,7 @@ class Сharacter extends Component {
                                     <Tab.Pane eventKey={'#link' + key} key={key}>
                                         <ul>
                                             <li><span>Имя: </span>{item.name}</li>    
-                                            <li><span>Возраст: </span>{item.age}</li>    
+                                            <li><span>Возраст: </span>{item.age}</li>
                                             <li><span>Пол: </span>{item.sex}</li>    
                                             <li><span>Профессия: </span>{item.profession.name}</li>
                                             <li><span>Организация: </span>{item.organization.name}</li>
@@ -114,6 +123,10 @@ class Сharacter extends Component {
                     </TabContainer>
                 </Container>
             </div>
+            <Modal
+                askModal={askModal}
+            />
+            </>
         )
     }
 }

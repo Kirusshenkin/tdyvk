@@ -23,6 +23,7 @@ class СharacterCreator extends Component {
     super(props);
     this.state = {
         isButtonDisabled: false,
+        errors: {},
         newUser: {
             name: '',
             sex: '',
@@ -33,7 +34,7 @@ class СharacterCreator extends Component {
             origins: '',
             advantages: [],
             disadvantages: [],
-            appearance:'',
+            appearance: '',
             kbm: '',
         },
     }
@@ -93,31 +94,100 @@ class СharacterCreator extends Component {
         }))
     }
     componentDidMount () {
-        this.props.fetchOgranizations()
-        this.props.fetchProfessions()
-        this.props.fetchHomeland()
-        this.props.fetchAdvantages()
-        this.props.fetchDisadvantages()
+        this.props.fetchOgranizations();
+        this.props.fetchProfessions();
+        this.props.fetchHomeland();
+        this.props.fetchAdvantages();
+        this.props.fetchDisadvantages();
     }
+
+    validateCharacter() {
+        let {newUser} = this.state;
+        let errors = {};
+        for (let field in newUser) {
+            let value = newUser[field];
+            switch (field) {
+                case 'name': 
+                    if(value.length < 1) {
+                        errors.name = 'Укажите имя персонажа'
+                    };
+                    break;
+                case 'age':
+                    if(value < 1) {
+                        errors.age = 'Укажите возраст'
+                    }
+                    break;
+                case 'sex':
+                    if(value < 1) {
+                        errors.sex = 'Выберите свой пол'
+                    }
+                    break;
+                case 'profession':
+                    if(value < 1) {
+                        errors.profession = 'Выберите профессию'
+                    }
+                    break;
+                case 'organization':
+                    if(value < 1) {
+                        errors.organization = 'Выберите организацию'
+                    }
+                    break;
+                case 'origins':
+                    if(value < 1) {
+                        errors.origins = 'Выберите место рождения'
+                    }
+                    break;
+                case 'advantages':
+                    if(value.length < 1) {
+                        errors.advantages = 'Выберите преимущества'
+                    }
+                    break;
+                case 'disadvantages':
+                    if(value.length < 1) {
+                        errors.disadvantages = 'Выберите недостатки'
+                    }
+                    break;
+                case 'appearance':
+                    if(value.length < 1) {
+                        errors.appearance = 'Внесите параметры внешности'
+                    }
+                    break;
+                case 'kbm':
+                    if(value.length < 1) {
+                        errors.kbm = 'Внесите параметры КБМ'
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        this.setState({errors})
+    }
+
     // это redux
     handleFormSubmit(event) {
+        this.validateCharacter();
         event.preventDefault();
-        this.setState({isButtonDisabled: true})
-        let CharacterData = this.state.newUser
-        Http.post('api/characters', CharacterData).then((response) => {
-            response.json().then(data => {
-                this.setState({
-                    userData: data.data
+        if(! Object.keys(this.state.errors).length ) {
+            let CharacterData = this.state.newUser
+            Http.post('api/characters', CharacterData).then((response) => {
+                response.json().then(data => {
+                    this.setState({
+                        userData: data.data
+                    })
+                    if(data.response) this.props.history.push('/Сharacter');
                 })
             })
-        })
+        }
     }
 
 
   render() {
-    if (this.state.loading)
-    return <div className="СharacterCreator"><Loader/></div>
-    const {  name, age, sex, profession, organization, be_antagonist, origins, advantages, disadvantages, appearance, kbm } = this.state.newUser;
+    if (this.state.loading) {
+        return <div className="СharacterCreator"><Loader/></div>
+    }
+    const {name, age, sex, be_antagonist, advantages, disadvantages, appearance, kbm} = this.state.newUser;
+    const {errors} = this.state;
     return (
       <div className="СharacterCreator">
           <Container>
@@ -125,10 +195,8 @@ class СharacterCreator extends Component {
               <Col>
                 <div className="first-character">
                     <div className="main-characer">
-                    <strong style={{color:'#d63434'}}>Прошу проверять все поля ввода *Если хоть одно поля будет не введино, то ваш персонаж не будет создан*</strong>
-
                         <form onSubmit={this.handleFormSubmit}>
-                        <Link to={"/Description"} className="descriptionlnk">Справочник*</Link>
+                        <Link to={"/Description"} className="description-lnk">Справочник</Link>
                             <Input
                                 value={name}
                                 type={"text"}
@@ -137,6 +205,7 @@ class СharacterCreator extends Component {
                                 placeholder={"Ведите Ваше имя"}
                                 onChange={this.handleInput}
                             />
+                            <div className="validate-error">{errors.name ? errors.name : ''}</div>
                             <Input
                                 value={age}
                                 placeholder={"Ваш возраст?"}
@@ -145,6 +214,7 @@ class СharacterCreator extends Component {
                                 label={"Возраст персонажа"}
                                 onChange={this.handleInput}
                             />
+                            <div className="validate-error">{errors.age ? errors.age : ''}</div>
                             <Gender
                                 value={sex}
                                 title={"Пол персонажа"}
@@ -152,11 +222,11 @@ class СharacterCreator extends Component {
                                 handleChange={this.handleInput}
                                 placeholder={"Выберите Ваш пол"}
                             />
+                            <div className="validate-error">{errors.sex ? errors.sex : ''}</div>
                             <div>
                                 <label htmlFor={name}>Профессия</label>
                                 <select 
                                     name={"profession"}
-                                    // value={profession}
                                     onChange={this.handleInput}
                                 >
                                     <option selected disabled>Выберите Профессию</option>
@@ -174,12 +244,12 @@ class СharacterCreator extends Component {
                                         )
                                     })}
                                 </select>
+                                <div className="validate-error">{errors.profession ? errors.profession : ''}</div>
                             </div>
                             <div>
                                 <label htmlFor={name}>Организация</label>
                                 <select 
                                     name={"organization"}
-                                    // value={organization}
                                     onChange={this.handleInput}
                                 >
                                 <option selected disabled>{"Выберите организацию"}</option>
@@ -192,6 +262,7 @@ class СharacterCreator extends Component {
                                 })}
                                 </select>
                             </div>
+                            <div className="validate-error">{errors.organization ? errors.organization : ''}</div>
                             <Antagonist
                                 type="checkbox"
                                 value={be_antagonist}
@@ -204,7 +275,6 @@ class СharacterCreator extends Component {
                                 <label htmlFor={name}>Откуда ты там взялся?</label>
                                 <select 
                                     name={"origins"}
-                                    // value={origins}
                                     onChange={this.handleInput}
                                 >
                                     <option selected disabled>Откуда ты епта?</option>
@@ -217,6 +287,7 @@ class СharacterCreator extends Component {
                                     })}
                                 </select>
                             </div>
+                            <div className="validate-error">{errors.origins ? errors.origins : ''}</div>
                             <div className="adv">
                                 <div className="form-group">
                                 <label htmlFor={name} className="form-label">
@@ -242,6 +313,7 @@ class СharacterCreator extends Component {
                                         );
                                         })}
                                     </div>
+                                    <div className="validate-error">{errors.advantages ? errors.advantages : ''}</div>
                                 </div>
                                 <div className="form-group">
                                 <label htmlFor={name} className="form-label">
@@ -267,6 +339,7 @@ class СharacterCreator extends Component {
                                         );
                                         })}
                                     </div>
+                                    <div className="validate-error">{errors.disadvantages ? errors.disadvantages : ''}</div>
                                 </div>
                             </div>
                             <Textarea
@@ -275,15 +348,16 @@ class СharacterCreator extends Component {
                                 name={"appearance"}
                                 value={appearance}
                             />
+                            <div className="validate-error">{errors.appearance ? errors.appearance : ''}</div>
                             <Textareakbm
                                 label="КБМ"
                                 onChange={this.handleInput}
                                 name={"kbm"}
                                 value={kbm}
                             />
+                            <div className="validate-error">{errors.kbm ? errors.kbm : ''}</div>
                             <hr/>
                             <label>Принятие факта, что Ваш персонаж может погибнуть в первые минуты игры</label>
-                            <div className="btns">
                             <Button 
                                 value="Submit" 
                                 onClick={() => this.handleFormSubmit} 
@@ -293,15 +367,6 @@ class СharacterCreator extends Component {
                             >
                                 Создать
                             </Button>
-                            <Button 
-                                type="success"
-                            >
-                                <Link to={"/Сharacter"} className="btn-link__character">
-                                    Посмотреть
-                                </Link>
-                            </Button>
-                            </div>
-                            <small>После создание персонажа, Вам надо будет нажать на кнопку "Посмотреть" и там уже Вы выбираете за кого персонажа будете играть</small>
                         </form>
                     </div>
                 </div>
@@ -311,10 +376,6 @@ class СharacterCreator extends Component {
       </div>
     )
   }
-  // временно 
-//   componentDidUpdate() {
-//     console.log(this.state);
-//   }
 }
 
 function mapStateToProps(state) {

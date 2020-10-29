@@ -4,7 +4,8 @@ const initialState = {
     isButtonDisabled: false,
     characters: [],
     loading: false,
-    error: null
+    error: null,
+    // AskModal: false,
 }
 
 export default function charactersReducer (state = initialState, action) {

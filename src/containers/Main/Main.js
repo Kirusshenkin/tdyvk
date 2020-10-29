@@ -1,20 +1,22 @@
 import React from 'react'
 import Alert from 'react-bootstrap/Alert'
 import './Main.css'
+import info from '../../hoc/info-update/index.json'
 
 const Main = () => {
     return (
         <>
-        <div style={{background:'#23272A'}}>
-            <Alert variant='warning' style={{textAlign:"center"}}>
-            <h1>это сайт ТДУВК</h1>
-                <ul>
-                    <li style={{listStyleType: 'none'}}>Мы сделали обновление!</li>
-                    <li style={{listStyleType: 'none'}}>Мы добавили авторизацию и регистрацию, теперь Вы можете создавать несколько персонажей и всех Вы будете видеть</li>
-                    <li style={{listStyleType: 'none'}}>А так же скидывать всё <strong>ГМу</strong></li>
-                </ul>
-            </Alert>
-        </div>
+            <div className="main-content">
+                <Alert className="main-desc" variant='warning'>
+                        <h1>{info.title}</h1>
+                    <ul>
+                        <li>{info.update}</li>
+                        <li>{info.proposal}</li>
+                        <li><small>{info.desc}</small></li>
+                        <li><small>{info.version}</small></li>
+                    </ul>
+                </Alert>
+            </div>
         </>
     )
 }

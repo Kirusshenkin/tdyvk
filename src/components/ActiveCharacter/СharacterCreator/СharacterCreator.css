@@ -18,12 +18,26 @@
     display: flex;
     flex-direction: column;
 }
+.validate-error {
+    color: #ff3e6c;
+    padding-bottom: 0.2rem;
+}
+
+.btns {
+    display: flex;
+    flex-direction: row;
+}
+
+.btns button:first-child {
+    margin-right: 15px;
+}
 
 form div {
     display: flex;
     flex-direction: column;
-    padding-bottom: 1rem;
+    padding-bottom: 0.5rem;
 }
+
 .vision {
     color: #99AAB5;
 }
@@ -38,30 +52,14 @@ input.invalid label {
     color: #f01f30;
 }
 
-.descriptionlnk {
+.description-lnk {
     color:#ccc;
+    font-weight: 600;
 }
-.descriptionlnk:hover {
+
+.description-lnk:hover {
     text-decoration: none;
-    color:#ccc;
-}
-
-.btns {
-    display: flex;
-    flex-direction: row;
-}
-
-.btns button:first-child {
-    margin-right: 15px;
-}
-
-.btn-link__character {
-    color: #fff;
-}
-
-.btn-link__character:hover {
-    text-decoration: none;
-    color: #fff;
+    color:#eeecec;
 }
 
 .adv {

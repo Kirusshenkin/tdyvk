@@ -3,8 +3,24 @@
     justify-content: space-between;
 }
 
-.stages .step{
+.stages .step {
     display: block;
     padding: 32px;
     background: #fff;
+}
+
+.main-content {
+    background-color: #23272A;
+}
+
+.main-content .main-desc {
+    text-align: center;
+}
+
+.main-content .main-desc ul {
+    padding-left: 0;
+}
+
+.main-content .main-desc ul li {
+    list-style-type: none;
 }
